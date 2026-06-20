@@ -258,48 +258,52 @@ export default function Home() {
           <div className={styles.heroContainer}>
             <div className={styles.heroContent}>
               <div className={styles.heroBadge}>
-                <span className={styles.heroBadgeDot}></span>
                 {t.hero.badge}
               </div>
 
               <h1 className={styles.heroTitle}>
-                {t.hero.title}
+                {t.hero.titleLine1}
                 <br />
-                <span className={styles.heroTitleHighlight}>{t.hero.highlight}</span>
+                <span className={styles.heroTitleHighlight}>{t.hero.titleHighlight}</span>
+                <br />
+                {t.hero.titleLine2}
               </h1>
 
               <p className={styles.heroSubtitle}>
                 {t.hero.subtitle}
               </p>
 
-              <div className={styles.heroCtas}>
-                <a href="#signup" className="btn btn-primary btn-large">
-                  {t.hero.ctaPrimary}
-                </a>
-                <button
-                  onClick={() => {
-                    setBusinessSubmitted(false);
-                    setIsBusinessModalOpen(true);
-                  }}
-                  className="btn btn-secondary btn-large"
-                >
-                  {t.hero.ctaSecondary}
-                </button>
-              </div>
+              {submitted ? (
+                <div className={styles.heroSuccess}>
+                  <span>✓</span> {t.signup.success}
+                </div>
+              ) : (
+                <form onSubmit={handleUserSubmit} className={styles.heroForm}>
+                  <input
+                    type="email"
+                    required
+                    disabled={isSubmittingUser}
+                    placeholder={t.hero.emailPlaceholder}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className={styles.heroInput}
+                    aria-label="Email address"
+                  />
+                  <button type="submit" disabled={isSubmittingUser} className={styles.heroBtn}>
+                    {isSubmittingUser ? t.signup.submitting : t.hero.ctaPrimary}
+                  </button>
+                </form>
+              )}
 
-              <div className={styles.heroStats}>
-                <div className={styles.heroStat}>
-                  <span className={styles.heroStatValue}>{t.hero.stat1Value}</span>
-                  <span className={styles.heroStatLabel}>{t.hero.stat1Label}</span>
-                </div>
-                <div className={styles.heroStat}>
-                  <span className={styles.heroStatValue}>{t.hero.stat2Value}</span>
-                  <span className={styles.heroStatLabel}>{t.hero.stat2Label}</span>
-                </div>
-                <div className={styles.heroStat}>
-                  <span className={styles.heroStatValue}>{t.hero.stat3Value}</span>
-                  <span className={styles.heroStatLabel}>{t.hero.stat3Label}</span>
-                </div>
+              {userError && (
+                <p className={styles.modalError} style={{ marginTop: "0.5rem" }}>
+                  {userError}
+                </p>
+              )}
+
+              <div className={styles.heroLiveStatus}>
+                <span className={styles.liveIndicatorDot}></span>
+                <span className={styles.liveStatusText}>{t.hero.liveDealsText}</span>
               </div>
             </div>
 
@@ -308,19 +312,27 @@ export default function Home() {
               <div className={styles.heroImageWrapper}>
                 <Image
                   src="/hero-padel.png"
-                  alt="Lisbon Padel Club court - Offpeak.pt official partner"
+                  alt="Lisboa Padel Club court - Offpeak.pt official partner"
                   width={520}
                   height={455}
                   priority
                 />
               </div>
-              <div className={styles.heroFloatingCard}>
-                <div className={styles.heroFloatingIcon}>🎾</div>
-                <div className={styles.heroFloatingText}>
-                  <span className={styles.heroFloatingTitle}>{t.hero.floatingTitle}</span>
-                  <span className={styles.heroFloatingDiscount}>
-                    {t.hero.floatingDiscount}
-                  </span>
+              
+              {/* Dynamic simulated floating card matching Image 2 style */}
+              <div className={styles.heroPriceCard}>
+                <div className={styles.priceCardHeader}>
+                  <span className={styles.priceCardTitle}>{t.hero.floatingTitle}</span>
+                  <span className={styles.priceCardBadge}>{t.hero.floatingDiscount}</span>
+                </div>
+                <div className={styles.priceCardLocation}>
+                  {t.hero.floatingLocation}
+                </div>
+                <div className={styles.priceCardFooter}>
+                  <div className={styles.priceCardPriceGroup}>
+                    <span className={styles.priceCardNewPrice}>{t.hero.floatingPrice}</span>
+                    <span className={styles.priceCardOldPrice}>{t.hero.floatingOldPrice}</span>
+                  </div>
                 </div>
               </div>
             </div>

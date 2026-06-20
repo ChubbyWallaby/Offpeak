@@ -1,30 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
 
 /* ─── Design Tokens ────────────────────────────────────── */
 :root {
-  /* Primary palette — cheerful vibrant blues */
-  --color-primary: oklch(0.58 0.2 245);
-  --color-primary-light: oklch(0.68 0.16 245);
-  --color-primary-dark: oklch(0.48 0.22 245);
-  --color-primary-subtle: oklch(0.96 0.03 245);
+  /* Primary palette — deep slate/navy (Image 2 style) */
+  --color-primary: oklch(0.24 0.05 250);
+  --color-primary-light: oklch(0.35 0.04 250);
+  --color-primary-dark: oklch(0.12 0.03 250);
+  --color-primary-subtle: oklch(0.96 0.015 250);
 
   /* Neutral palette */
-  --color-bg: oklch(0.985 0.002 90);
-  --color-bg-alt: oklch(0.965 0.005 85);
+  --color-bg: oklch(0.985 0.005 240);
+  --color-bg-alt: oklch(0.965 0.007 240);
   --color-surface: oklch(1 0 0);
   --color-surface-elevated: oklch(1 0 0);
 
-  --color-text: oklch(0.22 0.02 60);
-  --color-text-secondary: oklch(0.45 0.015 60);
-  --color-text-tertiary: oklch(0.6 0.01 60);
+  --color-text: oklch(0.22 0.02 250);
+  --color-text-secondary: oklch(0.45 0.015 250);
+  --color-text-tertiary: oklch(0.6 0.01 250);
   --color-text-on-primary: oklch(1 0 0);
 
-  --color-border: oklch(0.9 0.005 80);
-  --color-border-subtle: oklch(0.94 0.003 80);
+  --color-border: oklch(0.9 0.005 240);
+  --color-border-subtle: oklch(0.94 0.003 240);
 
-  /* Accent — vibrant green for active callouts & highlights */
-  --color-accent: oklch(0.68 0.18 140);
-  --color-accent-light: oklch(0.94 0.04 140);
+  /* Accent — vibrant electric indigo/purple (Image 2 style) */
+  --color-accent: oklch(0.52 0.24 270);
+  --color-accent-light: oklch(0.92 0.03 270);
 
   /* Success / discount green */
   --color-success: oklch(0.68 0.18 140);
@@ -43,6 +43,7 @@
 
   /* Typography */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-header: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-size-sm: 0.875rem;
   --font-size-base: 1rem;
   --font-size-lg: 1.125rem;
