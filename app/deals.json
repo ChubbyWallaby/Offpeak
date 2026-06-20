@@ -22,7 +22,12 @@
     "days": {
       "en": "Mon–Fri",
       "pt": "Seg–Sex"
-    }
+    },
+    "baseDiscountPercent": 50,
+    "minDiscountPercent": 25,
+    "views": 42,
+    "bookings": 3,
+    "decayRate": 1.2
   },
   {
     "id": 2,
@@ -47,7 +52,12 @@
     "days": {
       "en": "Every day",
       "pt": "Todos os dias"
-    }
+    },
+    "baseDiscountPercent": 50,
+    "minDiscountPercent": 15,
+    "views": 18,
+    "bookings": 1,
+    "decayRate": 1.5
   },
   {
     "id": 3,
@@ -72,7 +82,12 @@
     "days": {
       "en": "Mon–Thu",
       "pt": "Seg–Qui"
-    }
+    },
+    "baseDiscountPercent": 40,
+    "minDiscountPercent": 20,
+    "views": 25,
+    "bookings": 2,
+    "decayRate": 1.0
   },
   {
     "id": 4,
@@ -97,7 +112,12 @@
     "days": {
       "en": "Mon–Fri",
       "pt": "Seg–Sex"
-    }
+    },
+    "baseDiscountPercent": 35,
+    "minDiscountPercent": 15,
+    "views": 31,
+    "bookings": 4,
+    "decayRate": 0.8
   },
   {
     "id": 5,
@@ -122,6 +142,11 @@
     "days": {
       "en": "Tue–Thu",
       "pt": "Ter–Qui"
-    }
+    },
+    "baseDiscountPercent": 30,
+    "minDiscountPercent": 10,
+    "views": 15,
+    "bookings": 0,
+    "decayRate": 1.1
   }
 ]

@@ -573,6 +573,143 @@
   background: var(--color-text-tertiary);
 }
 
+/* ─── Live Pricing & Simulation Styles ──────────────────── */
+.livePricingWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin-block: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  background: oklch(from var(--color-primary) l c h / 0.03);
+  border-radius: var(--radius-lg);
+  border: 1px solid oklch(from var(--color-primary) l c h / 0.08);
+}
+
+.liveDemand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.liveDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: relative;
+}
+
+.liveDot::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  animation: pulseIndicator 2s infinite;
+}
+
+.demandLow {
+  background: var(--color-success);
+}
+.demandLow::after {
+  background: var(--color-success);
+}
+
+.demandMedium {
+  background: oklch(0.69 0.16 70); /* Warning Orange */
+}
+.demandMedium::after {
+  background: oklch(0.69 0.16 70);
+}
+
+.demandHigh {
+  background: oklch(0.62 0.18 20); /* Error Red */
+}
+.demandHigh::after {
+  background: oklch(0.62 0.18 20);
+}
+
+@keyframes pulseIndicator {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+.liveDemandText {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.liveMetrics {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+  margin-left: calc(8px + var(--space-sm)); /* aligns with text after dot */
+}
+
+.liveMetricsSeparator {
+  opacity: 0.4;
+}
+
+.simulateBtn {
+  width: 100%;
+  margin-top: var(--space-md);
+  padding: 0.6rem var(--space-md);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  background: transparent;
+  color: var(--color-primary);
+  border: 1.5px dashed var(--color-primary);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+}
+
+.simulateBtn:hover {
+  background: var(--color-primary);
+  color: white;
+  border-style: solid;
+  transform: translateY(-2px);
+}
+
+.simulateBtn:active {
+  transform: translateY(0);
+}
+
+/* Badge update flash animation */
+.badgeFlash {
+  animation: flashGreen 1s ease-out;
+}
+
+@keyframes flashGreen {
+  0% {
+    transform: scale(1);
+    background-color: var(--color-success);
+  }
+  20% {
+    transform: scale(1.18);
+    background-color: oklch(0.68 0.18 140); /* bright success lime */
+    box-shadow: 0 0 15px oklch(0.68 0.18 140 / 0.8);
+  }
+  100% {
+    transform: scale(1);
+    background-color: var(--color-success);
+    box-shadow: none;
+  }
+}
+
 /* ─── For Businesses ───────────────────────────────────── */
 .forBusiness {
   background: var(--color-text);
