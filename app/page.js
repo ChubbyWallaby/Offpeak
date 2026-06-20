@@ -59,7 +59,7 @@ const DEALS = [
 ];
 
 export default function Home() {
-  const [lang, setLang] = useState("en");
+  const [lang, setLang] = useState("pt");
   const [navScrolled, setNavScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const revealRefs = useRef([]);
@@ -85,8 +85,8 @@ export default function Home() {
   useEffect(() => {
     if (typeof window !== "undefined") {
       const userLang = navigator.language || navigator.userLanguage;
-      if (userLang && userLang.toLowerCase().startsWith("pt")) {
-        setLang("pt");
+      if (userLang && userLang.toLowerCase().startsWith("en")) {
+        setLang("en");
       }
     }
   }, []);
@@ -771,6 +771,43 @@ export default function Home() {
           )}
         </div>
       </div>
+      {/* ─────────── JSON-LD Structured Data for Search Engine Optimization ─────────── */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Offpeak.pt",
+            "url": "https://offpeak.pt",
+            "description": "Descontos fora de horas para Padel, Bowling e Lazer em Portugal.",
+            "inLanguage": ["pt-PT", "en-US"],
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://offpeak.pt/?q={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+          })
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Offpeak",
+            "url": "https://offpeak.pt",
+            "logo": "https://offpeak.pt/favicon.ico",
+            "email": "hello@offpeak.pt",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Lisbon",
+              "addressCountry": "PT"
+            }
+          })
+        }}
+      />
     </>
   );
 }
