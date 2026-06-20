@@ -19,6 +19,7 @@ const DEALS = [
     timeKey: "padel",
     daysKey: "weekday",
     image: "/hero-padel.png",
+    isPartner: true,
   },
   {
     id: 2,
@@ -204,9 +205,6 @@ export default function Home() {
           </a>
 
           <div className={styles.navLinks}>
-            <a href="#how-it-works" className={styles.navLink}>
-              {t.nav.howItWorks}
-            </a>
             <a href="#deals" className={styles.navLink}>
               {t.nav.deals}
             </a>
@@ -304,7 +302,7 @@ export default function Home() {
               <div className={styles.heroImageWrapper}>
                 <Image
                   src="/hero-padel.png"
-                  alt="Padel court bathed in golden afternoon light"
+                  alt="Lisbon Padel Club court - Offpeak.pt official partner"
                   width={520}
                   height={455}
                   priority
@@ -323,92 +321,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ─────────── How It Works ─────────── */}
-        <section
-          id="how-it-works"
-          className={`${styles.howItWorks} section`}
-        >
-          <div className="container" ref={addRevealRef}>
-            <div className="reveal">
-              <span className="section-label">{t.howItWorks.label}</span>
-              <h2 className="section-title">{t.howItWorks.title}</h2>
-              <p className="section-subtitle">
-                {t.howItWorks.subtitle}
-              </p>
-            </div>
-
-            <div className={`${styles.stepsGrid} reveal`} ref={addRevealRef}>
-              <div className={styles.step}>
-                <div className={styles.stepNumber}>1</div>
-                <h3 className={styles.stepTitle}>{t.howItWorks.step1Title}</h3>
-                <p className={styles.stepDesc}>
-                  {t.howItWorks.step1Desc}
-                </p>
-                <div className={styles.stepConnector}></div>
-              </div>
-
-              <div className={styles.step}>
-                <div className={styles.stepNumber}>2</div>
-                <h3 className={styles.stepTitle}>{t.howItWorks.step2Title}</h3>
-                <p className={styles.stepDesc}>
-                  {t.howItWorks.step2Desc}
-                </p>
-                <div className={styles.stepConnector}></div>
-              </div>
-
-              <div className={styles.step}>
-                <div className={styles.stepNumber}>3</div>
-                <h3 className={styles.stepTitle}>{t.howItWorks.step3Title}</h3>
-                <p className={styles.stepDesc}>
-                  {t.howItWorks.step3Desc}
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ─────────── Why Off-Peak ─────────── */}
-        <section className={`${styles.whyOffPeak} section`}>
-          <div className="container" ref={addRevealRef}>
-            <div className="reveal">
-              <span className="section-label">{t.whyOffPeak.label}</span>
-              <h2 className="section-title">
-                {t.whyOffPeak.title}
-              </h2>
-              <p className="section-subtitle">
-                {t.whyOffPeak.subtitle}
-              </p>
-            </div>
-
-            <div className={`${styles.whyGrid} reveal`} ref={addRevealRef}>
-              <div className={styles.whyCard}>
-                <div className={`${styles.whyCardIcon} ${styles.save}`}>💰</div>
-                <h3 className={styles.whyCardTitle}>{t.whyOffPeak.card1Title}</h3>
-                <p className={styles.whyCardDesc}>
-                  {t.whyOffPeak.card1Desc}
-                </p>
-              </div>
-
-              <div className={styles.whyCard}>
-                <div className={`${styles.whyCardIcon} ${styles.crowd}`}>🧘</div>
-                <h3 className={styles.whyCardTitle}>{t.whyOffPeak.card2Title}</h3>
-                <p className={styles.whyCardDesc}>
-                  {t.whyOffPeak.card2Desc}
-                </p>
-              </div>
-
-              <div className={styles.whyCard}>
-                <div className={`${styles.whyCardIcon} ${styles.quality}`}>✨</div>
-                <h3 className={styles.whyCardTitle}>{t.whyOffPeak.card3Title}</h3>
-                <p className={styles.whyCardDesc}>
-                  {t.whyOffPeak.card3Desc}
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ─────────── Example Deals ─────────── */}
+        {/* ─────────── Example Deals & Partners ─────────── */}
         <section id="deals" className={`${styles.deals} section`}>
           <div className="container" ref={addRevealRef}>
             <div className="reveal">
@@ -431,6 +344,11 @@ export default function Home() {
                       width={400}
                       height={250}
                     />
+                    {deal.isPartner && (
+                      <span className={styles.partnerBadge}>
+                        {t.deals.partnerBadge}
+                      </span>
+                    )}
                     <span className={styles.dealBadge}>{t.deals.discounts[deal.discountKey]}</span>
                   </div>
                   <div className={styles.dealContent}>
@@ -771,6 +689,7 @@ export default function Home() {
           )}
         </div>
       </div>
+      
       {/* ─────────── JSON-LD Structured Data for Search Engine Optimization ─────────── */}
       <script
         type="application/ld+json"

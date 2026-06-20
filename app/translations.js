@@ -2,15 +2,15 @@ export const translations = {
   en: {
     nav: {
       howItWorks: "How it works",
-      deals: "Deals",
+      deals: "Partners & Deals",
       forBusiness: "For business",
       cta: "Get early access"
     },
     hero: {
-      badge: "Launching soon in Lisbon",
-      title: "Do more. Pay less.",
+      badge: "Active in Lisbon, Portugal",
+      title: "Book empty slots at your favorite spots for half the price.",
       highlight: "Go off-peak.",
-      subtitle: "Discover hidden off-peak discounts for padel, bowling, cinema, and more. Same great experiences — cheaper prices, fewer crowds.",
+      subtitle: "Offpeak.pt connects you with last-minute open hours for padel courts, bowling lanes, and cinemas in Lisbon. Help local businesses fill empty hours, get cheaper bookings, and avoid crowds.",
       ctaPrimary: "Get off-peak deals near you",
       ctaSecondary: "List your business — free",
       stat1Value: "Up to 50%",
@@ -19,35 +19,14 @@ export const translations = {
       stat2Label: "Activity categories",
       stat3Value: "Lisbon",
       stat3Label: "First city",
-      floatingTitle: "Padel court",
-      floatingDiscount: "50% off · 14:00–17:00"
-    },
-    howItWorks: {
-      label: "How it works",
-      title: "Three steps to a better deal",
-      subtitle: "No downloads, no apps, no fuss. Just find a deal and enjoy it.",
-      step1Title: "Choose your city",
-      step1Desc: "We start in Lisbon. More cities across Portugal are coming soon.",
-      step2Title: "Discover off-peak deals",
-      step2Desc: "Browse real discounts from local businesses — padel, cinema, bowling, and more.",
-      step3Title: "Enjoy for less",
-      step3Desc: "Show up during off-peak hours and pay less. The same quality, just at a better price."
-    },
-    whyOffPeak: {
-      label: "Why off-peak?",
-      title: "It's not a compromise. It's a smarter choice.",
-      subtitle: "Going off-peak means you get the same experience under better conditions — and for less money.",
-      card1Title: "Cheaper prices",
-      card1Desc: "Businesses already offer off-peak discounts. We just make them easy to find. Save 20–50% on activities you already love.",
-      card2Title: "Less crowded",
-      card2Desc: "No queues. No waiting. No fighting for a lane, a court, or a seat. Off-peak hours mean more space and more comfort.",
-      card3Title: "Same experience",
-      card3Desc: "The screen is the same size. The padel court is the same court. The bowling pins don't care what time it is."
+      floatingTitle: "Lisbon Padel Club",
+      floatingDiscount: "50% off · Official Partner"
     },
     deals: {
-      label: "✦ Example deals",
-      title: "What off-peak deals look like",
-      subtitle: "These are illustrative examples of the kind of promotions you'll find on Offpeak.pt. Real deals will be added as businesses join.",
+      label: "✦ Active Partner Deals & Promotions",
+      title: "Lisbon Partner Spots & Real Offers",
+      subtitle: "Below are active promotions from our initial partners, including Lisbon Padel Club. Join today to grab open slots or promote your own.",
+      partnerBadge: "Official Partner",
       categories: {
         padel: "Padel",
         bowling: "Bowling",
@@ -56,11 +35,11 @@ export const translations = {
         wellness: "Wellness"
       },
       titles: {
-        padel: "Padel Court — Weekday Afternoons",
-        bowling: "Bowling — 2-for-1 Before 16:00",
-        cinema: "Cinema — Afternoon Screenings",
-        fitness: "Gym Day Pass — Morning Hours",
-        wellness: "Spa Access — Midweek Relaxation"
+        padel: "Lisboa Padel Club — Weekday Afternoon Slots",
+        bowling: "City Bowling — 2-for-1 Before 16:00",
+        cinema: "Alvalade Cine — Afternoon Screenings",
+        fitness: "Peak Fitness — Gym Morning Pass",
+        wellness: "Sintra Spa — Midweek Relaxation"
       },
       discounts: {
         halfOff: "50% off",
@@ -147,15 +126,15 @@ export const translations = {
   pt: {
     nav: {
       howItWorks: "Como funciona",
-      deals: "Promoções",
+      deals: "Parceiros e Ofertas",
       forBusiness: "Para negócios",
       cta: "Acesso antecipado"
     },
     hero: {
-      badge: "Lançamento em breve em Lisboa",
-      title: "Faça mais. Pague menos.",
+      badge: "Ativo em Lisboa, Portugal",
+      title: "Reserve as horas vagas dos seus espaços favoritos por metade do preço.",
       highlight: "Vá em off-peak.",
-      subtitle: "Descubra promoções escondidas em off-peak para padel, bowling, cinema e muito mais. Mesma diversão — mais barato, sem multidões.",
+      subtitle: "O Offpeak.pt junta os horários vazios de última hora de campos de padel, pistas de bowling e cinemas em Lisboa. Ajude os negócios locais a rentabilizar horas vazias, pague menos e evite multidões.",
       ctaPrimary: "Receber promoções perto de si",
       ctaSecondary: "Divulgar o meu negócio — grátis",
       stat1Value: "Até 50%",
@@ -164,35 +143,14 @@ export const translations = {
       stat2Label: "Categorias de atividades",
       stat3Value: "Lisboa",
       stat3Label: "Primeira cidade",
-      floatingTitle: "Campo de Padel",
-      floatingDiscount: "50% desconto · 14:00–17:00"
-    },
-    howItWorks: {
-      label: "Como funciona",
-      title: "Três passos para poupar mais",
-      subtitle: "Sem downloads, sem aplicações, sem complicações. Só tem de encontrar e aproveitar.",
-      step1Title: "Escolha a sua cidade",
-      step1Desc: "Começamos em Lisboa. Mais cidades em Portugal brevemente.",
-      step2Title: "Descubra promoções",
-      step2Desc: "Explore descontos reais de parceiros locais — padel, cinema, bowling e muito mais.",
-      step3Title: "Aproveite por menos",
-      step3Desc: "Compareça nas horas de menor afluência e pague menos. A mesma qualidade, por um preço melhor."
-    },
-    whyOffPeak: {
-      label: "Porquê o Off-Peak?",
-      title: "Não é um compromisso. É uma escolha inteligente.",
-      subtitle: "Ir em off-peak significa ter a mesma experiência sob melhores condições — e por menos dinheiro.",
-      card1Title: "Preços mais baixos",
-      card1Desc: "Os negócios já oferecem descontos fora de horas. Nós apenas os tornamos fáceis de encontrar. Poupe 20–50% nas atividades que adora.",
-      card2Title: "Menos confusão",
-      card2Desc: "Sem filas. Sem esperas. Sem lutar por um campo, uma pista ou um lugar. Mais espaço e mais conforto para si.",
-      card3Title: "A mesma experiência",
-      card3Desc: "O ecrã é do mesmo tamanho. O campo de padel é o mesmo. Os pinos de bowling não querem saber que horas são."
+      floatingTitle: "Lisboa Padel Club",
+      floatingDiscount: "50% desc. · Parceiro Oficial"
     },
     deals: {
-      label: "✦ Exemplos de promoções",
-      title: "Que promoções irá encontrar",
-      subtitle: "Estes são exemplos ilustrativos de ofertas que estarão no Offpeak.pt. Promoções reais serão adicionadas assim que os parceiros se juntem.",
+      label: "✦ Promoções Ativas e Parceiros Oficiais",
+      title: "Espaços Parceiros e Ofertas em Lisboa",
+      subtitle: "Abaixo encontra as promoções ativas dos nossos parceiros oficiais, incluindo o Lisboa Padel Club. Registe-se para reservar ou divulgar o seu espaço.",
+      partnerBadge: "Parceiro Oficial",
       categories: {
         padel: "Padel",
         bowling: "Bowling",
@@ -201,11 +159,11 @@ export const translations = {
         wellness: "Bem-estar"
       },
       titles: {
-        padel: "Campo de Padel — Dias de Semana à Tarde",
-        bowling: "Bowling — 2 por 1 Antes das 16:00",
-        cinema: "Cinema — Sessões da Tarde",
-        fitness: "Livre-Trânsito de Ginásio — Horas da Manhã",
-        wellness: "Acesso ao Spa — Relaxamento Semanal"
+        padel: "Lisboa Padel Club — Horários de Tarde (Dias Úteis)",
+        bowling: "City Bowling — 2 por 1 Antes das 16:00",
+        cinema: "Cinema Alvalade — Sessões de Tarde",
+        fitness: "Peak Fitness — Livre-Trânsito de Manhã",
+        wellness: "Sintra Spa — Relaxamento Semanal"
       },
       discounts: {
         halfOff: "50% desc.",

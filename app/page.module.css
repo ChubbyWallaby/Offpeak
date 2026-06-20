@@ -526,6 +526,18 @@
   border-radius: var(--radius-full);
 }
 
+.partnerBadge {
+  position: absolute;
+  top: var(--space-md);
+  left: var(--space-md);
+  padding: 0.3rem 0.75rem;
+  background: var(--color-primary);
+  color: white;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  border-radius: var(--radius-full);
+}
+
 .dealContent {
   padding: var(--space-lg);
 }
