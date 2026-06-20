@@ -13,6 +13,36 @@ import { translations } from "./translations";
 import DEALS from "./deals.json";
 import { getDiscountText, calculateDiscountPercent } from "./pricing";
 
+/* ─── SVG Icons for How It Works Section ─── */
+const CompassIcon = ({ className }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <circle cx="12" cy="12" r="10" />
+    <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+  </svg>
+);
+
+const CalendarCheckIcon = ({ className }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M8 2v4" />
+    <path d="M16 2v4" />
+    <rect width="18" height="18" x="3" y="4" rx="2" />
+    <path d="M3 10h18" />
+    <path d="m9 16 2 2 4-4" />
+  </svg>
+);
+
+const PartyPopperIcon = ({ className }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M5.8 11.3 2 22l10.7-3.8" />
+    <path d="M4 14h.01" />
+    <path d="M22 2c-2.3 0-4.4.9-6 2.4L7.4 13.1c-.6.6-.9 1.4-.9 2.2V16h.7c.8 0 1.6-.3 2.2-.9L18 6.4c1.5-1.6 2.4-3.7 2.4-6Z" />
+    <path d="M20 8h.01" />
+    <path d="M16 11h.01" />
+    <path d="M11 4h.01" />
+    <path d="M13 14.7c.3.3.4.6.4 1V17h.3c.4 0 .7.1 1 .4l.9.9c.3.3.7.3 1 0l3-3c.3-.3.3-.7 0-1l-.9-.9c-.3-.3-.4-.6-.4-1V12h-.3c-.4 0-.7-.1-1-.4l-.9-.9c-.3-.3-.7-.3-1 0l-3 3c-.3.3-.3.7 0 1Z" />
+  </svg>
+);
+
 export default function Home() {
   const [lang, setLang] = useState("pt");
   const [dealsList, setDealsList] = useState(DEALS);
@@ -385,6 +415,20 @@ export default function Home() {
                       <span className={`${styles.dealBadge} ${animatedDealId === deal.id ? styles.badgeFlash : ""}`}>
                         {getDiscountText(deal, lang)}
                       </span>
+                      
+                      {/* Desktop Hover Overlay */}
+                      <div className={styles.dealHoverOverlay}>
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            simulateBooking(deal.id);
+                          }}
+                          className={styles.dealHoverBtn}
+                          aria-label="Simulate booking this slot"
+                        >
+                          ⚡ {t.deals.grabDealBtn}
+                        </button>
+                      </div>
                     </div>
                     <div className={styles.dealContent}>
                       <span className={styles.dealCategory}>{deal.category[lang] || deal.category.en}</span>
@@ -420,6 +464,38 @@ export default function Home() {
                       </button>
                     </div>
                   </article>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* ─────────── How It Works ─────────── */}
+        <section id="how-it-works" className={`${styles.howSection} section`}>
+          <div className="container" ref={addRevealRef}>
+            <div className={`${styles.howHeader} reveal`}>
+              <span className={styles.howLabel}>{t.how.tag}</span>
+              <h2 className="section-title">{t.how.title}</h2>
+            </div>
+
+            <div className={`${styles.howGrid} reveal`} ref={addRevealRef}>
+              {t.how.steps.map((step, i) => {
+                const stepNum = i + 1;
+                return (
+                  <div key={i} className={styles.howStepCard}>
+                    <div className={styles.howStepNumber}>0{stepNum}</div>
+                    
+                    <div className={`${styles.howIconWrapper} ${
+                      i === 0 ? styles.color1 : i === 1 ? styles.color2 : styles.color3
+                    }`}>
+                      {i === 0 && <CompassIcon className={styles.howIcon} />}
+                      {i === 1 && <CalendarCheckIcon className={styles.howIcon} />}
+                      {i === 2 && <PartyPopperIcon className={styles.howIcon} />}
+                    </div>
+
+                    <h3 className={styles.howStepTitle}>{step.t}</h3>
+                    <p className={styles.howStepDesc}>{step.d}</p>
+                  </div>
                 );
               })}
             </div>

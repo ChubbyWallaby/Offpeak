@@ -736,7 +736,7 @@
   border-radius: var(--radius-lg);
   cursor: pointer;
   transition: all var(--duration-fast) var(--ease-out);
-  display: inline-flex;
+  display: none; /* Hidden by default on desktop, shown on mobile */
   align-items: center;
   justify-content: center;
   gap: var(--space-xs);
@@ -773,6 +773,152 @@
     background-color: var(--color-success);
     box-shadow: none;
   }
+}
+
+/* Card hover overlay styling */
+.dealHoverOverlay {
+  position: absolute;
+  inset: 0;
+  background: oklch(from var(--color-primary) l c h / 0.45);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-out);
+  z-index: 2;
+}
+
+.dealCard:hover .dealHoverOverlay {
+  opacity: 1;
+}
+
+.dealHoverBtn {
+  background: var(--color-accent);
+  color: white;
+  font-family: var(--font-header);
+  font-weight: 750;
+  font-size: var(--font-size-base);
+  padding: 0.8rem 1.6rem;
+  border-radius: var(--radius-lg);
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transform: translateY(12px) scale(0.95);
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.dealCard:hover .dealHoverBtn {
+  transform: translateY(0) scale(1);
+}
+
+.dealHoverBtn:hover {
+  background: oklch(from var(--color-accent) l c h / 0.9);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: var(--shadow-lg);
+}
+
+.dealHoverBtn:active {
+  transform: translateY(0) scale(1);
+}
+
+/* ─── How It Works ─────────────────────────────────────── */
+.howSection {
+  background: oklch(from var(--color-primary-subtle) l c h / 0.5);
+  border-block: 1px solid var(--color-border-subtle);
+}
+
+.howHeader {
+  text-align: center;
+  max-width: 32rem;
+  margin-inline: auto;
+  margin-bottom: var(--space-3xl);
+}
+
+.howLabel {
+  composes: dealsLabel;
+  color: var(--color-accent);
+}
+
+.howGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+}
+
+.howStepCard {
+  position: relative;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-xl);
+  padding: var(--space-2xl) var(--space-xl);
+  transition: all var(--duration-normal) var(--ease-out);
+  overflow: hidden;
+}
+
+.howStepCard:hover {
+  transform: translateY(-6px);
+  border-color: var(--color-primary-light);
+  box-shadow: var(--shadow-lg);
+}
+
+.howStepNumber {
+  font-family: var(--font-header);
+  font-weight: 900;
+  font-size: 4rem;
+  line-height: 1;
+  color: oklch(from var(--color-primary-subtle) l c h / 0.4);
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-lg);
+  pointer-events: none;
+  user-select: none;
+}
+
+.howIconWrapper {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-xl);
+}
+
+.howIcon {
+  width: 28px;
+  height: 28px;
+}
+
+/* Coordinated step colors for icons */
+.color1 {
+  background: oklch(0.65 0.2 15 / 0.12);
+  color: oklch(0.65 0.2 15);
+}
+
+.color2 {
+  background: oklch(0.52 0.24 270 / 0.12);
+  color: oklch(0.52 0.24 270);
+}
+
+.color3 {
+  background: oklch(0.68 0.18 140 / 0.12);
+  color: oklch(0.68 0.18 140);
+}
+
+.howStepTitle {
+  font-family: var(--font-header);
+  font-weight: 800;
+  font-size: var(--font-size-xl);
+  color: var(--color-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.howStepDesc {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
 }
 
 /* ─── For Businesses ───────────────────────────────────── */
@@ -1182,6 +1328,23 @@
   .footerInner {
     flex-direction: column;
     text-align: center;
+  }
+
+  /* Responsive deal hover and simulated booking buttons */
+  .simulateBtn {
+    display: inline-flex;
+  }
+
+  .dealHoverOverlay {
+    display: none !important;
+  }
+
+  /* Responsive How It Works grid */
+  .howGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    max-width: 28rem;
+    margin-inline: auto;
   }
 }
 

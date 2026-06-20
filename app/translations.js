@@ -69,6 +69,24 @@ export const translations = {
         tueThu: "Tue–Thu"
       }
     },
+    how: {
+      tag: "How it works",
+      title: "Three steps to off-peak savings",
+      steps: [
+        {
+          t: "Discover",
+          d: "Browse activities near you and spot the off-peak slots with the biggest discounts."
+        },
+        {
+          t: "Book",
+          d: "Reserve your time in a couple of taps. The off-peak price is the price you pay."
+        },
+        {
+          t: "Enjoy",
+          d: "Show up, have a blast, and keep the change. Same experience, smaller bill."
+        }
+      ]
+    },
     forBusiness: {
       label: "For businesses",
       title: "Fill your empty hours. No cost, no commission.",
@@ -199,6 +217,24 @@ export const translations = {
         monThu: "Seg–Qui",
         tueThu: "Ter–Qui"
       }
+    },
+    how: {
+      tag: "Como funciona",
+      title: "Três passos para poupar fora de pico",
+      steps: [
+        {
+          t: "Descobre",
+          d: "Explora atividades perto de ti e encontra os horários com os maiores descontos."
+        },
+        {
+          t: "Reserva",
+          d: "Reserva o teu horário em poucos toques. O preço fora de pico é o que pagas."
+        },
+        {
+          t: "Aproveita",
+          d: "Aparece, diverte-te e poupa. A mesma experiência, conta mais pequena."
+        }
+      ]
     },
     forBusiness: {
       label: "Para negócios",
