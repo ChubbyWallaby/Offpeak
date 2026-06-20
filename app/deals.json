@@ -1,0 +1,127 @@
+[
+  {
+    "id": 1,
+    "image": "/hero-padel.png",
+    "isPartner": true,
+    "category": {
+      "en": "Padel",
+      "pt": "Padel"
+    },
+    "title": {
+      "en": "Lisbon Padel Club — Weekday Afternoon Slots",
+      "pt": "Lisboa Padel Club — Horários de Tarde (Dias Úteis)"
+    },
+    "discount": {
+      "en": "50% off",
+      "pt": "50% desc."
+    },
+    "timeSlot": {
+      "en": "14:00–17:00",
+      "pt": "14:00–17:00"
+    },
+    "days": {
+      "en": "Mon–Fri",
+      "pt": "Seg–Sex"
+    }
+  },
+  {
+    "id": 2,
+    "image": "/card-bowling.png",
+    "isPartner": false,
+    "category": {
+      "en": "Bowling",
+      "pt": "Bowling"
+    },
+    "title": {
+      "en": "City Bowling — 2-for-1 Before 16:00",
+      "pt": "City Bowling — 2 por 1 Antes das 16:00"
+    },
+    "discount": {
+      "en": "2 for 1",
+      "pt": "2 por 1"
+    },
+    "timeSlot": {
+      "en": "Before 16:00",
+      "pt": "Antes das 16:00"
+    },
+    "days": {
+      "en": "Every day",
+      "pt": "Todos os dias"
+    }
+  },
+  {
+    "id": 3,
+    "image": "/card-cinema.png",
+    "isPartner": false,
+    "category": {
+      "en": "Cinema",
+      "pt": "Cinema"
+    },
+    "title": {
+      "en": "Alvalade Cine — Afternoon Screenings",
+      "pt": "Cinema Alvalade — Sessões de Tarde"
+    },
+    "discount": {
+      "en": "40% off",
+      "pt": "40% desc."
+    },
+    "timeSlot": {
+      "en": "13:00–16:00",
+      "pt": "13:00–16:00"
+    },
+    "days": {
+      "en": "Mon–Thu",
+      "pt": "Seg–Qui"
+    }
+  },
+  {
+    "id": 4,
+    "image": "/card-fitness.png",
+    "isPartner": false,
+    "category": {
+      "en": "Fitness",
+      "pt": "Fitness"
+    },
+    "title": {
+      "en": "Peak Fitness — Gym Morning Pass",
+      "pt": "Peak Fitness — Livre-Trânsito de Manhã"
+    },
+    "discount": {
+      "en": "35% off",
+      "pt": "35% desc."
+    },
+    "timeSlot": {
+      "en": "06:00–10:00",
+      "pt": "06:00–10:00"
+    },
+    "days": {
+      "en": "Mon–Fri",
+      "pt": "Seg–Sex"
+    }
+  },
+  {
+    "id": 5,
+    "image": "/card-spa.png",
+    "isPartner": false,
+    "category": {
+      "en": "Wellness",
+      "pt": "Bem-estar"
+    },
+    "title": {
+      "en": "Sintra Spa — Midweek Relaxation",
+      "pt": "Sintra Spa — Relaxamento Semanal"
+    },
+    "discount": {
+      "en": "30% off",
+      "pt": "30% desc."
+    },
+    "timeSlot": {
+      "en": "10:00–15:00",
+      "pt": "10:00–15:00"
+    },
+    "days": {
+      "en": "Tue–Thu",
+      "pt": "Ter–Qui"
+    }
+  }
+]

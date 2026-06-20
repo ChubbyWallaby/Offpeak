@@ -10,54 +10,7 @@ import { translations } from "./translations";
    Offpeak.pt — Landing Page
    ═══════════════════════════════════════════════════════ */
 
-const DEALS = [
-  {
-    id: 1,
-    categoryKey: "padel",
-    titleKey: "padel",
-    discountKey: "halfOff",
-    timeKey: "padel",
-    daysKey: "weekday",
-    image: "/hero-padel.png",
-    isPartner: true,
-  },
-  {
-    id: 2,
-    categoryKey: "bowling",
-    titleKey: "bowling",
-    discountKey: "twoForOne",
-    timeKey: "bowling",
-    daysKey: "everyday",
-    image: "/card-bowling.png",
-  },
-  {
-    id: 3,
-    categoryKey: "cinema",
-    titleKey: "cinema",
-    discountKey: "fortyOff",
-    timeKey: "cinema",
-    daysKey: "monThu",
-    image: "/card-cinema.png",
-  },
-  {
-    id: 4,
-    categoryKey: "fitness",
-    titleKey: "fitness",
-    discountKey: "thirtyFiveOff",
-    timeKey: "fitness",
-    daysKey: "weekday",
-    image: "/card-fitness.png",
-  },
-  {
-    id: 5,
-    categoryKey: "wellness",
-    titleKey: "wellness",
-    discountKey: "thirtyOff",
-    timeKey: "wellness",
-    daysKey: "tueThu",
-    image: "/card-spa.png",
-  },
-];
+import DEALS from "./deals.json";
 
 export default function Home() {
   const [lang, setLang] = useState("pt");
@@ -340,7 +293,7 @@ export default function Home() {
                   <div className={styles.dealImage}>
                     <Image
                       src={deal.image}
-                      alt={t.deals.titles[deal.titleKey]}
+                      alt={deal.title[lang] || deal.title.en}
                       width={400}
                       height={250}
                     />
@@ -349,15 +302,15 @@ export default function Home() {
                         {t.deals.partnerBadge}
                       </span>
                     )}
-                    <span className={styles.dealBadge}>{t.deals.discounts[deal.discountKey]}</span>
+                    <span className={styles.dealBadge}>{deal.discount[lang] || deal.discount.en}</span>
                   </div>
                   <div className={styles.dealContent}>
-                    <span className={styles.dealCategory}>{t.deals.categories[deal.categoryKey]}</span>
-                    <h3 className={styles.dealTitle}>{t.deals.titles[deal.titleKey]}</h3>
+                    <span className={styles.dealCategory}>{deal.category[lang] || deal.category.en}</span>
+                    <h3 className={styles.dealTitle}>{deal.title[lang] || deal.title.en}</h3>
                     <div className={styles.dealMeta}>
-                      <span>{t.deals.timeSlots[deal.timeKey]}</span>
+                      <span>{deal.timeSlot[lang] || deal.timeSlot.en}</span>
                       <span className={styles.dealMetaDot}></span>
-                      <span>{t.deals.days[deal.daysKey]}</span>
+                      <span>{deal.days[lang] || deal.days.en}</span>
                     </div>
                   </div>
                 </article>
