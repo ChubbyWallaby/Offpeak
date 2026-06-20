@@ -13,7 +13,7 @@ export async function subscribeUser(formData) {
   try {
     await resend.emails.send({
       from: "onboarding@resend.dev",
-      to: "brunomvaraujo1997@gmail.com",
+      to: "contactos@offpeak.pt",
       subject: "New User Subscription - Offpeak.pt",
       html: `
         <div style="font-family: sans-serif; padding: 20px; line-height: 1.5; color: #222;">
@@ -46,7 +46,7 @@ export async function submitBusinessPartner(formData) {
   try {
     await resend.emails.send({
       from: "onboarding@resend.dev",
-      to: "brunomvaraujo1997@gmail.com",
+      to: "negocios@offpeak.pt",
       subject: `New Business Listing Request: ${businessName}`,
       html: `
         <div style="font-family: sans-serif; padding: 20px; line-height: 1.5; color: #222;">
