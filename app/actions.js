@@ -12,8 +12,8 @@ export async function subscribeUser(formData) {
 
   try {
     await resend.emails.send({
-      from: "Offpeak.pt <system@offpeak.pt>",
-      to: "contactos@offpeak.pt",
+      from: "onboarding@resend.dev",
+      to: "brunomvaraujo1997@gmail.com",
       subject: "New User Subscription - Offpeak.pt",
       html: `
         <div style="font-family: sans-serif; padding: 20px; line-height: 1.5; color: #222;">
@@ -27,28 +27,8 @@ export async function subscribeUser(formData) {
 
     return { success: true };
   } catch (error) {
-    console.error("Resend Primary Email Error:", error);
-    // If domain verification is missing or fails, send from onboarding@resend.dev
-    try {
-      await resend.emails.send({
-        from: "onboarding@resend.dev",
-        to: "contactos@offpeak.pt",
-        subject: "New User Subscription - Offpeak.pt (Sandbox Fallback)",
-        html: `
-          <div style="font-family: sans-serif; padding: 20px; line-height: 1.5; color: #222;">
-            <h2 style="color: #0070f3;">New early access request</h2>
-            <p><strong>User Email:</strong> ${email}</p>
-            <p style="color: #666; font-size: 12px; margin-top: 20px;">
-              <em>(Sent via Resend sandbox fallback. Please configure DNS settings for offpeak.pt in Resend to enable sending from system@offpeak.pt)</em>
-            </p>
-          </div>
-        `,
-      });
-      return { success: true };
-    } catch (fallbackError) {
-      console.error("Resend Fallback Email Error:", fallbackError);
-      return { success: false, error: fallbackError.message };
-    }
+    console.error("Resend Email Error:", error);
+    return { success: false, error: error.message };
   }
 }
 
@@ -65,8 +45,8 @@ export async function submitBusinessPartner(formData) {
 
   try {
     await resend.emails.send({
-      from: "Offpeak.pt <system@offpeak.pt>",
-      to: "negocios@offpeak.pt",
+      from: "onboarding@resend.dev",
+      to: "brunomvaraujo1997@gmail.com",
       subject: `New Business Listing Request: ${businessName}`,
       html: `
         <div style="font-family: sans-serif; padding: 20px; line-height: 1.5; color: #222;">
@@ -89,31 +69,7 @@ export async function submitBusinessPartner(formData) {
 
     return { success: true };
   } catch (error) {
-    console.error("Resend Primary Email Error:", error);
-    // If domain verification is missing or fails, send from onboarding@resend.dev
-    try {
-      await resend.emails.send({
-        from: "onboarding@resend.dev",
-        to: "negocios@offpeak.pt",
-        subject: `New Business Listing Request: ${businessName} (Sandbox Fallback)`,
-        html: `
-          <div style="font-family: sans-serif; padding: 20px; line-height: 1.5; color: #222;">
-            <h2 style="color: #0070f3;">New Business Partner Lead</h2>
-            <p><strong>Business Name:</strong> ${businessName}</p>
-            <p><strong>Contact Name:</strong> ${contactName}</p>
-            <p><strong>Email Address:</strong> ${email}</p>
-            <p><strong>Activity Type:</strong> ${activityType}</p>
-            <p><strong>Message:</strong> ${message}</p>
-            <p style="color: #666; font-size: 12px; margin-top: 20px;">
-              <em>(Sent via Resend sandbox fallback. Please configure DNS settings for offpeak.pt in Resend to enable sending from system@offpeak.pt)</em>
-            </p>
-          </div>
-        `,
-      });
-      return { success: true };
-    } catch (fallbackError) {
-      console.error("Resend Fallback Email Error:", fallbackError);
-      return { success: false, error: fallbackError.message };
-    }
+    console.error("Resend Email Error:", error);
+    return { success: false, error: error.message };
   }
 }
