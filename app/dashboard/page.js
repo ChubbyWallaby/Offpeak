@@ -30,14 +30,26 @@ export default function Dashboard() {
   const [minDiscount, setMinDiscount] = useState("25");
   const [decayRate, setDecayRate] = useState("1.2");
   const [ownerEmail, setOwnerEmail] = useState("");
+  const [addressPt, setAddressPt] = useState("");
+  const [addressEn, setAddressEn] = useState("");
+  const [lat, setLat] = useState("");
+  const [lng, setLng] = useState("");
+  const [descriptionPt, setDescriptionPt] = useState("");
+  const [descriptionEn, setDescriptionEn] = useState("");
+  const [hoursPt, setHoursPt] = useState("");
+  const [hoursEn, setHoursEn] = useState("");
+  const [termsPt, setTermsPt] = useState("");
+  const [termsEn, setTermsEn] = useState("");
 
   // Check session auth on load
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const auth = sessionStorage.getItem("offpeak_admin_auth");
-      if (auth === "true") {
-        setIsAuthenticated(true);
-      }
+      queueMicrotask(() => {
+        const auth = sessionStorage.getItem("offpeak_admin_auth");
+        if (auth === "true") {
+          setIsAuthenticated(true);
+        }
+      });
     }
   }, []);
 
@@ -48,14 +60,14 @@ export default function Dashboard() {
     }
   }, [isAuthenticated]);
 
-  const loadDealsList = async () => {
+  async function loadDealsList() {
     setLoading(true);
     const res = await getDeals();
     if (res.success && res.deals) {
       setDeals(res.deals);
     }
     setLoading(false);
-  };
+  }
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -88,6 +100,16 @@ export default function Dashboard() {
     setMinDiscount("25");
     setDecayRate("1.2");
     setOwnerEmail("");
+    setAddressPt("");
+    setAddressEn("");
+    setLat("");
+    setLng("");
+    setDescriptionPt("");
+    setDescriptionEn("");
+    setHoursPt("");
+    setHoursEn("");
+    setTermsPt("");
+    setTermsEn("");
     setIsModalOpen(true);
   };
 
@@ -108,6 +130,16 @@ export default function Dashboard() {
     setMinDiscount(deal.minDiscountPercent.toString());
     setDecayRate(deal.decayRate.toString());
     setOwnerEmail(deal.ownerEmail || "admin@offpeak.pt");
+    setAddressPt(deal.address?.pt || "");
+    setAddressEn(deal.address?.en || "");
+    setLat(deal.lat?.toString() || "");
+    setLng(deal.lng?.toString() || "");
+    setDescriptionPt(deal.description?.pt || "");
+    setDescriptionEn(deal.description?.en || "");
+    setHoursPt(deal.hours?.pt || "");
+    setHoursEn(deal.hours?.en || "");
+    setTermsPt(deal.terms?.pt || "");
+    setTermsEn(deal.terms?.en || "");
     setIsModalOpen(true);
   };
 
@@ -123,6 +155,16 @@ export default function Dashboard() {
       timeSlotPt,
       daysEn,
       daysPt,
+      addressEn,
+      addressPt,
+      lat: lat === "" ? undefined : parseFloat(lat),
+      lng: lng === "" ? undefined : parseFloat(lng),
+      descriptionEn,
+      descriptionPt,
+      hoursEn,
+      hoursPt,
+      termsEn,
+      termsPt,
       baseDiscountPercent: parseInt(baseDiscount),
       minDiscountPercent: parseInt(minDiscount),
       decayRate: parseFloat(decayRate),
@@ -457,6 +499,120 @@ export default function Dashboard() {
                     onChange={(e) => setDecayRate(e.target.value)}
                     className={styles.input}
                     required
+                  />
+                </div>
+
+                <h4 style={{ marginTop: "1.5rem", marginBottom: "0.5rem", gridColumn: "1 / -1", fontSize: "0.85rem", textTransform: "uppercase", color: "#6b7280", letterSpacing: "0.05em" }}>
+                  Localização
+                </h4>
+
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Morada (PT)</label>
+                  <input
+                    type="text"
+                    value={addressPt}
+                    onChange={(e) => setAddressPt(e.target.value)}
+                    className={styles.input}
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Address (EN)</label>
+                  <input
+                    type="text"
+                    value={addressEn}
+                    onChange={(e) => setAddressEn(e.target.value)}
+                    className={styles.input}
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Latitude</label>
+                  <input
+                    type="number"
+                    step="0.0001"
+                    value={lat}
+                    onChange={(e) => setLat(e.target.value)}
+                    className={styles.input}
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Longitude</label>
+                  <input
+                    type="number"
+                    step="0.0001"
+                    value={lng}
+                    onChange={(e) => setLng(e.target.value)}
+                    className={styles.input}
+                  />
+                </div>
+
+                <h4 style={{ marginTop: "1.5rem", marginBottom: "0.5rem", gridColumn: "1 / -1", fontSize: "0.85rem", textTransform: "uppercase", color: "#6b7280", letterSpacing: "0.05em" }}>
+                  Detalhes
+                </h4>
+
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Descrição (PT)</label>
+                  <textarea
+                    rows="3"
+                    value={descriptionPt}
+                    onChange={(e) => setDescriptionPt(e.target.value)}
+                    className={styles.input}
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Description (EN)</label>
+                  <textarea
+                    rows="3"
+                    value={descriptionEn}
+                    onChange={(e) => setDescriptionEn(e.target.value)}
+                    className={styles.input}
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Horário (PT)</label>
+                  <input
+                    type="text"
+                    value={hoursPt}
+                    onChange={(e) => setHoursPt(e.target.value)}
+                    className={styles.input}
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Hours (EN)</label>
+                  <input
+                    type="text"
+                    value={hoursEn}
+                    onChange={(e) => setHoursEn(e.target.value)}
+                    className={styles.input}
+                  />
+                </div>
+
+                <h4 style={{ marginTop: "1.5rem", marginBottom: "0.5rem", gridColumn: "1 / -1", fontSize: "0.85rem", textTransform: "uppercase", color: "#6b7280", letterSpacing: "0.05em" }}>
+                  Termos
+                </h4>
+
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Termos (PT)</label>
+                  <textarea
+                    rows="3"
+                    value={termsPt}
+                    onChange={(e) => setTermsPt(e.target.value)}
+                    className={styles.input}
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Terms (EN)</label>
+                  <textarea
+                    rows="3"
+                    value={termsEn}
+                    onChange={(e) => setTermsEn(e.target.value)}
+                    className={styles.input}
                   />
                 </div>
               </div>

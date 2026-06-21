@@ -683,6 +683,20 @@
   margin-bottom: var(--space-xl);
 }
 
+.mapLink {
+  display: inline-block;
+  margin-top: var(--space-md);
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.mapLink:hover {
+  color: var(--color-accent);
+}
+
 .dealsGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -702,6 +716,12 @@
   border-color: var(--color-primary-light);
   box-shadow: var(--shadow-lg);
   transform: translateY(-6px);
+}
+
+.dealCardLink {
+  display: block;
+  text-decoration: none;
+  color: inherit;
 }
 
 .dealImage {
@@ -1255,6 +1275,7 @@
 
 .signupForm {
   display: flex;
+  align-items: center;
   gap: var(--space-sm);
   max-width: 28rem;
   margin-inline: auto;

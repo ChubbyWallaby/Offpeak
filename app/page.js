@@ -135,7 +135,6 @@ function ClockTicker({ time }) {
 export default function Home() {
   const [lang, setLang] = useState("pt");
   const [dealsList, setDealsList] = useState(DEALS);
-  const [animatedDealId, setAnimatedDealId] = useState(null);
   const [timeIndex, setTimeIndex] = useState(0);
 
   // Load the latest deals dynamically on mount to stay in sync with the dashboard updates
@@ -157,29 +156,9 @@ export default function Home() {
   useEffect(() => {
     const interval = setInterval(() => {
       setTimeIndex((prev) => (prev + 1) % 4);
-    }, 4000); // Cycle time every 4 seconds
+    }, 4000);
     return () => clearInterval(interval);
   }, []);
-
-  // Simulates a booking for a specific deal (decreasing discount based on demand)
-  const simulateBooking = (dealId) => {
-    setDealsList((prevDeals) =>
-      prevDeals.map((d) => {
-        if (d.id === dealId) {
-          // Trigger the badge flash/pulse CSS animation
-          setAnimatedDealId(dealId);
-          setTimeout(() => setAnimatedDealId(null), 1000);
-          
-          return {
-            ...d,
-            bookings: (d.bookings || 0) + 1,
-            views: (d.views || 0) + 3, // Bookings imply additional page views
-          };
-        }
-        return d;
-      })
-    );
-  };
 
 
 
@@ -528,6 +507,9 @@ export default function Home() {
               <p className="section-subtitle">
                 {t.deals.subtitle}
               </p>
+              <a href="/map" className={styles.mapLink}>
+                📍 {lang === "pt" ? "Ver no Mapa" : "View on Map"}
+              </a>
             </div>
 
             <div className={`${styles.dealsGrid} reveal`} ref={addRevealRef}>
@@ -548,69 +530,52 @@ export default function Home() {
 
                 return (
                   <article key={deal.id} className={styles.dealCard}>
-                    <div className={styles.dealImage}>
-                      <Image
-                        src={deal.image}
-                        alt={deal.title[lang] || deal.title.en}
-                        width={400}
-                        height={250}
-                      />
-                      {deal.isPartner && (
-                        <span className={styles.partnerBadge}>
-                          {t.deals.partnerBadge}
-                        </span>
-                      )}
-                      <span className={`${styles.dealBadge} ${animatedDealId === deal.id ? styles.badgeFlash : ""}`}>
-                        {getDiscountText(deal, lang)}
-                      </span>
-                      
-                      {/* Desktop Hover Overlay */}
-                      <div className={styles.dealHoverOverlay}>
-                        <button
-                          onClick={(e) => {
-                            e.preventDefault();
-                            simulateBooking(deal.id);
-                          }}
-                          className={styles.dealHoverBtn}
-                          aria-label="Simulate booking this slot"
-                        >
-                          ⚡ {t.deals.grabDealBtn}
-                        </button>
-                      </div>
-                    </div>
-                    <div className={styles.dealContent}>
-                      <span className={styles.dealCategory}>{deal.category[lang] || deal.category.en}</span>
-                      <h3 className={styles.dealTitle}>{deal.title[lang] || deal.title.en}</h3>
-                      
-                      {/* Live demand indicators (preparing for adaptive pricing) */}
-                      <div className={styles.livePricingWrapper}>
-                        <div className={styles.liveDemand}>
-                          <span className={`${styles.liveDot} ${demandClass}`}></span>
-                          <span className={styles.liveDemandText}>
-                            {t.deals.demandLabel} <strong>{demandText}</strong>
+                    <a href={`/deals/${deal.slug}`} className={styles.dealCardLink}>
+                      <div className={styles.dealImage}>
+                        <Image
+                          src={deal.image}
+                          alt={deal.title[lang] || deal.title.en}
+                          width={400}
+                          height={250}
+                        />
+                        {deal.isPartner && (
+                          <span className={styles.partnerBadge}>
+                            {t.deals.partnerBadge}
                           </span>
-                        </div>
-                        <div className={styles.liveMetrics}>
-                          <span>{deal.views || 0} {t.deals.viewsLabel}</span>
-                          <span className={styles.liveMetricsSeparator}>•</span>
-                          <span>{deal.bookings || 0} {t.deals.bookingsLabel}</span>
-                        </div>
+                        )}
+                        <span className={styles.dealBadge}>
+                          {getDiscountText(deal, lang)}
+                        </span>
                       </div>
+                      <div className={styles.dealContent}>
+                        <span className={styles.dealCategory}>{deal.category[lang] || deal.category.en}</span>
+                        <h3 className={styles.dealTitle}>{deal.title[lang] || deal.title.en}</h3>
+                        
+                        <div className={styles.livePricingWrapper}>
+                          <div className={styles.liveDemand}>
+                            <span className={`${styles.liveDot} ${demandClass}`}></span>
+                            <span className={styles.liveDemandText}>
+                              {t.deals.demandLabel} <strong>{demandText}</strong>
+                            </span>
+                          </div>
+                          <div className={styles.liveMetrics}>
+                            <span>{deal.views || 0} {t.deals.viewsLabel}</span>
+                            <span className={styles.liveMetricsSeparator}>•</span>
+                            <span>{deal.bookings || 0} {t.deals.bookingsLabel}</span>
+                          </div>
+                        </div>
 
-                      <div className={styles.dealMeta}>
-                        <span>{deal.timeSlot[lang] || deal.timeSlot.en}</span>
-                        <span className={styles.dealMetaDot}></span>
-                        <span>{deal.days[lang] || deal.days.en}</span>
+                        <div className={styles.dealMeta}>
+                          <span>{deal.timeSlot[lang] || deal.timeSlot.en}</span>
+                          <span className={styles.dealMetaDot}></span>
+                          <span>{deal.days[lang] || deal.days.en}</span>
+                        </div>
+
+                        <span className={`btn ${styles.simulateBtn}`}>
+                          {t.deals.grabDealBtn}
+                        </span>
                       </div>
-
-                      <button
-                        onClick={() => simulateBooking(deal.id)}
-                        className={`btn ${styles.simulateBtn}`}
-                        aria-label="Simulate booking this slot"
-                      >
-                        ⚡ {t.deals.grabDealBtn}
-                      </button>
-                    </div>
+                    </a>
                   </article>
                 );
               })}

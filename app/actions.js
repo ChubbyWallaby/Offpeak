@@ -93,11 +93,21 @@ export async function saveDeal(dealData) {
     const fileContent = await fs.readFile(dealsPath, "utf-8");
     const deals = JSON.parse(fileContent);
 
+    // Generate slug from PT title
+    const generateSlug = (title) => {
+      return title
+        .toLowerCase()
+        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "");
+    };
+
     if (dealData.id) {
       const idx = deals.findIndex(d => d.id === parseInt(dealData.id));
       if (idx !== -1) {
         deals[idx] = {
           ...deals[idx],
+          slug: dealData.slug || deals[idx].slug || generateSlug(dealData.titlePt),
           category: {
             en: dealData.categoryEn,
             pt: dealData.categoryPt
@@ -123,15 +133,36 @@ export async function saveDeal(dealData) {
           decayRate: parseFloat(dealData.decayRate || 1.0),
           ownerEmail: dealData.ownerEmail || deals[idx].ownerEmail || "admin@offpeak.pt",
           image: dealData.image || deals[idx].image || "/hero-padel.png",
-          isPartner: dealData.isPartner !== undefined ? dealData.isPartner : deals[idx].isPartner
+          isPartner: dealData.isPartner !== undefined ? dealData.isPartner : deals[idx].isPartner,
+          address: {
+            en: dealData.addressEn || (deals[idx].address && deals[idx].address.en) || "",
+            pt: dealData.addressPt || (deals[idx].address && deals[idx].address.pt) || ""
+          },
+          lat: dealData.lat ? parseFloat(dealData.lat) : (deals[idx].lat || null),
+          lng: dealData.lng ? parseFloat(dealData.lng) : (deals[idx].lng || null),
+          description: {
+            en: dealData.descriptionEn || (deals[idx].description && deals[idx].description.en) || "",
+            pt: dealData.descriptionPt || (deals[idx].description && deals[idx].description.pt) || ""
+          },
+          hours: {
+            en: dealData.hoursEn || (deals[idx].hours && deals[idx].hours.en) || "",
+            pt: dealData.hoursPt || (deals[idx].hours && deals[idx].hours.pt) || ""
+          },
+          terms: {
+            en: dealData.termsEn || (deals[idx].terms && deals[idx].terms.en) || "",
+            pt: dealData.termsPt || (deals[idx].terms && deals[idx].terms.pt) || ""
+          },
+          photos: dealData.photos || deals[idx].photos || []
         };
       } else {
         return { success: false, error: "Deal not found to edit" };
       }
     } else {
       const maxId = deals.reduce((max, d) => d.id > max ? d.id : max, 0);
+      const slug = dealData.slug || generateSlug(dealData.titlePt);
       const newDeal = {
         id: maxId + 1,
+        slug,
         image: dealData.image || "/hero-padel.png",
         isPartner: dealData.isPartner !== undefined ? dealData.isPartner : true,
         category: {
@@ -159,7 +190,26 @@ export async function saveDeal(dealData) {
         views: 0,
         bookings: 0,
         decayRate: parseFloat(dealData.decayRate || 1.0),
-        ownerEmail: dealData.ownerEmail || "admin@offpeak.pt"
+        ownerEmail: dealData.ownerEmail || "admin@offpeak.pt",
+        address: {
+          en: dealData.addressEn || "",
+          pt: dealData.addressPt || ""
+        },
+        lat: dealData.lat ? parseFloat(dealData.lat) : null,
+        lng: dealData.lng ? parseFloat(dealData.lng) : null,
+        description: {
+          en: dealData.descriptionEn || "",
+          pt: dealData.descriptionPt || ""
+        },
+        hours: {
+          en: dealData.hoursEn || "",
+          pt: dealData.hoursPt || ""
+        },
+        terms: {
+          en: dealData.termsEn || "",
+          pt: dealData.termsPt || ""
+        },
+        photos: dealData.photos || []
       };
       deals.push(newDeal);
     }
