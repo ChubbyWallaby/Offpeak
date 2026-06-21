@@ -455,14 +455,6 @@ export default function Home() {
 
               <p className={styles.heroReassurance}>{t.hero.reassurance}</p>
 
-              <button
-                type="button"
-                onClick={() => { setBusinessSubmitted(false); setIsBusinessModalOpen(true); }}
-                className={styles.heroSecondaryLink}
-              >
-                {t.hero.ctaSecondary}
-              </button>
-
               <div className={styles.heroLiveStatus}>
                 <span className={styles.liveIndicatorDot}></span>
                 <span className={styles.liveStatusText}>{dealsList.length} {t.hero.liveDealsText}</span>

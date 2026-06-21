@@ -295,11 +295,13 @@ export async function submitBooking(formData) {
       `,
     });
 
-    const idx = deals.findIndex(d => d.id === parseInt(dealId));
-    if (idx !== -1) {
-      deals[idx].bookings = (deals[idx].bookings || 0) + 1;
-      await fs.writeFile(dealsPath, JSON.stringify(deals, null, 2), "utf-8");
-    }
+    try {
+      const idx = deals.findIndex(d => d.id === parseInt(dealId));
+      if (idx !== -1) {
+        deals[idx].bookings = (deals[idx].bookings || 0) + 1;
+        await fs.writeFile(dealsPath, JSON.stringify(deals, null, 2), "utf-8");
+      }
+    } catch {}
 
     return { success: true };
   } catch (error) {
