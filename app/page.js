@@ -324,6 +324,49 @@ export default function Home() {
     }
   };
 
+  // Generate structured ItemList & LocalBusiness data for crawler SEO parsing
+  const dealsSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Active Offpeak Deals in Lisbon",
+    "numberOfItems": DEALS.length,
+    "itemListElement": DEALS.map((deal, idx) => {
+      const titleText = deal.title.pt || deal.title.en;
+      // Extract business name before any dash or em-dash
+      const businessName = titleText.split("—")[0].split("-")[0].trim();
+      const discountText = deal.discount.pt || deal.discount.en;
+      const timeSlotText = deal.timeSlot.pt || deal.timeSlot.en;
+      const daysText = deal.days.pt || deal.days.en;
+
+      return {
+        "@type": "ListItem",
+        "position": idx + 1,
+        "item": {
+          "@type": "LocalBusiness",
+          "@id": `https://offpeak.pt/#deal-${deal.id}`,
+          "name": businessName,
+          "image": `https://offpeak.pt${deal.image}`,
+          "priceRange": "$$",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Lisbon",
+            "addressCountry": "PT"
+          },
+          "makesOffer": {
+            "@type": "Offer",
+            "name": titleText,
+            "description": `${discountText} during ${timeSlotText} on ${daysText}`,
+            "priceCurrency": "EUR",
+            "eligibleRegion": {
+              "@type": "Place",
+              "name": "Lisbon"
+            }
+          }
+        }
+      };
+    })
+  };
+
   const t = translations[lang] || translations.en;
 
   return (
@@ -960,6 +1003,12 @@ export default function Home() {
               "addressCountry": "PT"
             }
           })
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(dealsSchema)
         }}
       />
     </>

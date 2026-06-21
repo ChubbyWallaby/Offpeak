@@ -23,15 +23,31 @@ export const metadata = {
     locale: "pt_PT",
     siteName: "Offpeak.pt",
     url: "https://offpeak.pt",
+    images: [
+      {
+        url: "https://offpeak.pt/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Offpeak.pt — Descontos Fora de Horas em Padel, Bowling e Lazer",
+      },
+    ],
   },
   alternates: {
     canonical: "https://offpeak.pt",
+    languages: {
+      "pt-PT": "https://offpeak.pt",
+      "en-US": "https://offpeak.pt?lang=en",
+    },
   },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="pt" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
       <body suppressHydrationWarning>
         {children}
         <Analytics />
