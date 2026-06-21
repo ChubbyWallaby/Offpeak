@@ -30,6 +30,7 @@
     "bookings": 3,
     "decayRate": 1.5,
     "ownerEmail": "admin@offpeak.pt",
+    "price": 40.00,
     "address": {
       "en": "Doca de Santo Amaro, Alcântara, Lisbon",
       "pt": "Doca de Santo Amaro, Alcântara, Lisboa"
@@ -81,6 +82,7 @@
     "bookings": 0,
     "decayRate": 2,
     "ownerEmail": "hello@offpeak.pt",
+    "price": 12.00,
     "address": {
       "en": "UBBO Shopping, Rua Particular ao Ubbo, Amadora, Lisbon",
       "pt": "UBBO Shopping, Rua Particular ao Ubbo, Amadora, Lisboa"

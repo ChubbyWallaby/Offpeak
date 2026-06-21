@@ -30,6 +30,7 @@ export default function Dashboard() {
   const [minDiscount, setMinDiscount] = useState("25");
   const [decayRate, setDecayRate] = useState("1.2");
   const [ownerEmail, setOwnerEmail] = useState("");
+  const [price, setPrice] = useState("");
   const [addressPt, setAddressPt] = useState("");
   const [addressEn, setAddressEn] = useState("");
   const [lat, setLat] = useState("");
@@ -100,6 +101,7 @@ export default function Dashboard() {
     setMinDiscount("25");
     setDecayRate("1.2");
     setOwnerEmail("");
+    setPrice("");
     setAddressPt("");
     setAddressEn("");
     setLat("");
@@ -130,6 +132,7 @@ export default function Dashboard() {
     setMinDiscount(deal.minDiscountPercent.toString());
     setDecayRate(deal.decayRate.toString());
     setOwnerEmail(deal.ownerEmail || "admin@offpeak.pt");
+    setPrice(deal.price?.toString() || "");
     setAddressPt(deal.address?.pt || "");
     setAddressEn(deal.address?.en || "");
     setLat(deal.lat?.toString() || "");
@@ -169,6 +172,7 @@ export default function Dashboard() {
       minDiscountPercent: parseInt(minDiscount),
       decayRate: parseFloat(decayRate),
       ownerEmail,
+      price: price || undefined,
     };
 
     const res = await saveDeal(dealData);
@@ -369,6 +373,19 @@ export default function Dashboard() {
                     required
                     className={styles.input}
                     placeholder="e.g. contact@lpc.pt"
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>{lang === "pt" ? "Preço (€)" : "Price (€)"}</label>
+                  <input
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
+                    className={styles.input}
+                    placeholder="e.g. 40.00"
                   />
                 </div>
 

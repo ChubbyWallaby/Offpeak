@@ -11,7 +11,7 @@ import { translations } from "./translations";
    ═══════════════════════════════════════════════════════ */
 
 import DEALS from "./deals.json";
-import { getDiscountText, calculateDiscountPercent } from "./pricing";
+import { getDiscountText } from "./pricing";
 
 /* ─── SVG Icons for How It Works Section ─── */
 const CompassIcon = ({ className }) => (
@@ -514,20 +514,6 @@ export default function Home() {
 
             <div className={`${styles.dealsGrid} reveal`} ref={addRevealRef}>
               {dealsList.map((deal) => {
-                const currentPercent = calculateDiscountPercent(deal);
-                const isHighDiscount = currentPercent >= 40;
-                const isMediumDiscount = currentPercent >= 25 && currentPercent < 40;
-                
-                let demandText = t.deals.demandLow;
-                let demandClass = styles.demandLow;
-                if (isMediumDiscount) {
-                  demandText = t.deals.demandMedium;
-                  demandClass = styles.demandMedium;
-                } else if (!isHighDiscount) {
-                  demandText = t.deals.demandHigh;
-                  demandClass = styles.demandHigh;
-                }
-
                 return (
                   <article key={deal.id} className={styles.dealCard}>
                     <a href={`/deals/${deal.slug}`} className={styles.dealCardLink}>
@@ -550,20 +536,6 @@ export default function Home() {
                       <div className={styles.dealContent}>
                         <span className={styles.dealCategory}>{deal.category[lang] || deal.category.en}</span>
                         <h3 className={styles.dealTitle}>{deal.title[lang] || deal.title.en}</h3>
-                        
-                        <div className={styles.livePricingWrapper}>
-                          <div className={styles.liveDemand}>
-                            <span className={`${styles.liveDot} ${demandClass}`}></span>
-                            <span className={styles.liveDemandText}>
-                              {t.deals.demandLabel} <strong>{demandText}</strong>
-                            </span>
-                          </div>
-                          <div className={styles.liveMetrics}>
-                            <span>{deal.views || 0} {t.deals.viewsLabel}</span>
-                            <span className={styles.liveMetricsSeparator}>•</span>
-                            <span>{deal.bookings || 0} {t.deals.bookingsLabel}</span>
-                          </div>
-                        </div>
 
                         <div className={styles.dealMeta}>
                           <span>{deal.timeSlot[lang] || deal.timeSlot.en}</span>

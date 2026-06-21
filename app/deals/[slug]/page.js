@@ -2,6 +2,7 @@ import fs from "fs/promises";
 import path from "path";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { calculateDiscountPercent } from "../../pricing";
 
 async function getDeals() {
   const filePath = path.join(process.cwd(), "app", "deals.json");
@@ -201,6 +202,35 @@ const styles = {
     marginTop: "12px",
     letterSpacing: "0.01em",
   },
+  priceCard: {
+    background: "#f0fdf4",
+    border: "1px solid #bbf7d0",
+    borderRadius: "12px",
+    padding: "20px 24px",
+    marginBottom: "28px",
+  },
+  priceRow: {
+    display: "flex",
+    alignItems: "baseline",
+    gap: "12px",
+    flexWrap: "wrap",
+  },
+  priceOriginal: {
+    fontSize: "1.15rem",
+    color: "#9ca3af",
+    textDecoration: "line-through",
+  },
+  priceCurrent: {
+    fontSize: "2rem",
+    fontWeight: 800,
+    color: "#059669",
+  },
+  priceSavings: {
+    fontSize: "0.85rem",
+    color: "#059669",
+    fontWeight: 600,
+    marginTop: "6px",
+  },
 };
 
 export default async function DealPage(props) {
@@ -214,6 +244,11 @@ export default async function DealPage(props) {
   const mapUrl = hasMap
     ? `https://www.openstreetmap.org/export/embed.html?bbox=${deal.lng - 0.005},${deal.lat - 0.003},${deal.lng + 0.005},${deal.lat + 0.003}&layer=mapnik&marker=${deal.lat},${deal.lng}`
     : null;
+
+  const discountPercent = calculateDiscountPercent(deal);
+  const hasPrice = typeof deal.price === "number" && deal.price > 0 && discountPercent !== null;
+  const discountedPrice = hasPrice ? deal.price * (1 - discountPercent / 100) : null;
+  const savings = hasPrice ? deal.price - discountedPrice : null;
 
   return (
     <main style={styles.page}>
@@ -243,7 +278,7 @@ export default async function DealPage(props) {
         <div style={styles.titleRow}>
           <h1 style={styles.title}>{deal.title.pt}</h1>
           <span style={styles.discountBadge}>
-            {deal.baseDiscountPercent}% desc.
+            {discountPercent ?? deal.baseDiscountPercent}% desc.
           </span>
         </div>
 
@@ -255,6 +290,18 @@ export default async function DealPage(props) {
             </span>
           )}
         </div>
+
+        {hasPrice && (
+          <div style={styles.priceCard}>
+            <div style={styles.priceRow}>
+              <span style={styles.priceOriginal}>€{deal.price.toFixed(2)}</span>
+              <span style={styles.priceCurrent}>€{discountedPrice.toFixed(2)}</span>
+            </div>
+            <p style={styles.priceSavings}>
+              Poupa €{savings.toFixed(2)} ({discountPercent}% de desconto)
+            </p>
+          </div>
+        )}
 
         {deal.description?.pt && (
           <section style={styles.section}>

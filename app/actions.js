@@ -132,6 +132,7 @@ export async function saveDeal(dealData) {
           minDiscountPercent: parseInt(dealData.minDiscountPercent),
           decayRate: parseFloat(dealData.decayRate || 1.0),
           ownerEmail: dealData.ownerEmail || deals[idx].ownerEmail || "admin@offpeak.pt",
+          price: dealData.price ? parseFloat(dealData.price) : (deals[idx].price || null),
           image: dealData.image || deals[idx].image || "/hero-padel.png",
           isPartner: dealData.isPartner !== undefined ? dealData.isPartner : deals[idx].isPartner,
           address: {
@@ -191,6 +192,7 @@ export async function saveDeal(dealData) {
         bookings: 0,
         decayRate: parseFloat(dealData.decayRate || 1.0),
         ownerEmail: dealData.ownerEmail || "admin@offpeak.pt",
+        price: dealData.price ? parseFloat(dealData.price) : null,
         address: {
           en: dealData.addressEn || "",
           pt: dealData.addressPt || ""
