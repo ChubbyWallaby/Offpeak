@@ -48,21 +48,97 @@ const HERO_TIMES = {
   pt: ["10h", "11h30", "13h", "16h"]
 };
 
+function ClockChar({ char, forcePrevChar, isTransitioning }) {
+  const [displayChar, setDisplayChar] = useState(char);
+  const [prevChar, setPrevChar] = useState(forcePrevChar);
+  const [animating, setAnimating] = useState(false);
+
+  useEffect(() => {
+    if (isTransitioning) {
+      setPrevChar(forcePrevChar);
+      setDisplayChar(char);
+      setAnimating(true);
+    } else {
+      setAnimating(false);
+    }
+  }, [char, forcePrevChar, isTransitioning]);
+
+  const isCurrentlyEmpty = !displayChar && !prevChar;
+
+  if (isCurrentlyEmpty) {
+    return null;
+  }
+
+  if (animating && prevChar !== displayChar) {
+    return (
+      <span className={styles.clockCharWrapper} data-animating="true">
+        <span className={styles.clockCharScroll}>
+          <span className={styles.clockCharOld}>{prevChar || " "}</span>
+          <span className={styles.clockCharNew}>{displayChar || " "}</span>
+        </span>
+      </span>
+    );
+  }
+
+  return (
+    <span className={styles.clockCharWrapper} data-animating="false">
+      <span className={styles.clockCharSingle}>{displayChar || " "}</span>
+    </span>
+  );
+}
+
+function ClockTicker({ time }) {
+  const [displayTime, setDisplayTime] = useState(time);
+  const [prevTime, setPrevTime] = useState("");
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  useEffect(() => {
+    if (time !== displayTime) {
+      setPrevTime(displayTime);
+      setDisplayTime(time);
+      setIsTransitioning(true);
+      const timer = setTimeout(() => {
+        setIsTransitioning(false);
+      }, 350);
+      return () => clearTimeout(timer);
+    }
+  }, [time, displayTime]);
+
+  const maxLength = isTransitioning 
+    ? Math.max(prevTime.length, displayTime.length) 
+    : displayTime.length;
+
+  const chars = [];
+  for (let i = 0; i < maxLength; i++) {
+    const char = displayTime[i] || "";
+    const prevChar = prevTime[i] || "";
+    chars.push({ char, prevChar, index: i });
+  }
+
+  return (
+    <span className={styles.clockTickerContainer}>
+      {chars.map((item) => (
+        <ClockChar 
+          key={item.index} 
+          char={item.char} 
+          forcePrevChar={item.prevChar} 
+          isTransitioning={isTransitioning}
+        />
+      ))}
+    </span>
+  );
+}
+
 export default function Home() {
   const [lang, setLang] = useState("pt");
   const [dealsList, setDealsList] = useState(DEALS);
   const [animatedDealId, setAnimatedDealId] = useState(null);
   const [timeIndex, setTimeIndex] = useState(0);
-  const [timeFade, setTimeFade] = useState(false);
 
   // Cycle the hours shown in the hero title
   useEffect(() => {
     const interval = setInterval(() => {
-      setTimeFade(true);
-      setTimeout(() => {
-        setTimeIndex((prev) => (prev + 1) % 4);
-        setTimeFade(false);
-      }, 300); // 300ms matches CSS animation transition duration
+      setTimeIndex((prev) => (prev + 1) % 4);
     }, 4000); // Cycle time every 4 seconds
     return () => clearInterval(interval);
   }, []);
@@ -316,9 +392,7 @@ export default function Home() {
                 <span className={styles.heroTitleHighlight}>{t.hero.titleHighlight}</span>
                 <br />
                 {t.hero.titleLine2Prefix}{" "}
-                <span className={`${styles.dynamicTime} ${timeFade ? styles.timeFade : ""}`}>
-                  {HERO_TIMES[lang][timeIndex]}.
-                </span>
+                <ClockTicker time={HERO_TIMES[lang][timeIndex]} />.
               </h1>
 
               <p className={styles.heroSubtitle}>
