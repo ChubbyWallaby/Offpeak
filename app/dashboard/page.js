@@ -41,6 +41,8 @@ export default function Dashboard() {
   const [hoursEn, setHoursEn] = useState("");
   const [termsPt, setTermsPt] = useState("");
   const [termsEn, setTermsEn] = useState("");
+  const [bookingMethod, setBookingMethod] = useState("form");
+  const [bookingTarget, setBookingTarget] = useState("");
 
   // Check session auth on load
   useEffect(() => {
@@ -112,6 +114,8 @@ export default function Dashboard() {
     setHoursEn("");
     setTermsPt("");
     setTermsEn("");
+    setBookingMethod("form");
+    setBookingTarget("");
     setIsModalOpen(true);
   };
 
@@ -143,6 +147,8 @@ export default function Dashboard() {
     setHoursEn(deal.hours?.en || "");
     setTermsPt(deal.terms?.pt || "");
     setTermsEn(deal.terms?.en || "");
+    setBookingMethod(deal.bookingMethod || "form");
+    setBookingTarget(deal.bookingTarget || "");
     setIsModalOpen(true);
   };
 
@@ -173,6 +179,8 @@ export default function Dashboard() {
       decayRate: parseFloat(decayRate),
       ownerEmail,
       price: price || undefined,
+      bookingMethod,
+      bookingTarget: bookingTarget || undefined,
     };
 
     const res = await saveDeal(dealData);
@@ -285,6 +293,7 @@ export default function Dashboard() {
                   <th>{d.days}</th>
                   <th>{d.discount} (Base/Min)</th>
                   <th>{d.metrics}</th>
+                  <th>{lang === "pt" ? "Reserva" : "Booking"}</th>
                   <th>{d.actions}</th>
                 </tr>
               </thead>
@@ -309,6 +318,13 @@ export default function Dashboard() {
                       </td>
                       <td className={styles.metricsCell}>
                         👁 {deal.views || 0} / ⚡ {deal.bookings || 0}
+                      </td>
+                      <td>
+                        <span className={styles.categoryBadge}>
+                          {deal.bookingMethod === "whatsapp" ? "WhatsApp"
+                            : deal.bookingMethod === "external" ? "Link"
+                            : "Formulário"}
+                        </span>
                       </td>
                       <td>
                         <div className={styles.actionsGroup}>
@@ -630,6 +646,46 @@ export default function Dashboard() {
                     value={termsEn}
                     onChange={(e) => setTermsEn(e.target.value)}
                     className={styles.input}
+                  />
+                </div>
+
+                <h4 style={{ marginTop: "1.5rem", marginBottom: "0.5rem", gridColumn: "1 / -1", fontSize: "0.85rem", textTransform: "uppercase", color: "#6b7280", letterSpacing: "0.05em" }}>
+                  Reservas
+                </h4>
+
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>{lang === "pt" ? "Método de Reserva" : "Booking Method"}</label>
+                  <select
+                    value={bookingMethod}
+                    onChange={(e) => setBookingMethod(e.target.value)}
+                    className={styles.input}
+                  >
+                    <option value="form">{lang === "pt" ? "Formulário Offpeak" : "Offpeak Form"}</option>
+                    <option value="whatsapp">WhatsApp</option>
+                    <option value="external">{lang === "pt" ? "Link Externo (PlayTomic, Treatwell...)" : "External Link (PlayTomic, Treatwell...)"}</option>
+                  </select>
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>
+                    {bookingMethod === "whatsapp" 
+                      ? (lang === "pt" ? "Número WhatsApp (ex: +351912345678)" : "WhatsApp Number (e.g. +351912345678)")
+                      : bookingMethod === "external"
+                        ? (lang === "pt" ? "URL de Reserva" : "Booking URL")
+                        : (lang === "pt" ? "Destino (não aplicável)" : "Target (not applicable)")
+                    }
+                  </label>
+                  <input
+                    type={bookingMethod === "external" ? "url" : "text"}
+                    value={bookingTarget}
+                    onChange={(e) => setBookingTarget(e.target.value)}
+                    className={styles.input}
+                    disabled={bookingMethod === "form"}
+                    placeholder={
+                      bookingMethod === "whatsapp" ? "+351912345678"
+                        : bookingMethod === "external" ? "https://playtomic.io/..."
+                        : ""
+                    }
                   />
                 </div>
               </div>

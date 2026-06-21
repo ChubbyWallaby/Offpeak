@@ -3,6 +3,7 @@ import path from "path";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { calculateDiscountPercent } from "../../pricing";
+import BookingButton from "../../components/BookingButton";
 
 async function getDeals() {
   const filePath = path.join(process.cwd(), "app", "deals.json");
@@ -350,9 +351,7 @@ export default async function DealPage(props) {
           </section>
         )}
 
-        <Link href="/" style={styles.ctaButton}>
-          Reservar com Desconto
-        </Link>
+        <BookingButton deal={deal} />
       </div>
     </main>
   );

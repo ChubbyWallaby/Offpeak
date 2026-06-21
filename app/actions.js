@@ -153,7 +153,9 @@ export async function saveDeal(dealData) {
             en: dealData.termsEn || (deals[idx].terms && deals[idx].terms.en) || "",
             pt: dealData.termsPt || (deals[idx].terms && deals[idx].terms.pt) || ""
           },
-          photos: dealData.photos || deals[idx].photos || []
+          photos: dealData.photos || deals[idx].photos || [],
+          bookingMethod: dealData.bookingMethod || deals[idx].bookingMethod || "form",
+          bookingTarget: dealData.bookingTarget || deals[idx].bookingTarget || null
         };
       } else {
         return { success: false, error: "Deal not found to edit" };
@@ -211,7 +213,9 @@ export async function saveDeal(dealData) {
           en: dealData.termsEn || "",
           pt: dealData.termsPt || ""
         },
-        photos: dealData.photos || []
+        photos: dealData.photos || [],
+        bookingMethod: dealData.bookingMethod || "form",
+        bookingTarget: dealData.bookingTarget || null
       };
       deals.push(newDeal);
     }
@@ -239,5 +243,67 @@ export async function deleteDeal(dealId) {
   } catch (error) {
     console.error("Error deleting from deals.json:", error);
     return { success: false, error: "Could not delete deal" };
+  }
+}
+
+export async function submitBooking(formData) {
+  const dealId = formData.get("dealId");
+  const name = formData.get("name");
+  const date = formData.get("date");
+  const time = formData.get("time") || "";
+  const people = formData.get("people");
+  const phone = formData.get("phone") || "";
+
+  if (!dealId || !name || !date || !people) {
+    return { success: false, error: "Missing required fields" };
+  }
+
+  try {
+    const fileContent = await fs.readFile(dealsPath, "utf-8");
+    const deals = JSON.parse(fileContent);
+    const deal = deals.find(d => d.id === parseInt(dealId));
+
+    if (!deal) {
+      return { success: false, error: "Deal not found" };
+    }
+
+    const partnerEmail = deal.ownerEmail || "info@offpeak.pt";
+    const dealTitle = deal.title?.pt || deal.title?.en || "Oferta Offpeak";
+
+    await resend.emails.send({
+      from: "onboarding@resend.dev",
+      to: process.env.NOTIFICATION_EMAIL || "info@offpeak.pt",
+      subject: `Nova Reserva Offpeak — ${dealTitle}`,
+      html: `
+        <div style="font-family: sans-serif; padding: 20px; line-height: 1.5; color: #222;">
+          <h2 style="color: #059669;">Nova Reserva via Offpeak.pt</h2>
+          <p>Uma nova reserva foi submetida para a oferta <strong>${dealTitle}</strong>.</p>
+          <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;" />
+          <p><strong>Nome:</strong> ${name}</p>
+          <p><strong>Data pretendida:</strong> ${date}</p>
+          <p><strong>Horário pretendido:</strong> ${time || "Não especificado"}</p>
+          <p><strong>Número de pessoas:</strong> ${people}</p>
+          ${phone ? `<p><strong>Telefone:</strong> ${phone}</p>` : ""}
+          <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;" />
+          <p><strong>E-mail do parceiro:</strong> <a href="mailto:${partnerEmail}">${partnerEmail}</a></p>
+          <p><strong>Submetido em:</strong> ${new Date().toLocaleString("pt-PT")}</p>
+          <p style="color: #6b7280; font-size: 0.85rem; margin-top: 20px;">
+            Esta reserva foi gerada automaticamente via Offpeak.pt. 
+            O parceiro deve confirmar diretamente com o cliente.
+          </p>
+        </div>
+      `,
+    });
+
+    const idx = deals.findIndex(d => d.id === parseInt(dealId));
+    if (idx !== -1) {
+      deals[idx].bookings = (deals[idx].bookings || 0) + 1;
+      await fs.writeFile(dealsPath, JSON.stringify(deals, null, 2), "utf-8");
+    }
+
+    return { success: true };
+  } catch (error) {
+    console.error("Booking submission error:", error);
+    return { success: false, error: error.message };
   }
 }

@@ -30,7 +30,7 @@
     "bookings": 3,
     "decayRate": 1.5,
     "ownerEmail": "admin@offpeak.pt",
-    "price": 40.00,
+    "price": 40,
     "address": {
       "en": "Doca de Santo Amaro, Alcântara, Lisbon",
       "pt": "Doca de Santo Amaro, Alcântara, Lisboa"
@@ -49,7 +49,11 @@
       "en": "Discount valid for court bookings between 14:00–16:00 on weekdays only. Subject to availability. Cannot be combined with other promotions. Reservation required via Offpeak.pt.",
       "pt": "Desconto válido para reservas de court entre 14:00–16:00 em dias úteis. Sujeito a disponibilidade. Não acumulável com outras promoções. Reserva obrigatória via Offpeak.pt."
     },
-    "photos": ["/hero-padel.png"]
+    "photos": [
+      "/hero-padel.png"
+    ],
+    "bookingMethod": "whatsapp",
+    "bookingTarget": "+351912345678"
   },
   {
     "id": 6,
@@ -79,10 +83,10 @@
     "baseDiscountPercent": 50,
     "minDiscountPercent": 25,
     "views": 0,
-    "bookings": 0,
+    "bookings": 1,
     "decayRate": 2,
     "ownerEmail": "info@offpeak.pt",
-    "price": 12.00,
+    "price": 12,
     "address": {
       "en": "UBBO Shopping, Rua Particular ao Ubbo, Amadora, Lisbon",
       "pt": "UBBO Shopping, Rua Particular ao Ubbo, Amadora, Lisboa"
@@ -101,6 +105,10 @@
       "en": "Discount valid for games between 14:00–17:00 on weekdays. Shoe rental not included. Subject to lane availability. Cannot be combined with other promotions.",
       "pt": "Desconto válido para jogos entre 14:00–17:00 em dias úteis. Aluguer de sapatos não incluído. Sujeito a disponibilidade de pistas. Não acumulável com outras promoções."
     },
-    "photos": ["/card-bowling.png"]
+    "photos": [
+      "/card-bowling.png"
+    ],
+    "bookingMethod": "form",
+    "bookingTarget": null
   }
 ]
