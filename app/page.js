@@ -43,10 +43,29 @@ const PartyPopperIcon = ({ className }) => (
   </svg>
 );
 
+const HERO_TIMES = {
+  en: ["10AM", "11:30AM", "1PM", "4PM"],
+  pt: ["10h", "11h30", "13h", "16h"]
+};
+
 export default function Home() {
   const [lang, setLang] = useState("pt");
   const [dealsList, setDealsList] = useState(DEALS);
   const [animatedDealId, setAnimatedDealId] = useState(null);
+  const [timeIndex, setTimeIndex] = useState(0);
+  const [timeFade, setTimeFade] = useState(false);
+
+  // Cycle the hours shown in the hero title
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimeFade(true);
+      setTimeout(() => {
+        setTimeIndex((prev) => (prev + 1) % 4);
+        setTimeFade(false);
+      }, 300); // 300ms matches CSS animation transition duration
+    }, 4000); // Cycle time every 4 seconds
+    return () => clearInterval(interval);
+  }, []);
 
   // Simulates a booking for a specific deal (decreasing discount based on demand)
   const simulateBooking = (dealId) => {
@@ -296,7 +315,10 @@ export default function Home() {
                 <br />
                 <span className={styles.heroTitleHighlight}>{t.hero.titleHighlight}</span>
                 <br />
-                {t.hero.titleLine2}
+                {t.hero.titleLine2Prefix}{" "}
+                <span className={`${styles.dynamicTime} ${timeFade ? styles.timeFade : ""}`}>
+                  {HERO_TIMES[lang][timeIndex]}.
+                </span>
               </h1>
 
               <p className={styles.heroSubtitle}>
