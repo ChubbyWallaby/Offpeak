@@ -1,4 +1,5 @@
 import { Analytics } from "@vercel/analytics/next";
+import CookieConsent from "./components/CookieConsent";
 import "./globals.css";
 
 export const metadata = {
@@ -32,6 +33,13 @@ export const metadata = {
       },
     ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Offpeak.pt — Descontos Fora de Horas em Padel, Bowling e Lazer",
+    description:
+      "Aproveite as suas atividades favoritas por metade do preço. Descubra campos de padel, pistas de bowling e cinemas em Lisboa com descontos off-peak.",
+    images: ["https://offpeak.pt/og-image.png"],
+  },
   alternates: {
     canonical: "https://offpeak.pt",
     languages: {
@@ -50,6 +58,7 @@ export default function RootLayout({ children }) {
       </head>
       <body suppressHydrationWarning>
         {children}
+        <CookieConsent />
         <Analytics />
       </body>
     </html>

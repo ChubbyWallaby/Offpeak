@@ -115,7 +115,63 @@
   height: 2px;
   background: var(--color-text);
   border-radius: 2px;
-  transition: transform var(--duration-fast) var(--ease-out);
+  transition: transform var(--duration-fast) var(--ease-out),
+              opacity var(--duration-fast) var(--ease-out);
+}
+
+.mobileMenuBtnOpen span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.mobileMenuBtnOpen span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobileMenuBtnOpen span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.mobileDrawer {
+  display: none;
+  position: absolute;
+  top: var(--nav-height);
+  left: 0;
+  right: 0;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border-subtle);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-lg);
+  flex-direction: column;
+  gap: var(--space-md);
+  transform: translateY(-10px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform var(--duration-normal) var(--ease-out),
+              opacity var(--duration-normal) var(--ease-out);
+}
+
+.mobileDrawerOpen {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobileDrawerLink {
+  display: block;
+  padding: var(--space-sm) 0;
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text);
+  transition: color var(--duration-fast);
+}
+
+.mobileDrawerLink:hover {
+  color: var(--color-primary);
+}
+
+.mobileDrawerCta {
+  margin-top: var(--space-sm);
+  text-align: center;
 }
 
 /* ─── Hero ─────────────────────────────────────────────── */
@@ -304,6 +360,18 @@
   transform: translateY(0);
 }
 
+.heroSuccess {
+  padding: var(--space-md) var(--space-lg);
+  background: var(--color-success-bg);
+  color: var(--color-success);
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--font-size-base);
+}
+
 .heroLiveStatus {
   display: flex;
   align-items: center;
@@ -314,6 +382,12 @@
   text-transform: uppercase;
   letter-spacing: 0.06em;
   margin-top: var(--space-sm);
+}
+
+.heroReassurance {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+  margin-top: var(--space-xs);
 }
 
 .liveIndicatorDot {
@@ -1139,6 +1213,14 @@
   transition: width 1s var(--ease-out);
 }
 
+.businessCardDisclaimer {
+  font-size: 0.7rem;
+  color: var(--color-text-tertiary);
+  font-style: italic;
+  margin-top: var(--space-md);
+  text-align: center;
+}
+
 /* ─── Newsletter Signup ────────────────────────────────── */
 .signup {
   background: var(--color-bg);
@@ -1303,7 +1385,13 @@
 
 .footerLinks {
   display: flex;
-  gap: var(--space-xl);
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.footerSocial {
+  display: flex;
+  gap: var(--space-lg);
 }
 
 .footerLink {
@@ -1327,6 +1415,10 @@
   }
 
   .mobileMenuBtn {
+    display: flex;
+  }
+
+  .mobileDrawer {
     display: flex;
   }
 
@@ -1399,6 +1491,14 @@
   .footerInner {
     flex-direction: column;
     text-align: center;
+  }
+
+  .footerLinks {
+    justify-content: center;
+  }
+
+  .footerSocial {
+    justify-content: center;
   }
 
   /* Responsive deal hover and simulated booking buttons */

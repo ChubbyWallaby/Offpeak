@@ -31,128 +31,8 @@
     "ownerEmail": "admin@offpeak.pt"
   },
   {
-    "id": 2,
-    "image": "/card-bowling.png",
-    "isPartner": false,
-    "category": {
-      "en": "Bowling",
-      "pt": "Bowling"
-    },
-    "title": {
-      "en": "City Bowling — 2-for-1 Before 16:00",
-      "pt": "City Bowling — 2 por 1 Antes das 16:00"
-    },
-    "discount": {
-      "en": "2 for 1",
-      "pt": "2 por 1"
-    },
-    "timeSlot": {
-      "en": "Before 16:00",
-      "pt": "Antes das 16:00"
-    },
-    "days": {
-      "en": "Every day",
-      "pt": "Todos os dias"
-    },
-    "baseDiscountPercent": 50,
-    "minDiscountPercent": 15,
-    "views": 18,
-    "bookings": 1,
-    "decayRate": 1.5
-  },
-  {
-    "id": 3,
-    "image": "/card-cinema.png",
-    "isPartner": false,
-    "category": {
-      "en": "Cinema",
-      "pt": "Cinema"
-    },
-    "title": {
-      "en": "Alvalade Cine — Afternoon Screenings",
-      "pt": "Cinema Alvalade — Sessões de Tarde"
-    },
-    "discount": {
-      "en": "40% off",
-      "pt": "40% desc."
-    },
-    "timeSlot": {
-      "en": "13:00–16:00",
-      "pt": "13:00–16:00"
-    },
-    "days": {
-      "en": "Mon–Thu",
-      "pt": "Seg–Qui"
-    },
-    "baseDiscountPercent": 40,
-    "minDiscountPercent": 20,
-    "views": 25,
-    "bookings": 2,
-    "decayRate": 1
-  },
-  {
-    "id": 4,
-    "image": "/card-fitness.png",
-    "isPartner": false,
-    "category": {
-      "en": "Fitness",
-      "pt": "Fitness"
-    },
-    "title": {
-      "en": "Peak Fitness — Gym Morning Pass",
-      "pt": "Peak Fitness — Livre-Trânsito de Manhã"
-    },
-    "discount": {
-      "en": "35% off",
-      "pt": "35% desc."
-    },
-    "timeSlot": {
-      "en": "06:00–10:00",
-      "pt": "06:00–10:00"
-    },
-    "days": {
-      "en": "Mon–Fri",
-      "pt": "Seg–Sex"
-    },
-    "baseDiscountPercent": 35,
-    "minDiscountPercent": 15,
-    "views": 31,
-    "bookings": 4,
-    "decayRate": 0.8
-  },
-  {
-    "id": 5,
-    "image": "/card-spa.png",
-    "isPartner": false,
-    "category": {
-      "en": "Wellness",
-      "pt": "Bem-estar"
-    },
-    "title": {
-      "en": "Sintra Spa — Midweek Relaxation",
-      "pt": "Sintra Spa — Relaxamento Semanal"
-    },
-    "discount": {
-      "en": "30% off",
-      "pt": "30% desc."
-    },
-    "timeSlot": {
-      "en": "10:00–15:00",
-      "pt": "10:00–15:00"
-    },
-    "days": {
-      "en": "Tue–Thu",
-      "pt": "Ter–Qui"
-    },
-    "baseDiscountPercent": 30,
-    "minDiscountPercent": 10,
-    "views": 15,
-    "bookings": 0,
-    "decayRate": 1.1
-  },
-  {
     "id": 6,
-    "image": "/hero-padel.png",
+    "image": "/card-bowling.png",
     "isPartner": true,
     "category": {
       "en": "Bowling",
@@ -179,6 +59,6 @@
     "views": 0,
     "bookings": 0,
     "decayRate": 2,
-    "ownerEmail": "brunomvaraujo1997@gmail.com"
+    "ownerEmail": "hello@offpeak.pt"
   }
 ]

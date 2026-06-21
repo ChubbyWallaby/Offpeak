@@ -4,18 +4,20 @@ export const translations = {
       howItWorks: "How it works",
       deals: "Partners & Deals",
       forBusiness: "For business",
-      cta: "Get early access"
+      cta: "Register Free"
     },
     hero: {
-      badge: "Lisbon's best kept secret",
+      badge: "Now in Lisbon",
       titleLine1: "LISBON IS",
       titleHighlight: "CHEAPER",
       titleLine2Prefix: "AT",
-      subtitle: "Discovery platform for the city's quiet hours. Grab 50% off Padel, Bowling, and Spas when the rest of the world is at work.",
+      subtitle: "50% off padel, bowling, cinema and spas — available right now while everyone else is at the office.",
       emailPlaceholder: "your@email.com",
-      ctaPrimary: "Join Club",
+      ctaPrimary: "See Deals in Lisbon",
       ctaSecondary: "List your business — free",
-      liveDealsText: "142 live deals across Lisbon today",
+      liveDealsPrefix: "",
+      liveDealsText: "live partner deals across Lisbon",
+      reassurance: "Free to join. No payment needed.",
       floatingTitle: "Weekday Padel",
       floatingDiscount: "-50%",
       floatingLocation: "Alcântara • 14:00–17:00",
@@ -25,9 +27,9 @@ export const translations = {
     deals: {
       label: "✦ Active Partner Deals & Promotions",
       title: "Lisbon Partner Spots & Real Offers",
-      subtitle: "Below are active promotions from our initial partners, including Lisbon Padel Club. Join today to grab open slots or promote your own.",
+      subtitle: "Active promotions from our official partners. Register to book a slot or list your own venue.",
       partnerBadge: "Official Partner",
-      grabDealBtn: "Simulate Booking",
+      grabDealBtn: "Book This Slot",
       viewsLabel: "views",
       bookingsLabel: "bookings",
       demandLabel: "Demand:",
@@ -40,33 +42,6 @@ export const translations = {
         cinema: "Cinema",
         fitness: "Fitness",
         wellness: "Wellness"
-      },
-      titles: {
-        padel: "Lisboa Padel Club — Weekday Afternoon Slots",
-        bowling: "City Bowling — 2-for-1 Before 16:00",
-        cinema: "Alvalade Cine — Afternoon Screenings",
-        fitness: "Peak Fitness — Gym Morning Pass",
-        wellness: "Sintra Spa — Midweek Relaxation"
-      },
-      discounts: {
-        halfOff: "50% off",
-        twoForOne: "2 for 1",
-        fortyOff: "40% off",
-        thirtyFiveOff: "35% off",
-        thirtyOff: "30% off"
-      },
-      timeSlots: {
-        padel: "14:00–17:00",
-        bowling: "Before 16:00",
-        cinema: "13:00–16:00",
-        fitness: "06:00–10:00",
-        wellness: "10:00–15:00"
-      },
-      days: {
-        weekday: "Mon–Fri",
-        everyday: "Every day",
-        monThu: "Mon–Thu",
-        tueThu: "Tue–Thu"
       }
     },
     how: {
@@ -75,11 +50,11 @@ export const translations = {
       steps: [
         {
           t: "Discover",
-          d: "Browse activities near you and spot the off-peak slots with the biggest discounts."
+          d: "Browse activities near you and find the time slots with the biggest discounts."
         },
         {
           t: "Book",
-          d: "Reserve your time in a couple of taps. The off-peak price is the price you pay."
+          d: "Reserve your slot in a couple of taps. The off-peak price is what you pay."
         },
         {
           t: "Enjoy",
@@ -90,37 +65,50 @@ export const translations = {
     forBusiness: {
       label: "For businesses",
       title: "Fill your empty hours. No cost, no commission.",
-      subtitle: "You already have off-peak promotions. Let us help more people find them — for free.",
-      feature1Title: "Fill empty hours",
-      feature1Desc: "Turn quiet mornings and weekday afternoons into revenue. Reach people who are flexible with their schedule.",
+      subtitle: "Already offering off-peak promotions? We help more customers find them — completely free.",
+      feature1Title: "Fill quiet hours",
+      feature1Desc: "Turn quiet mornings and weekday afternoons into real revenue. Reach people with flexible schedules.",
       feature2Title: "Promote existing discounts",
-      feature2Desc: "You don't need to create new offers. We help you get the word out about the promotions you already run.",
-      feature3Title: "Free to join as an early partner",
-      feature3Desc: "No listing fees, no commissions during our initial phase. Join now and grow with us from the start.",
+      feature2Desc: "No need to create new offers. We help spread the word about promotions you already run.",
+      feature3Title: "Free to join (early partners)",
+      feature3Desc: "No listing fees, no commissions during our launch phase. Join now and grow with us.",
       cta: "List your off-peak promotions",
       cardTitle: "Your off-peak potential",
       cardStat1Label: "Empty hours filled",
       cardStat2Label: "New customers reached",
-      cardStat3Label: "Revenue from off-peak"
+      cardStat3Label: "Revenue from off-peak",
+      cardDisclaimer: "Projected results based on market analysis"
     },
     signup: {
       title: "Be the first to know",
-      subtitle: "Get notified when new off-peak deals are available near you. No spam, just good deals.",
+      subtitle: "Get notified about new off-peak deals near you. No spam, just good offers.",
       placeholder: "Your email address",
-      cta: "Notify me",
+      cta: "I Want Deals",
       submitting: "Submitting...",
       success: "You're in! We'll be in touch soon.",
-      subtext: "Early access · Unsubscribe anytime"
+      subtext: "Free to join · Unsubscribe anytime",
+      reassurance: "No payment required. Cancel whenever."
     },
     trust: {
       launch: "Launching in Lisbon, Portugal",
-      early: "Early access — be first",
+      early: "Early access — free to join",
       local: "Built for local businesses"
     },
     footer: {
       copy: "© 2026 Offpeak.pt · Made in Portugal",
       contact: "Contact",
-      privacy: "Privacy"
+      privacy: "Privacy",
+      terms: "Terms",
+      about: "About",
+      faq: "FAQ",
+      complaints: "Complaints Book",
+      business: "For Business"
+    },
+    cookie: {
+      message: "We use cookies for analytics to improve your experience.",
+      accept: "Accept",
+      reject: "Reject",
+      learnMore: "Learn more"
     },
     modal: {
       title: "List your business",
@@ -189,18 +177,20 @@ export const translations = {
       howItWorks: "Como funciona",
       deals: "Parceiros e Ofertas",
       forBusiness: "Para negócios",
-      cta: "Acesso antecipado"
+      cta: "Registar Grátis"
     },
     hero: {
-      badge: "O segredo mais bem guardado de Lisboa",
+      badge: "Novo em Lisboa",
       titleLine1: "LISBOA É",
       titleHighlight: "MAIS BARATA",
       titleLine2Prefix: "ÀS",
-      subtitle: "A plataforma de descoberta para as horas calmas da cidade. Aproveite 50% de desconto em Padel, Bowling e Spas enquanto o resto do mundo está a trabalhar.",
+      subtitle: "Padel, bowling, cinema e spa — tudo com até 50% de desconto nas horas em que ninguém vai.",
       emailPlaceholder: "o.seu@email.com",
-      ctaPrimary: "Aderir ao Clube",
+      ctaPrimary: "Ver Ofertas em Lisboa",
       ctaSecondary: "Divulgar o meu negócio — grátis",
-      liveDealsText: "142 ofertas ativas em Lisboa hoje",
+      liveDealsPrefix: "",
+      liveDealsText: "ofertas de parceiros ativas em Lisboa",
+      reassurance: "Registo gratuito. Sem pagamento.",
       floatingTitle: "Padel em Dias Úteis",
       floatingDiscount: "-50%",
       floatingLocation: "Alcântara • 14:00–17:00",
@@ -210,9 +200,9 @@ export const translations = {
     deals: {
       label: "✦ Promoções Ativas e Parceiros Oficiais",
       title: "Espaços Parceiros e Ofertas em Lisboa",
-      subtitle: "Abaixo encontra as promoções ativas dos nossos parceiros oficiais, incluindo o Lisboa Padel Club. Registe-se para reservar ou divulgar o seu espaço.",
+      subtitle: "Promoções ativas dos nossos parceiros oficiais. Registe-se para reservar ou divulgar o seu espaço.",
       partnerBadge: "Parceiro Oficial",
-      grabDealBtn: "Simular Reserva",
+      grabDealBtn: "Reservar",
       viewsLabel: "visitas",
       bookingsLabel: "reservas",
       demandLabel: "Procura:",
@@ -225,33 +215,6 @@ export const translations = {
         cinema: "Cinema",
         fitness: "Fitness",
         wellness: "Bem-estar"
-      },
-      titles: {
-        padel: "Lisboa Padel Club — Horários de Tarde (Dias Úteis)",
-        bowling: "City Bowling — 2 por 1 Antes das 16:00",
-        cinema: "Cinema Alvalade — Sessões de Tarde",
-        fitness: "Peak Fitness — Livre-Trânsito de Manhã",
-        wellness: "Sintra Spa — Relaxamento Semanal"
-      },
-      discounts: {
-        halfOff: "50% desc.",
-        twoForOne: "2 por 1",
-        fortyOff: "40% desc.",
-        thirtyFiveOff: "35% desc.",
-        thirtyOff: "30% desc."
-      },
-      timeSlots: {
-        padel: "14:00–17:00",
-        bowling: "Antes das 16:00",
-        cinema: "13:00–16:00",
-        fitness: "06:00–10:00",
-        wellness: "10:00–15:00"
-      },
-      days: {
-        weekday: "Seg–Sex",
-        everyday: "Todos os dias",
-        monThu: "Seg–Qui",
-        tueThu: "Ter–Qui"
       }
     },
     how: {
@@ -259,53 +222,66 @@ export const translations = {
       title: "Três passos para poupar fora de pico",
       steps: [
         {
-          t: "Descobre",
-          d: "Explora atividades perto de ti e encontra os horários com os maiores descontos."
+          t: "Descubra",
+          d: "Explore atividades por perto e encontre os horários com os maiores descontos."
         },
         {
-          t: "Reserva",
-          d: "Reserva o teu horário em poucos toques. O preço fora de pico é o que pagas."
+          t: "Reserve",
+          d: "Reserve o seu horário em poucos toques. O preço fora de pico é o que paga."
         },
         {
-          t: "Aproveita",
-          d: "Aparece, diverte-te e poupa. A mesma experiência, conta mais pequena."
+          t: "Aproveite",
+          d: "Apareça, divirta-se e poupe. A mesma experiência, conta mais pequena."
         }
       ]
     },
     forBusiness: {
       label: "Para negócios",
       title: "Rentabilize as suas horas vazias. Sem custos, sem comissões.",
-      subtitle: "Já oferece promoções fora de horas? Nós ajudamos a que mais clientes as encontrem — totalmente grátis.",
+      subtitle: "Já oferece promoções fora de horas? Ajudamos a que mais clientes as encontrem — totalmente grátis.",
       feature1Title: "Preencha horas calmas",
       feature1Desc: "Transforme manhãs calmas e tardes de dias úteis em faturação real. Alcance clientes com horários flexíveis.",
       feature2Title: "Promova descontos existentes",
-      feature2Desc: "Não precisa de criar novas ofertas. Ajudamos a divulgar as promoções que já tem ativas atualmente.",
+      feature2Desc: "Não precisa de criar novas ofertas. Ajudamos a divulgar as promoções que já tem ativas.",
       feature3Title: "Adesão gratuita (parceiros iniciais)",
-      feature3Desc: "Sem taxas de adesão ou comissões durante a nossa fase de lançamento. Registe-se já e cresça connosco.",
+      feature3Desc: "Sem taxas de adesão ou comissões durante a fase de lançamento. Registe-se e cresça connosco.",
       cta: "Divulgar promoções do meu negócio",
       cardTitle: "O seu potencial off-peak",
       cardStat1Label: "Horas vazias preenchidas",
       cardStat2Label: "Novos clientes alcançados",
-      cardStat3Label: "Faturação extra em off-peak"
+      cardStat3Label: "Faturação extra em off-peak",
+      cardDisclaimer: "Resultados projetados com base em análise de mercado"
     },
     signup: {
       title: "Seja o primeiro a saber",
-      subtitle: "Receba notificações sobre novas promoções perto de si. Sem spam, apenas boas oportunidades.",
+      subtitle: "Receba notificações sobre novas promoções perto de si. Sem spam, apenas boas ofertas.",
       placeholder: "O seu endereço de e-mail",
-      cta: "Notificar-me",
+      cta: "Quero Receber Ofertas",
       submitting: "A enviar...",
       success: "Subscrição confirmada! Entraremos em contacto brevemente.",
-      subtext: "Acesso antecipado · Cancele quando quiser"
+      subtext: "Registo gratuito · Cancele quando quiser",
+      reassurance: "Sem pagamento. Cancele a qualquer momento."
     },
     trust: {
       launch: "Lançamento em Lisboa, Portugal",
-      early: "Acesso antecipado",
+      early: "Acesso antecipado — registo gratuito",
       local: "Criado para negócios locais"
     },
     footer: {
       copy: "© 2026 Offpeak.pt · Feito em Portugal",
       contact: "Contacto",
-      privacy: "Privacidade"
+      privacy: "Privacidade",
+      terms: "Termos",
+      about: "Sobre",
+      faq: "FAQ",
+      complaints: "Livro de Reclamações",
+      business: "Para Negócios"
+    },
+    cookie: {
+      message: "Utilizamos cookies de análise para melhorar a sua experiência.",
+      accept: "Aceitar",
+      reject: "Rejeitar",
+      learnMore: "Saber mais"
     },
     modal: {
       title: "Divulgar o meu negócio",

@@ -181,34 +181,7 @@ export default function Home() {
     );
   };
 
-  // Simulate subtle live browsing traffic (occasionally incrementing views in the background)
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const randomIndex = Math.floor(Math.random() * dealsList.length);
-      const targetDeal = dealsList[randomIndex];
-      
-      setDealsList((prevDeals) =>
-        prevDeals.map((d) => {
-          if (d.id === targetDeal.id) {
-            const oldText = getDiscountText(d, lang);
-            const updated = { ...d, views: (d.views || 0) + Math.floor(Math.random() * 2) + 1 };
-            const newText = getDiscountText(updated, lang);
-            
-            // If the view increment triggers a discount drop, flash the badge
-            if (oldText !== newText) {
-              setAnimatedDealId(d.id);
-              setTimeout(() => setAnimatedDealId(null), 1000);
-            }
-            
-            return updated;
-          }
-          return d;
-        })
-      );
-    }, 15000); // Subtle 15-second intervals
 
-    return () => clearInterval(interval);
-  }, [dealsList, lang]);
 
   const [navScrolled, setNavScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -426,7 +399,7 @@ export default function Home() {
               {lang === "en" ? "PT" : "EN"}
             </button>
             <button
-              className={styles.mobileMenuBtn}
+              className={`${styles.mobileMenuBtn} ${mobileOpen ? styles.mobileMenuBtnOpen : ""}`}
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle menu"
             >
@@ -435,6 +408,22 @@ export default function Home() {
               <span></span>
             </button>
           </div>
+        </div>
+
+        {/* Mobile Menu Drawer */}
+        <div className={`${styles.mobileDrawer} ${mobileOpen ? styles.mobileDrawerOpen : ""}`}>
+          <a href="#deals" className={styles.mobileDrawerLink} onClick={() => setMobileOpen(false)}>
+            {t.nav.deals}
+          </a>
+          <a href="#for-business" className={styles.mobileDrawerLink} onClick={() => setMobileOpen(false)}>
+            {t.nav.forBusiness}
+          </a>
+          <a href="#how-it-works" className={styles.mobileDrawerLink} onClick={() => setMobileOpen(false)}>
+            {t.nav.howItWorks}
+          </a>
+          <a href="#signup" className={`btn btn-primary ${styles.mobileDrawerCta}`} onClick={() => setMobileOpen(false)}>
+            {t.nav.cta}
+          </a>
         </div>
       </nav>
 
@@ -488,9 +477,11 @@ export default function Home() {
                 </p>
               )}
 
+              <p className={styles.heroReassurance}>{t.hero.reassurance}</p>
+
               <div className={styles.heroLiveStatus}>
                 <span className={styles.liveIndicatorDot}></span>
-                <span className={styles.liveStatusText}>{t.hero.liveDealsText}</span>
+                <span className={styles.liveStatusText}>{dealsList.length} {t.hero.liveDealsText}</span>
               </div>
             </div>
 
@@ -767,6 +758,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
+                <p className={styles.businessCardDisclaimer}>{t.forBusiness.cardDisclaimer}</p>
               </div>
             </div>
           </div>
@@ -852,12 +844,31 @@ export default function Home() {
             {t.footer.copy}
           </span>
           <div className={styles.footerLinks}>
+            <a href="/about" className={styles.footerLink}>
+              {t.footer.about}
+            </a>
+            <a href="/faq" className={styles.footerLink}>
+              {t.footer.faq}
+            </a>
+            <a href="/para-negocios" className={styles.footerLink}>
+              {t.footer.business}
+            </a>
             <a href="mailto:hello@offpeak.pt" className={styles.footerLink}>
               {t.footer.contact}
             </a>
-            <a href="#" className={styles.footerLink}>
+            <a href="/privacy" className={styles.footerLink}>
               {t.footer.privacy}
             </a>
+            <a href="/terms" className={styles.footerLink}>
+              {t.footer.terms}
+            </a>
+            <a href="https://www.livroreclamacoes.pt" target="_blank" rel="noopener noreferrer" className={styles.footerLink}>
+              {t.footer.complaints}
+            </a>
+          </div>
+          <div className={styles.footerSocial}>
+            <a href="https://instagram.com/offpeak.pt" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className={styles.footerLink}>Instagram</a>
+            <a href="https://facebook.com/offpeak.pt" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className={styles.footerLink}>Facebook</a>
           </div>
         </div>
       </footer>
