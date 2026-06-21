@@ -91,18 +91,21 @@ function ClockTicker({ time }) {
   const [displayTime, setDisplayTime] = useState(time);
   const [prevTime, setPrevTime] = useState("");
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const currentRef = useRef(time);
 
   useEffect(() => {
-    if (time !== displayTime) {
-      setPrevTime(displayTime);
+    if (time !== currentRef.current) {
+      setPrevTime(currentRef.current);
       setDisplayTime(time);
       setIsTransitioning(true);
+      currentRef.current = time;
+
       const timer = setTimeout(() => {
         setIsTransitioning(false);
       }, 350);
       return () => clearTimeout(timer);
     }
-  }, [time, displayTime]);
+  }, [time]);
 
   const maxLength = isTransitioning 
     ? Math.max(prevTime.length, displayTime.length) 

@@ -195,13 +195,13 @@
   position: relative;
   overflow: hidden;
   display: inline-flex;
-  align-items: center;
+  align-items: flex-start; /* FIX: top-align the scrolling digits container so vertical calculations align exactly */
   justify-content: center;
-  height: 1.22em;
+  height: 1.25em;
   min-width: 0.72em;
   padding-inline: 0.15em;
   background: var(--color-surface);
-  border: 3px solid var(--color-primary);
+  border: 2px solid var(--color-primary); /* FIX: sleeker border width */
   border-radius: var(--radius-sm);
   box-shadow: 0 4px 10px oklch(0 0 0 / 0.08), inset 0 1px 0 oklch(1 0 0 / 0.8);
   margin-inline: 1px;
@@ -209,9 +209,10 @@
   font-weight: 850;
   color: var(--color-accent);
   font-variant-numeric: tabular-nums;
-  line-height: 1.22;
+  line-height: 1.25em;
   text-shadow: 0 1px 0 oklch(1 0 0 / 0.5);
-  font-size: 0.9em; /* slightly smaller relative to container to avoid clipping */
+  font-size: 0.85em; /* FIX: prevent vertical clipping by scaling text slightly */
+  vertical-align: middle;
 }
 
 /* The vertical scrolling container holding old and new characters */
@@ -219,6 +220,7 @@
   display: flex;
   flex-direction: column;
   height: 200%;
+  width: 100%;
   transform: translateY(0);
   animation: clockRollUp 350ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
