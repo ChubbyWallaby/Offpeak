@@ -16,18 +16,19 @@
       "pt": "50% desc."
     },
     "timeSlot": {
-      "en": "14:00–17:00",
-      "pt": "14:00–17:00"
+      "en": "14:00–16:00",
+      "pt": "14:00–16:00"
     },
     "days": {
       "en": "Mon–Fri",
       "pt": "Seg–Sex"
     },
     "baseDiscountPercent": 50,
-    "minDiscountPercent": 25,
+    "minDiscountPercent": 30,
     "views": 42,
     "bookings": 3,
-    "decayRate": 1.2
+    "decayRate": 1.5,
+    "ownerEmail": "admin@offpeak.pt"
   },
   {
     "id": 2,
@@ -87,7 +88,7 @@
     "minDiscountPercent": 20,
     "views": 25,
     "bookings": 2,
-    "decayRate": 1.0
+    "decayRate": 1
   },
   {
     "id": 4,
@@ -148,5 +149,36 @@
     "views": 15,
     "bookings": 0,
     "decayRate": 1.1
+  },
+  {
+    "id": 6,
+    "image": "/hero-padel.png",
+    "isPartner": true,
+    "category": {
+      "en": "Bowling",
+      "pt": "Bowling"
+    },
+    "title": {
+      "en": "Ubbo Bowling - Happy Hour",
+      "pt": "Ubbo Bowling - Happy Hour"
+    },
+    "discount": {
+      "en": "50% off",
+      "pt": "50% desc."
+    },
+    "timeSlot": {
+      "en": "14:00–17:00",
+      "pt": "14:00–17:00"
+    },
+    "days": {
+      "en": "Mon–Fri",
+      "pt": "Seg–Sex"
+    },
+    "baseDiscountPercent": 50,
+    "minDiscountPercent": 25,
+    "views": 0,
+    "bookings": 0,
+    "decayRate": 2,
+    "ownerEmail": "brunomvaraujo1997@gmail.com"
   }
 ]
