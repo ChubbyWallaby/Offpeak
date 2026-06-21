@@ -134,7 +134,7 @@ export default function AboutPage() {
         <section style={styles.section}>
           <h2 style={styles.h2}>Contacto</h2>
           <p style={styles.p}>
-            Se quiser falar connosco, escreva para <a href="mailto:hello@offpeak.pt">hello@offpeak.pt</a>.
+            Se quiser falar connosco, escreva para <a href="mailto:info@offpeak.pt">info@offpeak.pt</a>.
           </p>
         </section>
 

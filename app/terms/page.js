@@ -29,7 +29,7 @@ export default function TermsPage() {
         <p>
           O serviço é prestado por <strong>[NOME DA EMPRESA, LDA]</strong>, com
           NIF <strong>[A PREENCHER]</strong>, sede em <strong>[MORADA A PREENCHER]</strong>,
-          e contacto eletrónico em <a href="mailto:hello@offpeak.pt">hello@offpeak.pt</a>.
+          e contacto eletrónico em <a href="mailto:info@offpeak.pt">info@offpeak.pt</a>.
         </p>
       </section>
 
@@ -111,7 +111,7 @@ export default function TermsPage() {
           em receber comunicações promocionais e informativas da Offpeak.pt sobre
           campanhas, novidades e oportunidades relevantes. O utilizador pode
           cancelar estas comunicações a qualquer momento através do mecanismo de
-          unsubscribe incluído nas mensagens ou por contacto para hello@offpeak.pt.
+          unsubscribe incluído nas mensagens ou por contacto para info@offpeak.pt.
         </p>
       </section>
 

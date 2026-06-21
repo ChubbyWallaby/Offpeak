@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Para Negócios — Preencha Horas Vazias | Offpeak.pt",
   description:
-    "Registe o seu espaço de lazer na Offpeak.pt e atraia clientes nos horários com menor procura. Gratuito durante o lançamento. Sem comissões. Padel, bowling, ginásios, restaurantes e mais.",
+    "Registe o seu espaço de lazer na Offpeak.pt e atraia clientes nos horários com menor procura. Apenas 5% por reserva. Padel, bowling, ginásios, restaurantes e mais.",
   keywords: [
     "parceiros offpeak.pt",
     "listar negócio offpeak",
@@ -24,6 +24,8 @@ export const metadata = {
     canonical: "https://offpeak.pt/para-negocios",
   },
 };
+
+import PartnerForm from "./PartnerForm";
 
 const C = {
   bg: "#fafaf8",
@@ -134,7 +136,7 @@ export default function ParaNegociosPage() {
             letterSpacing: "0.2px",
           }}
         >
-          Lançamento gratuito — sem comissões
+          Apenas 5% por reserva — sem mensalidades
         </span>
 
         <h1
@@ -184,7 +186,7 @@ export default function ParaNegociosPage() {
           }}
         >
           <a
-            href="/#for-business"
+            href="#registar"
             style={{
               display: "inline-block",
               background: C.text,
@@ -200,7 +202,7 @@ export default function ParaNegociosPage() {
             Registar o meu negócio →
           </a>
           <a
-            href="mailto:hello@offpeak.pt"
+            href="mailto:info@offpeak.pt"
             style={{
               display: "inline-block",
               background: "transparent",
@@ -373,8 +375,8 @@ export default function ParaNegociosPage() {
           {[
             {
               icon: "€",
-              title: "Sem custos, sem comissões",
-              desc: "Durante a fase de lançamento, a listagem na Offpeak.pt é totalmente gratuita. Não cobramos comissões sobre reservas nem mensalidades.",
+              title: "Apenas 5% por reserva",
+              desc: "Sem mensalidades, sem custos fixos. Cobramos apenas 5% sobre cada reserva concretizada através da Offpeak.pt. Só paga quando recebe clientes.",
             },
             {
               icon: "🏷",
@@ -518,7 +520,7 @@ export default function ParaNegociosPage() {
           >
             Tem um espaço que não está na lista?{" "}
             <a
-              href="mailto:hello@offpeak.pt"
+              href="mailto:info@offpeak.pt"
               style={{ color: C.text, fontWeight: 600 }}
             >
               Entre em contacto
@@ -537,11 +539,12 @@ export default function ParaNegociosPage() {
         }}
       >
         <div
+          id="registar"
           style={{
-            background: C.text,
+            background: C.surface,
             borderRadius: "16px",
+            border: `1px solid ${C.border}`,
             padding: "60px 40px",
-            color: "#ffffff",
           }}
         >
           <h2
@@ -549,8 +552,9 @@ export default function ParaNegociosPage() {
               fontSize: "clamp(26px, 4vw, 38px)",
               fontWeight: 800,
               letterSpacing: "-0.8px",
-              marginBottom: "16px",
+              marginBottom: "8px",
               lineHeight: 1.15,
+              textAlign: "center",
             }}
           >
             Registe o seu negócio
@@ -558,57 +562,16 @@ export default function ParaNegociosPage() {
           <p
             style={{
               fontSize: "17px",
-              opacity: 0.75,
+              color: C.textMuted,
               maxWidth: "460px",
               margin: "0 auto 36px",
               lineHeight: 1.6,
+              textAlign: "center",
             }}
           >
-            Preencha o formulário de parceiro na nossa página principal. A equipa
-            Offpeak.pt entra em contacto em menos de 48 horas.
+            Preencha o formulário abaixo. A equipa Offpeak.pt entra em contacto em menos de 48 horas.
           </p>
-          <div
-            style={{
-              display: "flex",
-              gap: "12px",
-              justifyContent: "center",
-              flexWrap: "wrap",
-            }}
-          >
-            <a
-              href="/#for-business"
-              style={{
-                display: "inline-block",
-                background: "#ffffff",
-                color: C.text,
-                padding: "14px 32px",
-                borderRadius: "8px",
-                fontWeight: 700,
-                fontSize: "16px",
-                textDecoration: "none",
-                letterSpacing: "-0.2px",
-              }}
-            >
-              Registar agora →
-            </a>
-            <a
-              href="mailto:hello@offpeak.pt"
-              style={{
-                display: "inline-block",
-                background: "transparent",
-                color: "rgba(255,255,255,0.85)",
-                padding: "14px 32px",
-                borderRadius: "8px",
-                fontWeight: 500,
-                fontSize: "16px",
-                textDecoration: "none",
-                border: "1.5px solid rgba(255,255,255,0.3)",
-                letterSpacing: "-0.2px",
-              }}
-            >
-              hello@offpeak.pt
-            </a>
-          </div>
+          <PartnerForm />
         </div>
       </section>
 
@@ -652,7 +615,7 @@ export default function ParaNegociosPage() {
             {[
               {
                 q: "Qual é o modelo de preços para os parceiros?",
-                a: "Durante a fase de lançamento, a Offpeak.pt é totalmente gratuita para parceiros. Não cobramos mensalidades, nem comissões por reserva ou por cliente. Quando definirmos um modelo de monetização no futuro, avisaremos os parceiros existentes com antecedência e garantiremos condições transparentes.",
+                a: "A Offpeak.pt cobra apenas 5% por reserva concretizada. Não há mensalidades, taxas de adesão, nem custos fixos. Só paga quando efetivamente recebe clientes através da plataforma.",
               },
               {
                 q: "Como funciona na prática para o meu negócio?",
@@ -668,7 +631,7 @@ export default function ParaNegociosPage() {
               },
               {
                 q: "Posso remover ou pausar a listagem?",
-                a: "Sim, a qualquer momento. Basta enviar um e-mail para hello@offpeak.pt e tratamos do resto. Não existem contratos de permanência nem penalizações por sair.",
+                a: "Sim, a qualquer momento. Basta enviar um e-mail para info@offpeak.pt e tratamos do resto. Não existem contratos de permanência nem penalizações por sair.",
               },
             ].map(({ q, a }, i) => (
               <div
@@ -748,7 +711,7 @@ export default function ParaNegociosPage() {
               { label: "Página principal", href: "/" },
               { label: "Termos de Utilização", href: "/terms" },
               { label: "Política de Privacidade", href: "/privacy" },
-              { label: "Contacto", href: "mailto:hello@offpeak.pt" },
+              { label: "Contacto", href: "mailto:info@offpeak.pt" },
             ].map(({ label, href }) => (
               <a
                 key={label}

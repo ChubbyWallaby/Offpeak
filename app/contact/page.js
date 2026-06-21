@@ -87,7 +87,7 @@ export default function ContactPage() {
         <section style={styles.card}>
           <h2 style={styles.h2}>Email</h2>
           <p style={styles.p}>
-            <a href="mailto:hello@offpeak.pt">hello@offpeak.pt</a>
+            <a href="mailto:info@offpeak.pt">info@offpeak.pt</a>
           </p>
           <p style={styles.p}>Respondemos em 24-48 horas úteis.</p>
         </section>

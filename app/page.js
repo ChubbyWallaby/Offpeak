@@ -262,17 +262,14 @@ export default function Home() {
   const handleBusinessSubmit = async (e) => {
     e.preventDefault();
     if (!businessName.trim() || !contactName.trim() || !businessEmail.trim()) return;
-
     setIsSubmittingBusiness(true);
     setBusinessError("");
-
     const formData = new FormData();
     formData.append("businessName", businessName);
     formData.append("contactName", contactName);
     formData.append("email", businessEmail);
     formData.append("activityType", activityType);
     formData.append("message", businessMessage);
-
     try {
       const res = await submitBusinessPartner(formData);
       if (res.success) {
@@ -282,10 +279,10 @@ export default function Home() {
         setBusinessEmail("");
         setBusinessMessage("");
       } else {
-        setBusinessError(res.error || (lang === "pt" ? "Não foi possível submeter o pedido. Tente novamente." : "Could not submit. Please try again."));
+        setBusinessError(res.error || (lang === "pt" ? "Não foi possível submeter. Tente novamente." : "Could not submit. Please try again."));
       }
     } catch (err) {
-      setBusinessError(lang === "pt" ? "Erro de ligação. Tente novamente." : "A connection error occurred. Please try again.");
+      setBusinessError(lang === "pt" ? "Erro de ligação. Tente novamente." : "Connection error. Please try again.");
     } finally {
       setIsSubmittingBusiness(false);
     }
@@ -352,7 +349,7 @@ export default function Home() {
             <a href="#deals" className={styles.navLink}>
               {t.nav.deals}
             </a>
-            <a href="#for-business" className={styles.navLink}>
+            <a href="/para-negocios" className={styles.navLink}>
               {t.nav.forBusiness}
             </a>
             
@@ -394,7 +391,7 @@ export default function Home() {
           <a href="#deals" className={styles.mobileDrawerLink} onClick={() => setMobileOpen(false)}>
             {t.nav.deals}
           </a>
-          <a href="#for-business" className={styles.mobileDrawerLink} onClick={() => setMobileOpen(false)}>
+          <a href="/para-negocios" className={styles.mobileDrawerLink} onClick={() => setMobileOpen(false)}>
             {t.nav.forBusiness}
           </a>
           <a href="#how-it-works" className={styles.mobileDrawerLink} onClick={() => setMobileOpen(false)}>
@@ -457,6 +454,14 @@ export default function Home() {
               )}
 
               <p className={styles.heroReassurance}>{t.hero.reassurance}</p>
+
+              <button
+                type="button"
+                onClick={() => { setBusinessSubmitted(false); setIsBusinessModalOpen(true); }}
+                className={styles.heroSecondaryLink}
+              >
+                {t.hero.ctaSecondary}
+              </button>
 
               <div className={styles.heroLiveStatus}>
                 <span className={styles.liveIndicatorDot}></span>
@@ -587,120 +592,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ─────────── For Businesses ─────────── */}
-        <section id="for-business" className={`${styles.forBusiness} section`}>
-          <div className={`container ${styles.businessContainer}`}>
-            <div className={styles.businessContent} ref={addRevealRef}>
-              <div className="reveal">
-                <span className={styles.businessLabel}>{t.forBusiness.label}</span>
-                <h2 className={styles.businessTitle}>
-                  {t.forBusiness.title}
-                </h2>
-                <p className={styles.businessSubtitle}>
-                  {t.forBusiness.subtitle}
-                </p>
-              </div>
-
-              <div className={`${styles.businessFeatures} reveal`} ref={addRevealRef}>
-                <div className={styles.businessFeature}>
-                  <div className={styles.businessFeatureIcon}>📅</div>
-                  <div className={styles.businessFeatureText}>
-                    <h4>{t.forBusiness.feature1Title}</h4>
-                    <p>
-                      {t.forBusiness.feature1Desc}
-                    </p>
-                  </div>
-                </div>
-
-                <div className={styles.businessFeature}>
-                  <div className={styles.businessFeatureIcon}>📢</div>
-                  <div className={styles.businessFeatureText}>
-                    <h4>{t.forBusiness.feature2Title}</h4>
-                    <p>
-                      {t.forBusiness.feature2Desc}
-                    </p>
-                  </div>
-                </div>
-
-                <div className={styles.businessFeature}>
-                  <div className={styles.businessFeatureIcon}>🤝</div>
-                  <div className={styles.businessFeatureText}>
-                    <h4>{t.forBusiness.feature3Title}</h4>
-                    <p>
-                      {t.forBusiness.feature3Desc}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <button
-                onClick={() => {
-                  setBusinessSubmitted(false);
-                  setIsBusinessModalOpen(true);
-                }}
-                className="btn btn-primary btn-large"
-              >
-                {t.forBusiness.cta}
-              </button>
-            </div>
-
-            <div className={styles.businessVisual} ref={addRevealRef}>
-              <div className={`${styles.businessCard} reveal-scale`}>
-                <h3 className={styles.businessCardTitle}>
-                  {t.forBusiness.cardTitle}
-                </h3>
-                <div className={styles.businessCardStats}>
-                  <div className={styles.businessCardStat}>
-                    <div className={styles.businessCardStatHeader}>
-                      <span className={styles.businessCardStatLabel}>
-                        {t.forBusiness.cardStat1Label}
-                      </span>
-                      <span className={styles.businessCardStatValue}>+68%</span>
-                    </div>
-                    <div className={styles.businessCardBar}>
-                      <div
-                        className={styles.businessCardBarFill}
-                        style={{ width: "68%" }}
-                      ></div>
-                    </div>
-                  </div>
-
-                  <div className={styles.businessCardStat}>
-                    <div className={styles.businessCardStatHeader}>
-                      <span className={styles.businessCardStatLabel}>
-                        {t.forBusiness.cardStat2Label}
-                      </span>
-                      <span className={styles.businessCardStatValue}>+45%</span>
-                    </div>
-                    <div className={styles.businessCardBar}>
-                      <div
-                        className={styles.businessCardBarFill}
-                        style={{ width: "45%" }}
-                      ></div>
-                    </div>
-                  </div>
-
-                  <div className={styles.businessCardStat}>
-                    <div className={styles.businessCardStatHeader}>
-                      <span className={styles.businessCardStatLabel}>
-                        {t.forBusiness.cardStat3Label}
-                      </span>
-                      <span className={styles.businessCardStatValue}>+32%</span>
-                    </div>
-                    <div className={styles.businessCardBar}>
-                      <div
-                        className={styles.businessCardBarFill}
-                        style={{ width: "32%" }}
-                      ></div>
-                    </div>
-                  </div>
-                </div>
-                <p className={styles.businessCardDisclaimer}>{t.forBusiness.cardDisclaimer}</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* ─────────── Email Signup ─────────── */}
         <section id="signup" className={`${styles.signup} section`}>
           <div className={styles.signupOrb}></div>
@@ -790,7 +681,7 @@ export default function Home() {
             <a href="/para-negocios" className={styles.footerLink}>
               {t.footer.business}
             </a>
-            <a href="mailto:hello@offpeak.pt" className={styles.footerLink}>
+            <a href="mailto:info@offpeak.pt" className={styles.footerLink}>
               {t.footer.contact}
             </a>
             <a href="/privacy" className={styles.footerLink}>
@@ -810,127 +701,72 @@ export default function Home() {
         </div>
       </footer>
 
-      {/* ─────────── Business Lead Modal ─────────── */}
-      <div className={`${styles.modalOverlay} ${isBusinessModalOpen ? styles.open : ""}`}>
-        <div className={styles.modal}>
-          <div className={styles.modalHeader}>
-            <h3 className={styles.modalTitle}>{t.modal.title}</h3>
-            <button
-              onClick={() => setIsBusinessModalOpen(false)}
-              className={styles.modalClose}
-              aria-label="Close modal"
-            >
-              &times;
-            </button>
-          </div>
-
-          {businessSubmitted ? (
-            <div className={styles.modalSuccess}>
-              <div className={styles.modalSuccessIcon}>✓</div>
-              <h4 className={styles.modalSuccessTitle}>{t.modal.successTitle}</h4>
-              <p className={styles.modalSuccessText}>
-                {t.modal.successText}
-              </p>
+      {isBusinessModalOpen && (
+        <div className={styles.modalOverlay} onClick={() => setIsBusinessModalOpen(false)}>
+          <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+            <div className={styles.modalHeader}>
+              <h3 className={styles.modalTitle}>{t.modal.title}</h3>
               <button
                 onClick={() => setIsBusinessModalOpen(false)}
-                className="btn btn-secondary"
-                style={{ marginTop: "1rem" }}
+                className={styles.modalClose}
+                aria-label="Close modal"
               >
-                {t.modal.closeBtn}
+                &times;
               </button>
             </div>
-          ) : (
-            <form onSubmit={handleBusinessSubmit} className={styles.modalForm}>
-              <div className={styles.modalGroup}>
-                <label className={styles.modalLabel} htmlFor="biz-name">{t.modal.bizName}</label>
-                <input
-                  id="biz-name"
-                  type="text"
-                  required
-                  placeholder={t.modal.bizNamePlac}
-                  value={businessName}
-                  onChange={(e) => setBusinessName(e.target.value)}
-                  className={styles.modalInput}
-                  disabled={isSubmittingBusiness}
-                />
-              </div>
 
-              <div className={styles.modalGroup}>
-                <label className={styles.modalLabel} htmlFor="contact-name">{t.modal.contactName}</label>
-                <input
-                  id="contact-name"
-                  type="text"
-                  required
-                  placeholder={t.modal.contactNamePlac}
-                  value={contactName}
-                  onChange={(e) => setContactName(e.target.value)}
-                  className={styles.modalInput}
-                  disabled={isSubmittingBusiness}
-                />
-              </div>
-
-              <div className={styles.modalGroup}>
-                <label className={styles.modalLabel} htmlFor="biz-email">{t.modal.contactEmail}</label>
-                <input
-                  id="biz-email"
-                  type="email"
-                  required
-                  placeholder={t.modal.contactEmailPlac}
-                  value={businessEmail}
-                  onChange={(e) => setBusinessEmail(e.target.value)}
-                  className={styles.modalInput}
-                  disabled={isSubmittingBusiness}
-                />
-              </div>
-
-              <div className={styles.modalGroup}>
-                <label className={styles.modalLabel} htmlFor="activity-type">{t.modal.activityType}</label>
-                <select
-                  id="activity-type"
-                  value={activityType}
-                  onChange={(e) => setActivityType(e.target.value)}
-                  className={styles.modalSelect}
-                  disabled={isSubmittingBusiness}
+            {businessSubmitted ? (
+              <div className={styles.modalSuccess}>
+                <div className={styles.modalSuccessIcon}>✓</div>
+                <h4 className={styles.modalSuccessTitle}>{t.modal.successTitle}</h4>
+                <p className={styles.modalSuccessText}>{t.modal.successText}</p>
+                <button
+                  onClick={() => setIsBusinessModalOpen(false)}
+                  className="btn btn-secondary"
+                  style={{ marginTop: "1rem" }}
                 >
-                  <option value="padel">{t.modal.activityTypes.padel}</option>
-                  <option value="bowling">{t.modal.activityTypes.bowling}</option>
-                  <option value="cinema">{t.modal.activityTypes.cinema}</option>
-                  <option value="gym">{t.modal.activityTypes.fitness}</option>
-                  <option value="spa">{t.modal.activityTypes.spa}</option>
-                  <option value="other">{t.modal.activityTypes.other}</option>
-                </select>
+                  {t.modal.closeBtn}
+                </button>
               </div>
-
-              <div className={styles.modalGroup}>
-                <label className={styles.modalLabel} htmlFor="biz-msg">{t.modal.message}</label>
-                <textarea
-                  id="biz-msg"
-                  placeholder={t.modal.messagePlac}
-                  value={businessMessage}
-                  onChange={(e) => setBusinessMessage(e.target.value)}
-                  className={styles.modalTextarea}
-                  disabled={isSubmittingBusiness}
-                />
-              </div>
-
-              {businessError && (
-                <div className={styles.modalError}>
-                  {businessError}
+            ) : (
+              <form onSubmit={handleBusinessSubmit} className={styles.modalForm}>
+                <div className={styles.modalGroup}>
+                  <label className={styles.modalLabel} htmlFor="biz-name">{t.modal.bizName}</label>
+                  <input id="biz-name" type="text" required placeholder={t.modal.bizNamePlac} value={businessName} onChange={(e) => setBusinessName(e.target.value)} className={styles.modalInput} disabled={isSubmittingBusiness} />
                 </div>
-              )}
-
-              <button
-                type="submit"
-                disabled={isSubmittingBusiness}
-                className={styles.modalSubmit}
-              >
-                {isSubmittingBusiness ? t.modal.submitBtnPending : t.modal.submitBtn}
-              </button>
-            </form>
-          )}
+                <div className={styles.modalGroup}>
+                  <label className={styles.modalLabel} htmlFor="contact-name">{t.modal.contactName}</label>
+                  <input id="contact-name" type="text" required placeholder={t.modal.contactNamePlac} value={contactName} onChange={(e) => setContactName(e.target.value)} className={styles.modalInput} disabled={isSubmittingBusiness} />
+                </div>
+                <div className={styles.modalGroup}>
+                  <label className={styles.modalLabel} htmlFor="biz-email">{t.modal.contactEmail}</label>
+                  <input id="biz-email" type="email" required placeholder={t.modal.contactEmailPlac} value={businessEmail} onChange={(e) => setBusinessEmail(e.target.value)} className={styles.modalInput} disabled={isSubmittingBusiness} />
+                </div>
+                <div className={styles.modalGroup}>
+                  <label className={styles.modalLabel} htmlFor="activity-type">{t.modal.activityType}</label>
+                  <select id="activity-type" value={activityType} onChange={(e) => setActivityType(e.target.value)} className={styles.modalSelect} disabled={isSubmittingBusiness}>
+                    <option value="padel">{t.modal.activityTypes.padel}</option>
+                    <option value="bowling">{t.modal.activityTypes.bowling}</option>
+                    <option value="cinema">{t.modal.activityTypes.cinema}</option>
+                    <option value="gym">{t.modal.activityTypes.fitness}</option>
+                    <option value="spa">{t.modal.activityTypes.spa}</option>
+                    <option value="other">{t.modal.activityTypes.other}</option>
+                  </select>
+                </div>
+                <div className={styles.modalGroup}>
+                  <label className={styles.modalLabel} htmlFor="biz-msg">{t.modal.message}</label>
+                  <textarea id="biz-msg" placeholder={t.modal.messagePlac} value={businessMessage} onChange={(e) => setBusinessMessage(e.target.value)} className={styles.modalTextarea} disabled={isSubmittingBusiness} />
+                </div>
+                {businessError && <div className={styles.modalError}>{businessError}</div>}
+                <button type="submit" disabled={isSubmittingBusiness} className={styles.modalSubmit}>
+                  {isSubmittingBusiness ? t.modal.submitBtnPending : t.modal.submitBtn}
+                </button>
+              </form>
+            )}
+          </div>
         </div>
-      </div>
-      
+      )}
+
       {/* ─────────── JSON-LD Structured Data for Search Engine Optimization ─────────── */}
       <script
         type="application/ld+json"
@@ -959,7 +795,7 @@ export default function Home() {
             "name": "Offpeak",
             "url": "https://offpeak.pt",
             "logo": "https://offpeak.pt/favicon.ico",
-            "email": "hello@offpeak.pt",
+            "email": "info@offpeak.pt",
             "address": {
               "@type": "PostalAddress",
               "addressLocality": "Lisbon",

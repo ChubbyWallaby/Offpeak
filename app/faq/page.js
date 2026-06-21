@@ -98,7 +98,7 @@ const faqs = [
   ],
   [
     "Como posso listar o meu negócio?",
-    "Envie-nos um e-mail para hello@offpeak.pt com a informação do seu espaço, horários mais calmos e a oferta que pretende divulgar.",
+    "Envie-nos um e-mail para info@offpeak.pt com a informação do seu espaço, horários mais calmos e a oferta que pretende divulgar.",
   ],
   [
     "Os meus dados estão seguros?",
@@ -106,7 +106,7 @@ const faqs = [
   ],
   [
     "Como contactar o suporte?",
-    "Pode contactar-nos por e-mail através de hello@offpeak.pt. Respondemos normalmente em 24-48 horas úteis.",
+    "Pode contactar-nos por e-mail através de info@offpeak.pt. Respondemos normalmente em 24-48 horas úteis.",
   ],
 ];
 

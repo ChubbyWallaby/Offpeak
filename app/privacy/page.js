@@ -118,7 +118,7 @@ export default function PrivacyPage() {
             com NIF: <strong>[A PREENCHER]</strong>.
           </p>
           <p style={styles.p}>
-            Contacto para questões de privacidade: <a href="mailto:hello@offpeak.pt">hello@offpeak.pt</a>.
+            Contacto para questões de privacidade: <a href="mailto:info@offpeak.pt">info@offpeak.pt</a>.
           </p>
         </section>
 
@@ -168,7 +168,7 @@ export default function PrivacyPage() {
             <strong> oposição</strong>, bem como retirar o consentimento a qualquer momento.
           </p>
           <p style={styles.p}>
-            Para exercer estes direitos, contacte-nos através de <a href="mailto:hello@offpeak.pt">hello@offpeak.pt</a>.
+            Para exercer estes direitos, contacte-nos através de <a href="mailto:info@offpeak.pt">info@offpeak.pt</a>.
           </p>
         </section>
 
