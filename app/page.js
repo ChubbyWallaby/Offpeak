@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import styles from "./page.module.css";
-import { subscribeUser, submitBusinessPartner } from "./actions";
+import { subscribeUser, submitBusinessPartner, getDeals } from "./actions";
 import { translations } from "./translations";
 
 /* ═══════════════════════════════════════════════════════
@@ -137,6 +137,21 @@ export default function Home() {
   const [dealsList, setDealsList] = useState(DEALS);
   const [animatedDealId, setAnimatedDealId] = useState(null);
   const [timeIndex, setTimeIndex] = useState(0);
+
+  // Load the latest deals dynamically on mount to stay in sync with the dashboard updates
+  useEffect(() => {
+    async function loadLatestDeals() {
+      try {
+        const res = await getDeals();
+        if (res.success && res.deals) {
+          setDealsList(res.deals);
+        }
+      } catch (err) {
+        console.error("Failed to load latest deals:", err);
+      }
+    }
+    loadLatestDeals();
+  }, []);
 
   // Cycle the hours shown in the hero title
   useEffect(() => {

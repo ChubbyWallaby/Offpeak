@@ -146,6 +146,42 @@ export const translations = {
       messagePlac: "Tell us about your off-peak capacity...",
       submitBtn: "Submit Application",
       submitBtnPending: "Sending Request..."
+    },
+    dashboard: {
+      title: "Partner Dashboard",
+      subtitle: "Manage places, capacity, and off-peak slot offers",
+      logout: "Log out",
+      addDeal: "Add New Deal",
+      editDeal: "Edit Place / Slot",
+      save: "Save Slot",
+      delete: "Delete",
+      cancel: "Cancel",
+      unauthorized: "Access Denied",
+      enterPassword: "Enter access password",
+      submit: "Submit",
+      incorrectPassword: "Incorrect password",
+      placeName: "Partner Name",
+      category: "Category",
+      discount: "Discount",
+      timeSlot: "Time Slot",
+      days: "Days",
+      metrics: "Views / Bookings",
+      actions: "Actions",
+      form: {
+        partnerName: "Partner Name (e.g. Lisboa Padel Club)",
+        titlePt: "Title (PT)",
+        titleEn: "Title (EN)",
+        categoryPt: "Category (PT)",
+        categoryEn: "Category (EN)",
+        daysPt: "Days (PT, e.g. Seg-Sex)",
+        daysEn: "Days (EN, e.g. Mon-Fri)",
+        timePt: "Time Slot (PT, e.g. 14:00–17:00)",
+        timeEn: "Time Slot (EN)",
+        baseDiscount: "Base Discount (%)",
+        minDiscount: "Min Discount (%)",
+        decayRate: "Decay Multiplier (e.g. 1.2)",
+        ownerEmail: "Owner Email (e.g. contact@business.com)"
+      }
     }
   },
   pt: {
@@ -295,6 +331,42 @@ export const translations = {
       messagePlac: "Fale-nos sobre os seus horários de menor afluência...",
       submitBtn: "Submeter Pedido",
       submitBtnPending: "A enviar pedido..."
+    },
+    dashboard: {
+      title: "Painel de Parceiro",
+      subtitle: "Gerencie espaços, capacidade e ofertas de horários vazios",
+      logout: "Sair",
+      addDeal: "Adicionar Nova Oferta",
+      editDeal: "Editar Espaço / Horário",
+      save: "Guardar Horário",
+      delete: "Eliminar",
+      cancel: "Cancelar",
+      unauthorized: "Acesso Negado",
+      enterPassword: "Introduza a palavra-passe de acesso",
+      submit: "Submeter",
+      incorrectPassword: "Palavra-passe incorreta",
+      placeName: "Parceiro",
+      category: "Categoria",
+      discount: "Desconto",
+      timeSlot: "Horário",
+      days: "Dias",
+      metrics: "Visitas / Reservas",
+      actions: "Ações",
+      form: {
+        partnerName: "Nome do Parceiro (ex: Lisboa Padel Club)",
+        titlePt: "Título (PT)",
+        titleEn: "Título (EN)",
+        categoryPt: "Categoria (PT)",
+        categoryEn: "Categoria (EN)",
+        daysPt: "Dias (PT, ex: Seg-Sex)",
+        daysEn: "Dias (EN, ex: Mon-Fri)",
+        timePt: "Horário (PT, ex: 14:00–17:00)",
+        timeEn: "Horário (EN)",
+        baseDiscount: "Desconto Base (%)",
+        minDiscount: "Desconto Mínimo (%)",
+        decayRate: "Multiplicador de Decaimento (ex: 1.2)",
+        ownerEmail: "E-mail do Proprietário (ex: contacto@empresa.com)"
+      }
     }
   }
 };

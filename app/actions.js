@@ -1,6 +1,8 @@
 "use server";
 
 import { Resend } from "resend";
+import fs from "fs/promises";
+import path from "path";
 
 const resend = new Resend("re_cssoB8G8_DeqcwRWbsBxuvg3GfqGAyy1H");
 
@@ -71,5 +73,119 @@ export async function submitBusinessPartner(formData) {
   } catch (error) {
     console.error("Resend Email Error:", error);
     return { success: false, error: error.message };
+  }
+}
+
+const dealsPath = path.join(process.cwd(), "app", "deals.json");
+
+export async function getDeals() {
+  try {
+    const data = await fs.readFile(dealsPath, "utf-8");
+    return { success: true, deals: JSON.parse(data) };
+  } catch (error) {
+    console.error("Error reading deals.json:", error);
+    return { success: false, error: "Could not read deals list" };
+  }
+}
+
+export async function saveDeal(dealData) {
+  try {
+    const fileContent = await fs.readFile(dealsPath, "utf-8");
+    const deals = JSON.parse(fileContent);
+
+    if (dealData.id) {
+      const idx = deals.findIndex(d => d.id === parseInt(dealData.id));
+      if (idx !== -1) {
+        deals[idx] = {
+          ...deals[idx],
+          category: {
+            en: dealData.categoryEn,
+            pt: dealData.categoryPt
+          },
+          title: {
+            en: dealData.titleEn,
+            pt: dealData.titlePt
+          },
+          timeSlot: {
+            en: dealData.timeSlotEn,
+            pt: dealData.timeSlotPt
+          },
+          days: {
+            en: dealData.daysEn,
+            pt: dealData.daysPt
+          },
+          discount: {
+            en: `${dealData.baseDiscountPercent}% off`,
+            pt: `${dealData.baseDiscountPercent}% desc.`
+          },
+          baseDiscountPercent: parseInt(dealData.baseDiscountPercent),
+          minDiscountPercent: parseInt(dealData.minDiscountPercent),
+          decayRate: parseFloat(dealData.decayRate || 1.0),
+          ownerEmail: dealData.ownerEmail || deals[idx].ownerEmail || "admin@offpeak.pt",
+          image: dealData.image || deals[idx].image || "/hero-padel.png",
+          isPartner: dealData.isPartner !== undefined ? dealData.isPartner : deals[idx].isPartner
+        };
+      } else {
+        return { success: false, error: "Deal not found to edit" };
+      }
+    } else {
+      const maxId = deals.reduce((max, d) => d.id > max ? d.id : max, 0);
+      const newDeal = {
+        id: maxId + 1,
+        image: dealData.image || "/hero-padel.png",
+        isPartner: dealData.isPartner !== undefined ? dealData.isPartner : true,
+        category: {
+          en: dealData.categoryEn,
+          pt: dealData.categoryPt
+        },
+        title: {
+          en: dealData.titleEn,
+          pt: dealData.titlePt
+        },
+        discount: {
+          en: `${dealData.baseDiscountPercent}% off`,
+          pt: `${dealData.baseDiscountPercent}% desc.`
+        },
+        timeSlot: {
+          en: dealData.timeSlotEn,
+          pt: dealData.timeSlotPt
+        },
+        days: {
+          en: dealData.daysEn,
+          pt: dealData.daysPt
+        },
+        baseDiscountPercent: parseInt(dealData.baseDiscountPercent),
+        minDiscountPercent: parseInt(dealData.minDiscountPercent),
+        views: 0,
+        bookings: 0,
+        decayRate: parseFloat(dealData.decayRate || 1.0),
+        ownerEmail: dealData.ownerEmail || "admin@offpeak.pt"
+      };
+      deals.push(newDeal);
+    }
+
+    await fs.writeFile(dealsPath, JSON.stringify(deals, null, 2), "utf-8");
+    return { success: true };
+  } catch (error) {
+    console.error("Error writing to deals.json:", error);
+    return { success: false, error: "Could not save deal changes" };
+  }
+}
+
+export async function deleteDeal(dealId) {
+  try {
+    const fileContent = await fs.readFile(dealsPath, "utf-8");
+    const deals = JSON.parse(fileContent);
+
+    const updatedDeals = deals.filter(d => d.id !== parseInt(dealId));
+    if (deals.length === updatedDeals.length) {
+      return { success: false, error: "Deal not found to delete" };
+    }
+
+    await fs.writeFile(dealsPath, JSON.stringify(updatedDeals, null, 2), "utf-8");
+    return { success: true };
+  } catch (error) {
+    console.error("Error deleting from deals.json:", error);
+    return { success: false, error: "Could not delete deal" };
   }
 }
