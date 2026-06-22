@@ -564,13 +564,17 @@ export default function Home() {
                           <span className={`btn ${styles.simulateBtn}`}>
                             {t.deals.grabDealBtn}
                           </span>
-                          <a
-                            href={`/grupos/criar?deal=${deal.slug}&lang=${lang}`}
+                          <button
+                            type="button"
                             className={styles.findGroupBtn}
-                            onClick={(e) => e.stopPropagation()}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              window.location.href = `/grupos/criar?deal=${deal.slug}&lang=${lang}`;
+                            }}
                           >
                             {t.deals.findGroupBtn}
-                          </a>
+                          </button>
                         </div>
                       </div>
                     </a>

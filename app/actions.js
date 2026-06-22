@@ -318,6 +318,8 @@ import { adminDb } from "@/lib/firebase-admin";
 import { Timestamp, FieldValue } from "firebase-admin/firestore";
 
 export async function createSession(formData) {
+  if (!adminDb) return { success: false, error: "Firebase Admin not configured" };
+
   const activity = (formData.get("activity") || "other").trim().slice(0, 30);
   const dealSlug = (formData.get("dealSlug") || "").trim().slice(0, 100);
   const venueName = (formData.get("venueName") || "").trim().slice(0, 100);
@@ -363,6 +365,8 @@ export async function createSession(formData) {
 }
 
 export async function joinSession(formData) {
+  if (!adminDb) return { success: false, error: "Firebase Admin not configured" };
+
   const sessionId = (formData.get("sessionId") || "").trim();
   const participantUid = (formData.get("participantUid") || "").trim();
   const participantDisplayName = (formData.get("participantDisplayName") || "Offpeak User").trim().slice(0, 50);
@@ -411,6 +415,8 @@ export async function joinSession(formData) {
 
 export async function getSessions({ activity, limit: lim = 6 } = {}) {
   try {
+    if (!adminDb) return [];
+
     let q = adminDb
       .collection("sessions")
       .where("status", "==", "open")
