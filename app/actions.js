@@ -318,29 +318,36 @@ import { adminDb } from "@/lib/firebase-admin";
 import { Timestamp, FieldValue } from "firebase-admin/firestore";
 
 export async function createSession(formData) {
-  if (!adminDb) return { success: false, error: "Firebase Admin not configured" };
-
-  const activity = (formData.get("activity") || "other").trim().slice(0, 30);
-  const dealSlug = (formData.get("dealSlug") || "").trim().slice(0, 100);
-  const venueName = (formData.get("venueName") || "").trim().slice(0, 100);
-  const dateStr = (formData.get("date") || "").trim();
-  const timeSlot = (formData.get("timeSlot") || "").trim().slice(0, 20);
-  const spotsTotal = Math.min(Math.max(parseInt(formData.get("spotsTotal") || "4"), 2), 20);
-  const message = (formData.get("message") || "").trim().slice(0, 200);
-  const creatorUid = (formData.get("creatorUid") || "").trim();
-  const creatorDisplayName = (formData.get("creatorDisplayName") || "Offpeak User").trim().slice(0, 50);
-  const lang = formData.get("lang") === "en" ? "en" : "pt";
-
-  if (!venueName || !dateStr || !timeSlot || !creatorUid) {
-    return { success: false, error: "Missing required fields" };
-  }
-
-  const date = new Date(dateStr);
-  if (isNaN(date.getTime()) || date < new Date()) {
-    return { success: false, error: "Invalid date" };
-  }
-
   try {
+    console.log("createSession called!");
+    if (!adminDb) {
+      console.log("adminDb is null! Returning error.");
+      return { success: false, error: "Firebase Admin not configured" };
+    }
+
+    const activity = (formData.get("activity") || "other").trim().slice(0, 30);
+    const dealSlug = (formData.get("dealSlug") || "").trim().slice(0, 100);
+    const venueName = (formData.get("venueName") || "").trim().slice(0, 100);
+    const dateStr = (formData.get("date") || "").trim();
+    const timeSlot = (formData.get("timeSlot") || "").trim().slice(0, 20);
+    const spotsTotal = Math.min(Math.max(parseInt(formData.get("spotsTotal") || "4"), 2), 20);
+    const message = (formData.get("message") || "").trim().slice(0, 200);
+    const creatorUid = (formData.get("creatorUid") || "").trim();
+    const creatorDisplayName = (formData.get("creatorDisplayName") || "Offpeak User").trim().slice(0, 50);
+    const lang = formData.get("lang") === "en" ? "en" : "pt";
+
+    if (!venueName || !dateStr || !timeSlot || !creatorUid) {
+      console.log("Missing required fields");
+      return { success: false, error: "Missing required fields" };
+    }
+
+    const date = new Date(dateStr);
+    if (isNaN(date.getTime()) || date < new Date()) {
+      console.log("Invalid date", dateStr, date, new Date());
+      return { success: false, error: "Invalid date" };
+    }
+
+    console.log("Attempting to insert into Firestore sessions collection...");
     const docRef = await adminDb.collection("sessions").add({
       activity,
       dealSlug,
@@ -357,10 +364,13 @@ export async function createSession(formData) {
       lang,
       createdAt: Timestamp.now(),
     });
+    
+    console.log("Successfully created session:", docRef.id);
     return { success: true, sessionId: docRef.id };
   } catch (error) {
-    console.error("createSession error:", error);
-    return { success: false, error: error.message };
+    console.error("CRITICAL createSession error:", error);
+    // Return a completely safe, serializable object.
+    return { success: false, error: error && error.message ? error.message : "Unknown error occurred" };
   }
 }
 
