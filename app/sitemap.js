@@ -70,5 +70,17 @@ export default function sitemap() {
       changeFrequency: "yearly",
       priority: 0.3,
     },
+    {
+      url: `${baseUrl}/grupos`,
+      lastModified: today,
+      changeFrequency: "hourly",
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/grupos/criar`,
+      lastModified: today,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
   ];
 }

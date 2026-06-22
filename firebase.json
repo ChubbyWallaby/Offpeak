@@ -1,0 +1,16 @@
+{
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "auth": {
+    "providers": {
+      "emailPassword": true,
+      "googleSignIn": {
+        "oAuthBrandDisplayName": "Offpeak",
+        "supportEmail": "info@offpeak.pt",
+        "authorizedRedirectUris": ["https://offpeak.pt", "http://localhost:3000"]
+      }
+    }
+  }
+}

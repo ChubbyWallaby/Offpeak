@@ -1,0 +1,103 @@
+// ===============================================================
+// Assumed Data Model
+// ===============================================================
+//
+// Collection: sessions
+// Document ID: auto-generated
+// Fields:
+//   - activity: string (required, max 30 chars) — e.g. "padel", "bowling"
+//   - dealSlug: string (optional, max 100 chars) — reference to deals.json slug
+//   - venueName: string (required, max 100 chars) — venue display name
+//   - date: timestamp (required) — session date/time
+//   - timeSlot: string (required, max 20 chars) — e.g. "14:00–16:00"
+//   - spotsTotal: number (required, 2–20) — total spots in session
+//   - spotsFilled: number (required, 1–20) — filled spots count
+//   - message: string (optional, max 200 chars) — creator's note
+//   - creatorUid: string (required, immutable) — Firebase UID of creator
+//   - creatorDisplayName: string (required, max 50 chars) — denormalized display name
+//   - participants: list (max 19 items) — joined participants
+//     Each item: { uid: string, displayName: string, note: string, joinedAt: timestamp }
+//   - status: string (required) — "open" | "full" | "cancelled"
+//   - lang: string (required) — "pt" | "en"
+//   - createdAt: timestamp (required, immutable) — creation timestamp
+//
+// ===============================================================
+
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ─── Default Deny ────────────────────────────────────────
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // ─── Helper Functions ─────────────────────────────────────
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isDocOwner() {
+      return isAuthenticated() && request.auth.uid == resource.data.creatorUid;
+    }
+
+    function isValidStatus(s) {
+      return s in ["open", "full", "cancelled"];
+    }
+
+    function isValidActivity(a) {
+      return a is string && a.size() >= 1 && a.size() <= 30;
+    }
+
+    function isValidString(s, maxLen) {
+      return s is string && s.size() >= 0 && s.size() <= maxLen;
+    }
+
+    function isValidSession(data) {
+      return data.keys().hasAll(["activity", "venueName", "date", "timeSlot", "spotsTotal",
+                                  "spotsFilled", "creatorUid", "creatorDisplayName", "status", "lang", "createdAt"])
+        && isValidActivity(data.activity)
+        && isValidString(data.venueName, 100) && data.venueName.size() >= 1
+        && data.date is timestamp
+        && isValidString(data.timeSlot, 20) && data.timeSlot.size() >= 1
+        && data.spotsTotal is number && data.spotsTotal >= 2 && data.spotsTotal <= 20
+        && data.spotsFilled is number && data.spotsFilled >= 1 && data.spotsFilled <= 20
+        && isValidString(data.creatorUid, 128) && data.creatorUid.size() >= 1
+        && isValidString(data.creatorDisplayName, 50) && data.creatorDisplayName.size() >= 1
+        && isValidStatus(data.status)
+        && data.lang in ["pt", "en"]
+        && data.createdAt is timestamp
+        && (!("dealSlug" in data) || isValidString(data.dealSlug, 100))
+        && (!("message" in data) || isValidString(data.message, 200))
+        && (!("participants" in data) || (data.participants is list && data.participants.size() <= 19));
+    }
+
+    // ─── Sessions Collection ──────────────────────────────────
+    match /sessions/{sessionId} {
+      // Anyone authenticated can read open sessions (for browsing)
+      allow read: if isAuthenticated();
+
+      // Only authenticated users can create their own sessions via server actions
+      // Server actions use Firebase Admin SDK which bypasses these rules,
+      // but we add client-side protection as defence-in-depth:
+      allow create: if isAuthenticated()
+        && request.auth.uid == request.resource.data.creatorUid
+        && isValidSession(request.resource.data)
+        // Ensure createdAt is recent (within 5 minutes)
+        && request.resource.data.createdAt >= request.time - duration.value(5, 'm')
+        && request.resource.data.createdAt <= request.time;
+
+      // Creators can cancel their own session
+      allow update: if isAuthenticated()
+        && isDocOwner()
+        // Only allow updating status to "cancelled"
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(["status"])
+        && request.resource.data.status == "cancelled"
+        && resource.data.status == "open";
+
+      // No direct client-side deletes
+      allow delete: if false;
+    }
+  }
+}

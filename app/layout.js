@@ -1,5 +1,6 @@
 import { Analytics } from "@vercel/analytics/next";
 import CookieConsent from "./components/CookieConsent";
+import { AuthProvider } from "./components/AuthProvider";
 import "./globals.css";
 
 export const metadata = {
@@ -57,9 +58,11 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body suppressHydrationWarning>
-        {children}
-        <CookieConsent />
-        <Analytics />
+        <AuthProvider>
+          {children}
+          <CookieConsent />
+          <Analytics />
+        </AuthProvider>
       </body>
     </html>
   );

@@ -309,3 +309,132 @@ export async function submitBooking(formData) {
     return { success: false, error: error.message };
   }
 }
+
+/* ═══════════════════════════════════════════════════
+   Social Sessions — Firestore-backed actions
+   ═══════════════════════════════════════════════════ */
+
+import { adminDb } from "@/lib/firebase-admin";
+import { Timestamp, FieldValue } from "firebase-admin/firestore";
+
+export async function createSession(formData) {
+  const activity = (formData.get("activity") || "other").trim().slice(0, 30);
+  const dealSlug = (formData.get("dealSlug") || "").trim().slice(0, 100);
+  const venueName = (formData.get("venueName") || "").trim().slice(0, 100);
+  const dateStr = (formData.get("date") || "").trim();
+  const timeSlot = (formData.get("timeSlot") || "").trim().slice(0, 20);
+  const spotsTotal = Math.min(Math.max(parseInt(formData.get("spotsTotal") || "4"), 2), 20);
+  const message = (formData.get("message") || "").trim().slice(0, 200);
+  const creatorUid = (formData.get("creatorUid") || "").trim();
+  const creatorDisplayName = (formData.get("creatorDisplayName") || "Offpeak User").trim().slice(0, 50);
+  const lang = formData.get("lang") === "en" ? "en" : "pt";
+
+  if (!venueName || !dateStr || !timeSlot || !creatorUid) {
+    return { success: false, error: "Missing required fields" };
+  }
+
+  const date = new Date(dateStr);
+  if (isNaN(date.getTime()) || date < new Date()) {
+    return { success: false, error: "Invalid date" };
+  }
+
+  try {
+    const docRef = await adminDb.collection("sessions").add({
+      activity,
+      dealSlug,
+      venueName,
+      date: Timestamp.fromDate(date),
+      timeSlot,
+      spotsTotal,
+      spotsFilled: 1,
+      message,
+      creatorUid,
+      creatorDisplayName,
+      participants: [],
+      status: "open",
+      lang,
+      createdAt: Timestamp.now(),
+    });
+    return { success: true, sessionId: docRef.id };
+  } catch (error) {
+    console.error("createSession error:", error);
+    return { success: false, error: error.message };
+  }
+}
+
+export async function joinSession(formData) {
+  const sessionId = (formData.get("sessionId") || "").trim();
+  const participantUid = (formData.get("participantUid") || "").trim();
+  const participantDisplayName = (formData.get("participantDisplayName") || "Offpeak User").trim().slice(0, 50);
+  const note = (formData.get("note") || "").trim().slice(0, 150);
+
+  if (!sessionId || !participantUid) {
+    return { success: false, error: "Missing required fields" };
+  }
+
+  try {
+    const ref = adminDb.collection("sessions").doc(sessionId);
+    const snap = await ref.get();
+
+    if (!snap.exists) return { success: false, error: "Session not found" };
+
+    const data = snap.data();
+    if (data.status !== "open") return { success: false, error: "Session is not open" };
+
+    const alreadyIn =
+      data.participants?.some((p) => p.uid === participantUid) ||
+      data.creatorUid === participantUid;
+    if (alreadyIn) return { success: false, error: "Already joined" };
+
+    const spotsLeft = data.spotsTotal - (data.participants?.length || 0) - 1;
+    if (spotsLeft <= 0) return { success: false, error: "No spots left" };
+
+    const newParticipant = {
+      uid: participantUid,
+      displayName: participantDisplayName,
+      note,
+      joinedAt: Timestamp.now(),
+    };
+
+    await ref.update({
+      participants: FieldValue.arrayUnion(newParticipant),
+      spotsFilled: FieldValue.increment(1),
+      ...(spotsLeft === 1 ? { status: "full" } : {}),
+    });
+
+    return { success: true };
+  } catch (error) {
+    console.error("joinSession error:", error);
+    return { success: false, error: error.message };
+  }
+}
+
+export async function getSessions({ activity, limit: lim = 6 } = {}) {
+  try {
+    let q = adminDb
+      .collection("sessions")
+      .where("status", "==", "open")
+      .orderBy("date", "asc")
+      .limit(lim);
+    if (activity && activity !== "all") q = q.where("activity", "==", activity);
+    const snap = await q.get();
+    return snap.docs.map((d) => {
+      const data = d.data();
+      return {
+        id: d.id,
+        activity: data.activity,
+        venueName: data.venueName,
+        timeSlot: data.timeSlot,
+        spotsTotal: data.spotsTotal,
+        spotsFilled: data.spotsFilled,
+        message: data.message,
+        creatorDisplayName: data.creatorDisplayName,
+        status: data.status,
+        date: data.date?.toMillis ? data.date.toMillis() : null,
+      };
+    });
+  } catch (error) {
+    console.error("getSessions error:", error);
+    return [];
+  }
+}

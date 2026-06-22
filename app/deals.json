@@ -83,7 +83,7 @@
     "baseDiscountPercent": 50,
     "minDiscountPercent": 25,
     "views": 0,
-    "bookings": 1,
+    "bookings": 3,
     "decayRate": 2,
     "ownerEmail": "info@offpeak.pt",
     "price": 12,
