@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import styles from "./page.module.css";
-import { subscribeUser, submitBusinessPartner, getDeals } from "./actions";
+import { subscribeUser, submitBusinessPartner, getDeals, getSessions } from "./actions";
 import { translations } from "./translations";
 
 /* ═══════════════════════════════════════════════════════
@@ -136,6 +136,7 @@ export default function Home() {
   const [lang, setLang] = useState("pt");
   const [dealsList, setDealsList] = useState(DEALS);
   const [timeIndex, setTimeIndex] = useState(0);
+  const [previewSessions, setPreviewSessions] = useState([]);
 
   // Load the latest deals dynamically on mount to stay in sync with the dashboard updates
   useEffect(() => {
@@ -150,6 +151,19 @@ export default function Home() {
       }
     }
     loadLatestDeals();
+  }, []);
+
+  // Load a handful of upcoming open sessions for the homepage teaser
+  useEffect(() => {
+    async function loadSessions() {
+      try {
+        const sessions = await getSessions({ limit: 3 });
+        setPreviewSessions(sessions);
+      } catch (err) {
+        console.error("Failed to load sessions:", err);
+      }
+    }
+    loadSessions();
   }, []);
 
   // Cycle the hours shown in the hero title
@@ -349,6 +363,9 @@ export default function Home() {
             <a href="#deals" className={styles.navLink}>
               {t.nav.deals}
             </a>
+            <a href="/grupos" className={styles.navLink}>
+              {t.nav.grupos}
+            </a>
             <a href="/para-negocios" className={styles.navLink}>
               {t.nav.forBusiness}
             </a>
@@ -390,6 +407,9 @@ export default function Home() {
         <div className={`${styles.mobileDrawer} ${mobileOpen ? styles.mobileDrawerOpen : ""}`}>
           <a href="#deals" className={styles.mobileDrawerLink} onClick={() => setMobileOpen(false)}>
             {t.nav.deals}
+          </a>
+          <a href="/grupos" className={styles.mobileDrawerLink} onClick={() => setMobileOpen(false)}>
+            {t.nav.grupos}
           </a>
           <a href="/para-negocios" className={styles.mobileDrawerLink} onClick={() => setMobileOpen(false)}>
             {t.nav.forBusiness}
@@ -540,14 +560,69 @@ export default function Home() {
                           <span>{deal.days[lang] || deal.days.en}</span>
                         </div>
 
-                        <span className={`btn ${styles.simulateBtn}`}>
-                          {t.deals.grabDealBtn}
-                        </span>
+                        <div className={styles.dealCardActions}>
+                          <span className={`btn ${styles.simulateBtn}`}>
+                            {t.deals.grabDealBtn}
+                          </span>
+                          <a
+                            href={`/grupos/criar?deal=${deal.slug}&lang=${lang}`}
+                            className={styles.findGroupBtn}
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            {t.deals.findGroupBtn}
+                          </a>
+                        </div>
                       </div>
                     </a>
                   </article>
                 );
               })}
+            </div>
+          </div>
+        </section>
+
+        {/* ─────────── Grupos Teaser ─────────── */}
+        <section id="grupos" className={`${styles.gruposTeaser} section`}>
+          <div className="container" ref={addRevealRef}>
+            <div className="reveal">
+              <span className={styles.dealsLabel}>{t.grupos.sectionLabel}</span>
+              <h2 className="section-title">{t.grupos.sectionTitle}</h2>
+              <p className="section-subtitle">{t.grupos.sectionSubtitle}</p>
+            </div>
+
+            <div className={`${styles.gruposPreviewRow} reveal`} ref={addRevealRef}>
+              {previewSessions.length === 0 ? (
+                <div className={styles.gruposEmpty}>
+                  <span>👥</span>
+                  <p>{t.grupos.previewEmpty}</p>
+                </div>
+              ) : (
+                previewSessions.map((s) => {
+                  const spotsLeft = s.spotsTotal - (s.spotsFilled || 1);
+                  const isFull = spotsLeft <= 0;
+                  return (
+                    <a key={s.id} href={`/grupos/${s.id}`} className={styles.gruposCard}>
+                      <div className={styles.gruposCardTop}>
+                        <span className={styles.gruposActivity}>{s.activity}</span>
+                        <span className={`${styles.gruposSpots} ${isFull ? styles.gruposSpotsFull : ""}`}>
+                          {isFull ? t.grupos.full : t.grupos.spotsLeft(spotsLeft)}
+                        </span>
+                      </div>
+                      <p className={styles.gruposVenue}>{s.venueName}</p>
+                      <p className={styles.gruposTime}>{s.timeSlot}</p>
+                    </a>
+                  );
+                })
+              )}
+            </div>
+
+            <div className={`${styles.gruposCtas} reveal`} ref={addRevealRef}>
+              <a href="/grupos" className={`btn btn-primary ${styles.gruposCtaPrimary}`}>
+                {t.grupos.ctaView}
+              </a>
+              <a href="/grupos/criar" className={styles.gruposCtaSecondary}>
+                {t.grupos.ctaCreate} →
+              </a>
             </div>
           </div>
         </section>

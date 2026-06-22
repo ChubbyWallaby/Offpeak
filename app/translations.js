@@ -4,6 +4,7 @@ export const translations = {
       howItWorks: "How it works",
       deals: "Partners & Deals",
       forBusiness: "For business",
+      grupos: "Find a Group",
       cta: "Register Free"
     },
     hero: {
@@ -30,6 +31,7 @@ export const translations = {
       subtitle: "Active promotions from our official partners. Register to book a slot or list your own venue.",
       partnerBadge: "Official Partner",
       grabDealBtn: "Book This Slot",
+      findGroupBtn: "Find a Group →",
       viewsLabel: "views",
       bookingsLabel: "bookings",
       demandLabel: "Demand:",
@@ -104,6 +106,16 @@ export const translations = {
       complaints: "Complaints Book",
       business: "For Business"
     },
+    grupos: {
+      sectionLabel: "✦ Find Your Group",
+      sectionTitle: "Don't go alone. Find your crew.",
+      sectionSubtitle: "Join other people who want to play padel, go bowling, or catch a film at off-peak hours.",
+      ctaView: "Browse Groups",
+      ctaCreate: "Create a Group",
+      previewEmpty: "Be the first to create a group this week.",
+      spotsLeft: (n) => `${n} spot${n === 1 ? "" : "s"} left`,
+      full: "Full"
+    },
     cookie: {
       message: "We use cookies for analytics to improve your experience.",
       accept: "Accept",
@@ -177,6 +189,7 @@ export const translations = {
       howItWorks: "Como funciona",
       deals: "Parceiros e Ofertas",
       forBusiness: "Para negócios",
+      grupos: "Encontrar Grupo",
       cta: "Registar Grátis"
     },
     hero: {
@@ -203,6 +216,7 @@ export const translations = {
       subtitle: "Promoções ativas dos nossos parceiros oficiais. Registe-se para reservar ou divulgar o seu espaço.",
       partnerBadge: "Parceiro Oficial",
       grabDealBtn: "Reservar",
+      findGroupBtn: "Encontrar Grupo →",
       viewsLabel: "visitas",
       bookingsLabel: "reservas",
       demandLabel: "Procura:",
@@ -276,6 +290,16 @@ export const translations = {
       faq: "FAQ",
       complaints: "Livro de Reclamações",
       business: "Para Negócios"
+    },
+    grupos: {
+      sectionLabel: "✦ Encontra o Teu Grupo",
+      sectionTitle: "Não vás sozinho. Junta-te a outros.",
+      sectionSubtitle: "Encontra outras pessoas para jogar padel, bowling ou ver um filme nas horas de menor afluência.",
+      ctaView: "Ver Grupos",
+      ctaCreate: "Criar Grupo",
+      previewEmpty: "Sê o primeiro a criar um grupo esta semana.",
+      spotsLeft: (n) => `${n} ${n === 1 ? "vaga" : "vagas"} livres`,
+      full: "Completo"
     },
     cookie: {
       message: "Utilizamos cookies de análise para melhorar a sua experiência.",
