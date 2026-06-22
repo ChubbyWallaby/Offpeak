@@ -1,17 +1,17 @@
 .page {
   min-height: 100vh;
-  background: #080b14;
-  color: #fff;
-  font-family: "Inter", "Outfit", system-ui, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
 }
 
 .header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(8, 11, 20, 0.85);
+  background: oklch(1 0 0 / 0.8);
   backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid var(--color-border-subtle);
 }
 
 .headerInner {
@@ -21,12 +21,12 @@
 }
 
 .backLink {
-  color: rgba(255,255,255,0.6);
+  color: var(--color-text-secondary);
   text-decoration: none;
   font-size: 0.9rem;
   transition: color 0.2s;
 }
-.backLink:hover { color: #fff; }
+.backLink:hover { color: var(--color-primary); }
 
 .main {
   max-width: 800px;
@@ -50,36 +50,33 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding: 0.35rem 0.85rem;
-  background: rgba(99,102,241,0.15);
-  border: 1px solid rgba(99,102,241,0.3);
+  background: oklch(from var(--color-primary-subtle) l c h / 0.5);
+  border: 1px solid var(--color-primary-light);
   border-radius: 999px;
-  color: #a5b4fc;
+  color: var(--color-primary-dark);
 }
 
 .spotsBadge {
   font-size: 0.82rem;
   font-weight: 600;
   padding: 0.35rem 0.85rem;
-  background: rgba(34,197,94,0.12);
-  border: 1px solid rgba(34,197,94,0.3);
+  background: var(--color-success-bg);
+  border: 1px solid oklch(from var(--color-success) l c h / 0.3);
   border-radius: 999px;
-  color: #86efac;
+  color: var(--color-success);
 }
 
 .spotsFull {
-  background: rgba(239,68,68,0.1);
-  border-color: rgba(239,68,68,0.25);
-  color: #fca5a5;
+  background: oklch(0.95 0.02 20);
+  border-color: oklch(0.8 0.05 20);
+  color: oklch(0.4 0.1 20);
 }
 
 .venueName {
   font-size: clamp(1.8rem, 4vw, 2.5rem);
   font-weight: 800;
   margin: 0;
-  background: linear-gradient(135deg, #fff 40%, rgba(99,102,241,0.8));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--color-text);
   line-height: 1.2;
 }
 
@@ -93,23 +90,23 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  color: rgba(255,255,255,0.6);
+  color: var(--color-text-secondary);
   font-size: 1rem;
 }
 
 .metaIcon { font-size: 1.1rem; }
 
 .messageBox {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-left: 3px solid rgba(99,102,241,0.5);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-primary);
   border-radius: 0 12px 12px 0;
   padding: 1rem 1.25rem;
 }
 
 .messageBox p {
   font-style: italic;
-  color: rgba(255,255,255,0.65);
+  color: var(--color-text-secondary);
   margin: 0 0 0.3rem;
   font-size: 1rem;
   line-height: 1.6;
@@ -117,7 +114,7 @@
 
 .messageBox span {
   font-size: 0.82rem;
-  color: rgba(255,255,255,0.35);
+  color: var(--color-text-tertiary);
 }
 
 .section {}
@@ -125,7 +122,7 @@
 .sectionTitle {
   font-size: 1rem;
   font-weight: 700;
-  color: rgba(255,255,255,0.5);
+  color: var(--color-text-tertiary);
   text-transform: uppercase;
   letter-spacing: 0.06em;
   margin: 0 0 1rem;
@@ -142,30 +139,32 @@
   align-items: center;
   gap: 0.75rem;
   font-size: 0.95rem;
-  color: rgba(255,255,255,0.8);
+  color: var(--color-text);
 }
 
-.participantEmpty { opacity: 0.35; }
+.participantEmpty { opacity: 0.5; color: var(--color-text-secondary); }
 
 .avatar {
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  background: var(--color-primary);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
   font-size: 0.85rem;
   flex-shrink: 0;
+  color: var(--color-text-on-primary);
 }
 
 .avatarEmpty {
-  background: rgba(255,255,255,0.07);
-  border: 1px dashed rgba(255,255,255,0.2);
+  background: var(--color-surface);
+  border: 1px dashed var(--color-border);
+  color: var(--color-text-tertiary);
 }
 
-.emptySlot { color: rgba(255,255,255,0.3); font-style: italic; font-size: 0.88rem; }
+.emptySlot { color: var(--color-text-tertiary); font-style: italic; font-size: 0.88rem; }
 
 /* Join */
 .joinBtn {
@@ -173,17 +172,17 @@
   align-items: center;
   justify-content: center;
   padding: 1rem 2rem;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  background: var(--color-primary);
   border: none;
   border-radius: 14px;
-  color: #fff;
+  color: var(--color-text-on-primary);
   font-size: 1.05rem;
   font-weight: 700;
   cursor: pointer;
-  transition: opacity 0.2s, transform 0.15s;
+  transition: background 0.2s, transform 0.15s;
   width: 100%;
 }
-.joinBtn:hover:not(:disabled) { opacity: 0.9; transform: translateY(-1px); }
+.joinBtn:hover:not(:disabled) { background: var(--color-primary-dark); transform: translateY(-1px); }
 .joinBtn:disabled { opacity: 0.4; cursor: not-allowed; }
 
 .joinForm { display: flex; flex-direction: column; gap: 1rem; }
@@ -192,33 +191,33 @@
 .cancelBtn {
   flex: 1;
   padding: 0.85rem;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 14px;
-  color: rgba(255,255,255,0.6);
+  color: var(--color-text-secondary);
   font-size: 0.95rem;
   cursor: pointer;
   transition: background 0.2s;
 }
-.cancelBtn:hover { background: rgba(255,255,255,0.08); }
+.cancelBtn:hover { background: var(--color-bg-alt); }
 
 .field { display: flex; flex-direction: column; gap: 0.4rem; }
-.label { font-size: 0.78rem; font-weight: 700; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.06em; }
+.label { font-size: 0.78rem; font-weight: 700; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: 0.06em; }
 
 .input, .textarea {
   padding: 0.7rem 1rem;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 10px;
-  color: #fff;
+  color: var(--color-text);
   font-size: 0.95rem;
   font-family: inherit;
   transition: border-color 0.2s;
 }
-.input:focus, .textarea:focus { outline: none; border-color: rgba(99,102,241,0.5); }
+.input:focus, .textarea:focus { outline: none; border-color: var(--color-primary); }
 .textarea { resize: vertical; }
 
-.error { padding: 0.65rem 1rem; background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.2); border-radius: 10px; color: #fca5a5; font-size: 0.88rem; margin: 0; }
+.error { padding: 0.65rem 1rem; background: oklch(0.95 0.02 20); border: 1px solid oklch(0.8 0.05 20); border-radius: 10px; color: oklch(0.4 0.1 20); font-size: 0.88rem; margin: 0; }
 
 .signInPrompt {
   display: flex;
@@ -226,28 +225,29 @@
   justify-content: space-between;
   gap: 1rem;
   flex-wrap: wrap;
-  background: rgba(99,102,241,0.08);
-  border: 1px solid rgba(99,102,241,0.2);
+  background: var(--color-primary-subtle);
+  border: 1px solid var(--color-primary-light);
   border-radius: 14px;
   padding: 1.25rem;
 }
-.signInPrompt p { margin: 0; color: rgba(255,255,255,0.65); font-size: 0.95rem; }
+.signInPrompt p { margin: 0; color: var(--color-primary-dark); font-size: 0.95rem; }
 
 .alreadyIn {
   padding: 1rem 1.25rem;
-  background: rgba(34,197,94,0.08);
-  border: 1px solid rgba(34,197,94,0.2);
+  background: var(--color-success-bg);
+  border: 1px solid oklch(from var(--color-success) l c h / 0.3);
   border-radius: 12px;
-  color: #86efac;
+  color: var(--color-success);
   font-size: 0.95rem;
   text-align: center;
+  font-weight: 600;
 }
 
 .joinSuccess {
   text-align: center;
   padding: 2rem;
-  background: rgba(34,197,94,0.06);
-  border: 1px solid rgba(34,197,94,0.2);
+  background: var(--color-success-bg);
+  border: 1px solid oklch(from var(--color-success) l c h / 0.3);
   border-radius: 18px;
   display: flex;
   flex-direction: column;
@@ -255,12 +255,12 @@
   gap: 0.5rem;
 }
 .joinSuccessIcon { font-size: 2.5rem; }
-.joinSuccess h3 { font-size: 1.3rem; font-weight: 700; margin: 0; color: #86efac; }
-.joinSuccess p { margin: 0; color: rgba(255,255,255,0.5); font-size: 0.9rem; }
+.joinSuccess h3 { font-size: 1.3rem; font-weight: 700; margin: 0; color: var(--color-success); }
+.joinSuccess p { margin: 0; color: var(--color-text-secondary); font-size: 0.9rem; }
 
 .loading, .notFound {
   text-align: center;
   padding: 5rem 1.5rem;
-  color: rgba(255,255,255,0.4);
+  color: var(--color-text-tertiary);
   font-size: 1rem;
 }
