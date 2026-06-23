@@ -75,6 +75,33 @@
   padding: 0.6rem 1.25rem;
 }
 
+.navUser {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.navUserName {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.navLogoutBtn {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-tertiary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: color var(--duration-fast);
+}
+
+.navLogoutBtn:hover {
+  color: var(--color-accent);
+}
+
 .mobileMenuBtn {
   display: none;
   flex-direction: column;

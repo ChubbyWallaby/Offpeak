@@ -5,6 +5,8 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import { subscribeUser, submitBusinessPartner, getDeals, getSessions } from "./actions";
 import { translations } from "./translations";
+import { useAuth } from "@/app/components/AuthProvider";
+import AuthModal from "@/app/components/AuthModal";
 
 /* ═══════════════════════════════════════════════════════
    Offpeak.pt — Landing Page
@@ -133,6 +135,8 @@ function ClockTicker({ time }) {
 }
 
 export default function Home() {
+  const { user, logOut } = useAuth();
+  const [authOpen, setAuthOpen] = useState(false);
   const [lang, setLang] = useState("pt");
   const [dealsList, setDealsList] = useState(DEALS);
   const [timeIndex, setTimeIndex] = useState(0);
@@ -349,6 +353,7 @@ export default function Home() {
 
   return (
     <>
+      <AuthModal isOpen={authOpen} onClose={() => setAuthOpen(false)} lang={lang} onSuccess={() => setAuthOpen(false)} />
       {/* ─────────── Navigation ─────────── */}
       <nav
         id="nav"
@@ -378,9 +383,18 @@ export default function Home() {
               {lang === "en" ? "PT" : "EN"}
             </button>
 
-            <a href="#signup" className={`btn btn-primary ${styles.navCta}`}>
-              {t.nav.cta}
-            </a>
+            {user ? (
+              <div className={styles.navUser}>
+                <span className={styles.navUserName}>{user.displayName || user.email?.split("@")[0]}</span>
+                <button onClick={() => logOut()} className={styles.navLogoutBtn}>
+                  {lang === "en" ? "Log Out" : "Sair"}
+                </button>
+              </div>
+            ) : (
+              <button onClick={() => setAuthOpen(true)} className={`btn btn-primary ${styles.navCta}`}>
+                {t.nav.cta}
+              </button>
+            )}
           </div>
 
           <div className={styles.navRightMobile}>
@@ -417,9 +431,15 @@ export default function Home() {
           <a href="#how-it-works" className={styles.mobileDrawerLink} onClick={() => setMobileOpen(false)}>
             {t.nav.howItWorks}
           </a>
-          <a href="#signup" className={`btn btn-primary ${styles.mobileDrawerCta}`} onClick={() => setMobileOpen(false)}>
-            {t.nav.cta}
-          </a>
+          {user ? (
+            <button onClick={() => { logOut(); setMobileOpen(false); }} className={`btn btn-primary ${styles.mobileDrawerCta}`}>
+              {lang === "en" ? "Log Out" : "Sair"}
+            </button>
+          ) : (
+            <button onClick={() => { setAuthOpen(true); setMobileOpen(false); }} className={`btn btn-primary ${styles.mobileDrawerCta}`}>
+              {t.nav.cta}
+            </button>
+          )}
         </div>
       </nav>
 
@@ -570,7 +590,11 @@ export default function Home() {
                             onClick={(e) => {
                               e.preventDefault();
                               e.stopPropagation();
-                              window.location.href = `/grupos/criar?deal=${deal.slug}&lang=${lang}`;
+                              if (!user) {
+                                setAuthOpen(true);
+                              } else {
+                                window.location.href = `/grupos/criar?deal=${deal.slug}&lang=${lang}`;
+                              }
                             }}
                           >
                             {t.deals.findGroupBtn}
@@ -624,9 +648,19 @@ export default function Home() {
               <a href="/grupos" className={`btn btn-primary ${styles.gruposCtaPrimary}`}>
                 {t.grupos.ctaView}
               </a>
-              <a href="/grupos/criar" className={styles.gruposCtaSecondary}>
+              <button
+                className={styles.gruposCtaSecondary}
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (!user) {
+                    setAuthOpen(true);
+                  } else {
+                    window.location.href = "/grupos/criar";
+                  }
+                }}
+              >
                 {t.grupos.ctaCreate} →
-              </a>
+              </button>
             </div>
           </div>
         </section>
