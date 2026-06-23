@@ -12,8 +12,8 @@ export default function YieldCalculator() {
   const lostRevenuePerMonth = Math.round(emptySlots * pricePerSlot * 4.33);
   
   const discountedPrice = pricePerSlot * (1 - discountOffered / 100);
-  // Assuming Offpeak can fill roughly 60% of those empty slots with the discount
-  const recoveredSlots = emptySlots * 0.6;
+  // Assuming Offpeak can fill roughly 40% of those empty slots with the discount
+  const recoveredSlots = emptySlots * 0.4;
   const grossRecoveredPerMonth = Math.round(recoveredSlots * discountedPrice * 4.33);
   
   // Offpeak fee is 5%
@@ -130,7 +130,7 @@ export default function YieldCalculator() {
 
       <div style={{ marginTop: "24px", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "16px" }}>
         <p style={{ fontSize: "13px", color: "#6b6b68", margin: 0, maxWidth: "400px", lineHeight: 1.5 }}>
-          *Estimativa baseada numa taxa conservadora de ocupação de 60% dos horários off-peak publicados e já descontando a taxa de 5% da Offpeak.pt.
+          *Estimativa baseada numa taxa de ocupação de 40% dos horários off-peak publicados e já descontando a taxa de 5% da Offpeak.pt.
         </p>
         <a 
           href="#registar" 
