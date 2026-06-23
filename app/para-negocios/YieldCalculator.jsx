@@ -16,13 +16,13 @@ export default function YieldCalculator() {
   const recoveredSlots = emptySlots * 0.4;
   const grossRecoveredPerMonth = Math.round(recoveredSlots * discountedPrice * 4.33);
   
-  // Offpeak fee is 5%
-  const offpeakFee = grossRecoveredPerMonth * 0.05;
+  // Offpeak fee is 10% (risk-free plan)
+  const offpeakFee = grossRecoveredPerMonth * 0.10;
   const netRecoveredPerMonth = Math.round(grossRecoveredPerMonth - offpeakFee);
 
   return (
     <div style={{
-      background: "#1a1a18",
+      background: "#1e2235",
       color: "#ffffff",
       borderRadius: "16px",
       padding: "40px 32px",
@@ -34,14 +34,14 @@ export default function YieldCalculator() {
       <h3 style={{ fontSize: "24px", fontWeight: 700, marginBottom: "8px", letterSpacing: "-0.5px" }}>
         Simulador de Receita Perdida
       </h3>
-      <p style={{ color: "#9b9b96", marginBottom: "32px", fontSize: "15px", lineHeight: 1.5 }}>
+      <p style={{ color: "#8b8f9e", marginBottom: "32px", fontSize: "15px", lineHeight: 1.5 }}>
         Descubra quanto dinheiro está a deixar na mesa todos os meses e quanto pode recuperar com a Offpeak.pt.
       </p>
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "24px", marginBottom: "40px" }}>
         {/* Input: Empty Slots */}
         <div>
-          <label style={{ display: "block", fontSize: "13px", fontWeight: 600, color: "#9b9b96", marginBottom: "8px", textTransform: "uppercase", letterSpacing: "0.5px" }}>
+          <label style={{ display: "block", fontSize: "13px", fontWeight: 600, color: "#8b8f9e", marginBottom: "8px", textTransform: "uppercase", letterSpacing: "0.5px" }}>
             Horas vazias por semana
           </label>
           <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
@@ -60,7 +60,7 @@ export default function YieldCalculator() {
 
         {/* Input: Price */}
         <div>
-          <label style={{ display: "block", fontSize: "13px", fontWeight: 600, color: "#9b9b96", marginBottom: "8px", textTransform: "uppercase", letterSpacing: "0.5px" }}>
+          <label style={{ display: "block", fontSize: "13px", fontWeight: 600, color: "#8b8f9e", marginBottom: "8px", textTransform: "uppercase", letterSpacing: "0.5px" }}>
             Preço médio normal (€)
           </label>
           <input 
@@ -71,8 +71,8 @@ export default function YieldCalculator() {
             onChange={(e) => setPricePerSlot(Number(e.target.value))}
             style={{ 
               width: "100%", 
-              background: "#2a2a28", 
-              border: "1px solid #3a3a38", 
+              background: "#282b3d", 
+              border: "1px solid #3a3e52", 
               color: "#fff", 
               padding: "10px 14px", 
               borderRadius: "8px",
@@ -84,7 +84,7 @@ export default function YieldCalculator() {
 
         {/* Input: Discount */}
         <div>
-          <label style={{ display: "block", fontSize: "13px", fontWeight: 600, color: "#9b9b96", marginBottom: "8px", textTransform: "uppercase", letterSpacing: "0.5px" }}>
+          <label style={{ display: "block", fontSize: "13px", fontWeight: 600, color: "#8b8f9e", marginBottom: "8px", textTransform: "uppercase", letterSpacing: "0.5px" }}>
             Desconto Offpeak (%)
           </label>
           <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
@@ -103,7 +103,7 @@ export default function YieldCalculator() {
       </div>
 
       <div style={{ 
-        background: "#2a2a28", 
+        background: "#282b3d", 
         borderRadius: "12px", 
         padding: "24px",
         display: "flex",
@@ -112,31 +112,31 @@ export default function YieldCalculator() {
         alignItems: "center"
       }}>
         <div style={{ flex: 1, minWidth: "200px" }}>
-          <p style={{ fontSize: "14px", color: "#9b9b96", margin: "0 0 4px" }}>Receita perdida atual</p>
+          <p style={{ fontSize: "14px", color: "#8b8f9e", margin: "0 0 4px" }}>Receita perdida atual</p>
           <p style={{ fontSize: "32px", fontWeight: 800, color: "#ef4444", margin: 0, letterSpacing: "-1px" }}>
-            €{lostRevenuePerMonth.toLocaleString("pt-PT")} <span style={{ fontSize: "14px", fontWeight: 500, color: "#6b6b68" }}>/mês</span>
+            €{lostRevenuePerMonth.toLocaleString("pt-PT")} <span style={{ fontSize: "14px", fontWeight: 500, color: "#5e6478" }}>/mês</span>
           </p>
         </div>
         
-        <div style={{ width: "1px", height: "50px", background: "#3a3a38", display: "none" }} className="divider"></div>
+        <div style={{ width: "1px", height: "50px", background: "#3a3e52", display: "none" }} className="divider"></div>
 
         <div style={{ flex: 1, minWidth: "200px" }}>
-          <p style={{ fontSize: "14px", color: "#9b9b96", margin: "0 0 4px" }}>Potencial recuperado (Líquido)</p>
+          <p style={{ fontSize: "14px", color: "#8b8f9e", margin: "0 0 4px" }}>Potencial recuperado (Líquido)</p>
           <p style={{ fontSize: "32px", fontWeight: 800, color: "#10b981", margin: 0, letterSpacing: "-1px" }}>
-            €{netRecoveredPerMonth.toLocaleString("pt-PT")} <span style={{ fontSize: "14px", fontWeight: 500, color: "#6b6b68" }}>/mês</span>
+            €{netRecoveredPerMonth.toLocaleString("pt-PT")} <span style={{ fontSize: "14px", fontWeight: 500, color: "#5e6478" }}>/mês</span>
           </p>
         </div>
       </div>
 
       <div style={{ marginTop: "24px", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "16px" }}>
-        <p style={{ fontSize: "13px", color: "#6b6b68", margin: 0, maxWidth: "400px", lineHeight: 1.5 }}>
-          *Estimativa baseada numa taxa de ocupação de 40% dos horários off-peak publicados e já descontando a taxa de 5% da Offpeak.pt.
+        <p style={{ fontSize: "13px", color: "#5e6478", margin: 0, maxWidth: "400px", lineHeight: 1.5 }}>
+          *Estimativa baseada numa taxa de ocupação de 40% dos horários off-peak publicados e já descontando a taxa de 10% da Offpeak.pt (plano Sem Risco).
         </p>
         <a 
           href="#registar" 
           style={{
             background: "#ffffff",
-            color: "#1a1a18",
+            color: "#1e2235",
             padding: "12px 24px",
             borderRadius: "8px",
             fontWeight: 700,

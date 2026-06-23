@@ -8,7 +8,7 @@ const styles = {
     display: "block",
     width: "100%",
     padding: "16px",
-    background: "#059669",
+    background: "#1e2235",
     color: "#ffffff",
     fontWeight: 700,
     fontSize: "1.05rem",
@@ -102,7 +102,7 @@ const styles = {
     display: "block",
     width: "100%",
     padding: "14px",
-    background: "#059669",
+    background: "#1e2235",
     color: "#ffffff",
     fontWeight: 700,
     fontSize: "1rem",
@@ -119,7 +119,7 @@ const styles = {
     width: "48px",
     height: "48px",
     background: "#d1fae5",
-    color: "#059669",
+    color: "#22c55e",
     borderRadius: "50%",
     display: "inline-flex",
     alignItems: "center",
@@ -153,6 +153,8 @@ export default function BookingButton({ deal }) {
   const [time, setTime] = useState("");
   const [people, setPeople] = useState("2");
   const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [preferredContact, setPreferredContact] = useState("email");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
@@ -163,6 +165,10 @@ export default function BookingButton({ deal }) {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    if (!phone.trim() && !email.trim()) {
+      setError("Indique pelo menos um contacto (e-mail ou telefone).");
+      return;
+    }
     setIsSubmitting(true);
     setError("");
 
@@ -173,6 +179,8 @@ export default function BookingButton({ deal }) {
     formData.append("time", time);
     formData.append("people", people);
     formData.append("phone", phone);
+    formData.append("email", email);
+    formData.append("preferredContact", preferredContact);
 
     try {
       const res = await submitBooking(formData);
@@ -322,7 +330,20 @@ export default function BookingButton({ deal }) {
                 </div>
 
                 <div style={styles.formGroup}>
-                  <label style={styles.label} htmlFor="booking-phone">Telefone (opcional)</label>
+                  <label style={styles.label} htmlFor="booking-email">E-mail</label>
+                  <input
+                    id="booking-email"
+                    type="email"
+                    placeholder="o.seu@email.pt"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    style={styles.input}
+                    disabled={isSubmitting}
+                  />
+                </div>
+
+                <div style={styles.formGroup}>
+                  <label style={styles.label} htmlFor="booking-phone">Telefone</label>
                   <input
                     id="booking-phone"
                     type="tel"
@@ -332,6 +353,51 @@ export default function BookingButton({ deal }) {
                     style={styles.input}
                     disabled={isSubmitting}
                   />
+                  <p style={{ margin: "6px 0 0", fontSize: "0.8rem", color: "#8b8f9e" }}>
+                    Preencha pelo menos um contacto (e-mail ou telefone).
+                  </p>
+                </div>
+
+                <div style={styles.formGroup}>
+                  <label style={styles.label}>Contacto preferido para confirmação</label>
+                  <div style={{ display: "flex", gap: "4px", background: "#f3f4f6", borderRadius: "8px", padding: "3px" }}>
+                    <button
+                      type="button"
+                      onClick={() => setPreferredContact("email")}
+                      disabled={isSubmitting}
+                      style={{
+                        flex: 1,
+                        padding: "8px 12px",
+                        fontSize: "0.85rem",
+                        fontWeight: 600,
+                        border: "none",
+                        borderRadius: "6px",
+                        cursor: "pointer",
+                        background: preferredContact === "email" ? "#1e2235" : "transparent",
+                        color: preferredContact === "email" ? "#ffffff" : "#5e6478",
+                      }}
+                    >
+                      E-mail
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setPreferredContact("phone")}
+                      disabled={isSubmitting}
+                      style={{
+                        flex: 1,
+                        padding: "8px 12px",
+                        fontSize: "0.85rem",
+                        fontWeight: 600,
+                        border: "none",
+                        borderRadius: "6px",
+                        cursor: "pointer",
+                        background: preferredContact === "phone" ? "#1e2235" : "transparent",
+                        color: preferredContact === "phone" ? "#ffffff" : "#5e6478",
+                      }}
+                    >
+                      Telefone
+                    </button>
+                  </div>
                 </div>
 
                 {error && <p style={styles.error}>{error}</p>}

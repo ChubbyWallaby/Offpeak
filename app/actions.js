@@ -158,6 +158,7 @@ export async function saveDeal(dealData) {
         pt: dealData.termsPt || (existingDeal.terms && existingDeal.terms.pt) || ""
       },
       photos: dealData.photos || existingDeal.photos || [],
+      location: dealData.location || existingDeal.location || "",
       bookingMethod: dealData.bookingMethod || existingDeal.bookingMethod || "form",
       bookingTarget: dealData.bookingTarget || existingDeal.bookingTarget || null,
       views: existingDeal.views || 0,
@@ -190,9 +191,15 @@ export async function submitBooking(formData) {
   const time = formData.get("time") || "";
   const people = formData.get("people");
   const phone = formData.get("phone") || "";
+  const email = formData.get("email") || "";
+  const preferredContact = formData.get("preferredContact") || "email";
 
   if (!dealId || !name || !date || !people) {
     return { success: false, error: "Missing required fields" };
+  }
+
+  if (!phone && !email) {
+    return { success: false, error: "Indique pelo menos um contacto (e-mail ou telefone)." };
   }
 
   try {
@@ -205,6 +212,7 @@ export async function submitBooking(formData) {
 
     const partnerEmail = deal.ownerEmail || "info@offpeak.pt";
     const dealTitle = deal.title?.pt || deal.title?.en || "Oferta Offpeak";
+    const preferredLabel = preferredContact === "phone" ? "Telefone" : "E-mail";
 
     await resend.emails.send({
       from: "onboarding@resend.dev",
@@ -212,20 +220,22 @@ export async function submitBooking(formData) {
       subject: `Nova Reserva Offpeak — ${dealTitle}`,
       html: `
         <div style="font-family: sans-serif; padding: 20px; line-height: 1.5; color: #222;">
-          <h2 style="color: #059669;">Nova Reserva via Offpeak.pt</h2>
+          <h2 style="color: #1e2235;">Nova Reserva via Offpeak.pt</h2>
           <p>Uma nova reserva foi submetida para a oferta <strong>${dealTitle}</strong>.</p>
           <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;" />
           <p><strong>Nome:</strong> ${name}</p>
           <p><strong>Data pretendida:</strong> ${date}</p>
           <p><strong>Horário pretendido:</strong> ${time || "Não especificado"}</p>
           <p><strong>Número de pessoas:</strong> ${people}</p>
-          ${phone ? `<p><strong>Telefone:</strong> ${phone}</p>` : ""}
+          ${email ? `<p><strong>E-mail do cliente:</strong> <a href="mailto:${email}">${email}</a></p>` : ""}
+          ${phone ? `<p><strong>Telefone do cliente:</strong> ${phone}</p>` : ""}
+          <p><strong>Contacto preferido:</strong> ${preferredLabel}</p>
           <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;" />
           <p><strong>E-mail do parceiro:</strong> <a href="mailto:${partnerEmail}">${partnerEmail}</a></p>
           <p><strong>Submetido em:</strong> ${new Date().toLocaleString("pt-PT")}</p>
           <p style="color: #6b7280; font-size: 0.85rem; margin-top: 20px;">
             Esta reserva foi gerada automaticamente via Offpeak.pt. 
-            O parceiro deve confirmar diretamente com o cliente.
+            O parceiro deve confirmar diretamente com o cliente via <strong>${preferredLabel.toLowerCase()}</strong>.
           </p>
         </div>
       `,

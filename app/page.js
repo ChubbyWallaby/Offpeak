@@ -359,7 +359,7 @@ export default function Home() {
         className={`${styles.nav} ${navScrolled ? styles.scrolled : ""}`}
       >
         <div className={styles.navInner}>
-          <a href="#" className={styles.logo}>
+          <a href="/" className={styles.logo}>
             offpeak<span className={styles.logoDot}></span>pt
           </a>
 
@@ -580,9 +580,9 @@ export default function Home() {
                         </div>
 
                         <div className={styles.dealCardActions}>
-                          <span className={`btn ${styles.simulateBtn}`}>
+                          <button type="button" className={`btn ${styles.simulateBtn}`}>
                             {t.deals.grabDealBtn}
-                          </span>
+                          </button>
                           <button
                             type="button"
                             className={styles.findGroupBtn}
@@ -807,9 +807,9 @@ export default function Home() {
 
       {isBusinessModalOpen && (
         <div className={styles.modalOverlay} onClick={() => setIsBusinessModalOpen(false)}>
-          <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+          <div className={styles.modal} onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true" aria-labelledby="business-modal-title">
             <div className={styles.modalHeader}>
-              <h3 className={styles.modalTitle}>{t.modal.title}</h3>
+              <h3 className={styles.modalTitle} id="business-modal-title">{t.modal.title}</h3>
               <button
                 onClick={() => setIsBusinessModalOpen(false)}
                 className={styles.modalClose}

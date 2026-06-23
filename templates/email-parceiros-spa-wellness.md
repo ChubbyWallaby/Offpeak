@@ -18,7 +18,7 @@ Vocês escolhem os horários e tratamentos que querem promover com desconto (ex.
 
 - Agenda preenchida em horários mortos
 - Clientes novos que experimentam os vossos serviços e podem fidelizar
-- Apenas 5% por reserva concretizada — sem mensalidade, sem custo fixo
+- Comissão a partir de 5% por reserva — sem contratos de permanência (plano sem risco disponível)
 - Vocês definem tudo: serviços, horários, desconto, disponibilidade
 
 **O que garantimos:**

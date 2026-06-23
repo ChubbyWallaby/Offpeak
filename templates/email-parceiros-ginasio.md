@@ -18,7 +18,7 @@ Vocês criam uma oferta para horários específicos (ex.: entrada avulsa com 35%
 
 - Receita incremental em horários subocupados
 - Novos clientes que podem converter em mensalistas
-- Baixo risco: apenas 5% por reserva — sem mensalidade, sem custos fixos
+- Comissão a partir de 5% por reserva — sem contratos de permanência (plano sem risco disponível)
 - Controlo total sobre horários e condições
 
 **O que NÃO mudamos:**

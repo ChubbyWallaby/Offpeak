@@ -37,6 +37,12 @@ export default async function sitemap() {
       changeFrequency: "weekly",
       priority: 0.8,
     },
+    {
+      url: `${baseUrl}/planos`,
+      lastModified: today,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
     ...dealEntries,
     {
       url: `${baseUrl}/about`,

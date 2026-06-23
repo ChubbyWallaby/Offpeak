@@ -99,8 +99,7 @@ export default function PrivacyPage() {
       <div style={styles.container}>
         <header style={styles.header}>
           <Link href="/" style={styles.brand} aria-label="Voltar à página inicial da Offpeak.pt">
-            <span style={styles.logo}>O</span>
-            <span>Offpeak.pt</span>
+            <span>offpeak<span style={{display:'inline-block',width:'0.5rem',height:'0.5rem',borderRadius:'50%',background:'#22c55e',marginLeft:'0.05rem'}}></span>pt</span>
           </Link>
         </header>
 
@@ -114,8 +113,8 @@ export default function PrivacyPage() {
         <section style={styles.section}>
           <h2 style={styles.h2}>1. Responsável pelo tratamento</h2>
           <p style={styles.p}>
-            O responsável pelo tratamento dos seus dados pessoais é <strong>[NOME DA EMPRESA, LDA]</strong>,
-            com NIF: <strong>[A PREENCHER]</strong>.
+            O responsável pelo tratamento dos seus dados pessoais é a entidade que opera a plataforma Offpeak.pt.
+            Para efeitos de privacidade, pode contactar-nos em <a href="mailto:info@offpeak.pt">info@offpeak.pt</a>.
           </p>
           <p style={styles.p}>
             Contacto para questões de privacidade: <a href="mailto:info@offpeak.pt">info@offpeak.pt</a>.

@@ -4,10 +4,10 @@ import { useState } from "react";
 import { submitBusinessPartner } from "../actions";
 
 const C = {
-  primary: "#059669",
-  text: "#111827",
-  border: "#e5e7eb",
-  bg: "#f9fafb",
+  primary: "#1e2235",
+  text: "#1e2235",
+  border: "#e2e4ea",
+  bg: "#f8f9fc",
 };
 
 export default function PartnerForm() {
@@ -49,10 +49,10 @@ export default function PartnerForm() {
     return (
       <div style={{ textAlign: "center", padding: "48px 24px" }}>
         <div style={{ fontSize: "3rem", marginBottom: "16px" }}>✓</div>
-        <h3 style={{ fontSize: "1.5rem", fontWeight: 700, marginBottom: "8px", color: C.primary }}>
+        <h3 style={{ fontSize: "1.5rem", fontWeight: 700, marginBottom: "8px", color: "#22c55e" }}>
           Pedido enviado com sucesso
         </h3>
-        <p style={{ color: "#6b7280", fontSize: "1rem" }}>
+        <p style={{ color: "#5e6478", fontSize: "1rem" }}>
           A equipa Offpeak.pt entra em contacto em menos de 48 horas.
         </p>
       </div>
@@ -159,7 +159,7 @@ const labelStyle = {
   display: "block",
   fontSize: "0.85rem",
   fontWeight: 600,
-  color: "#374151",
+  color: "#5e6478",
   marginBottom: "4px",
 };
 

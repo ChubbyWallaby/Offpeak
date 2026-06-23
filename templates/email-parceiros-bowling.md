@@ -18,7 +18,7 @@ Vocês definem um desconto para os horários que vos interessam (ex.: 40% entre 
 
 - Pistas ocupadas em horários que hoje estão paradas
 - Clientes novos que descobrem o vosso espaço pela primeira vez
-- Apenas 5% por reserva concretizada — sem mensalidade, sem custos fixos
+- Comissão a partir de 5% por reserva — sem contratos de permanência (plano sem risco disponível)
 - Vocês controlam tudo: horários, preço, disponibilidade
 
 Estamos em fase de lançamento em Lisboa e a selecionar parceiros fundadores. Estes parceiros terão destaque permanente na plataforma e condições especiais.

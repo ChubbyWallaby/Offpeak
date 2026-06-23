@@ -33,6 +33,7 @@ export default function Dashboard() {
   const [price, setPrice] = useState("");
   const [addressPt, setAddressPt] = useState("");
   const [addressEn, setAddressEn] = useState("");
+  const [location, setLocation] = useState("");
   const [lat, setLat] = useState("");
   const [lng, setLng] = useState("");
   const [descriptionPt, setDescriptionPt] = useState("");
@@ -139,6 +140,7 @@ export default function Dashboard() {
     setPrice(deal.price?.toString() || "");
     setAddressPt(deal.address?.pt || "");
     setAddressEn(deal.address?.en || "");
+    setLocation(deal.location || "");
     setLat(deal.lat?.toString() || "");
     setLng(deal.lng?.toString() || "");
     setDescriptionPt(deal.description?.pt || "");
@@ -166,6 +168,7 @@ export default function Dashboard() {
       daysPt,
       addressEn,
       addressPt,
+      location,
       lat: lat === "" ? undefined : parseFloat(lat),
       lng: lng === "" ? undefined : parseFloat(lng),
       descriptionEn,
@@ -556,6 +559,17 @@ export default function Dashboard() {
                     value={addressEn}
                     onChange={(e) => setAddressEn(e.target.value)}
                     className={styles.input}
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Localidade (SEO)</label>
+                  <input
+                    type="text"
+                    value={location}
+                    onChange={(e) => setLocation(e.target.value)}
+                    className={styles.input}
+                    placeholder="ex: Lisboa, Odivelas, Cascais"
                   />
                 </div>
 

@@ -75,7 +75,7 @@ export default function ContactPage() {
       <div style={styles.container}>
         <header style={styles.header}>
           <Link href="/" style={styles.brand} aria-label="Ir para a página inicial">
-            offpeak.pt
+            offpeak<span style={{display:'inline-block',width:'0.5rem',height:'0.5rem',borderRadius:'50%',background:'#22c55e',marginLeft:'0.05rem'}}></span>pt
           </Link>
           <Link href="/" style={styles.backLink} aria-label="Voltar à página inicial">
             ← Voltar

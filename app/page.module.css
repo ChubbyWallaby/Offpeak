@@ -48,7 +48,7 @@
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 50%;
-  background: var(--color-primary);
+  background: var(--color-success);
   margin-left: -0.15rem;
 }
 
@@ -1517,7 +1517,7 @@
 
 .signupForm:focus-within {
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px oklch(0.72 0.17 55 / 0.12);
+  box-shadow: 0 0 0 3px oklch(0.35 0.04 250 / 0.15);
 }
 
 .signupInput {

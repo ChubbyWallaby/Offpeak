@@ -19,9 +19,43 @@ export async function generateMetadata(props) {
   const deals = await fetchDeals();
   const deal = deals.find((d) => d.slug === params.slug);
   if (!deal) return { title: "Oferta não encontrada | Offpeak.pt" };
+
+  const location = deal.location || "";
+  const category = deal.category?.pt || "";
+  const discount = deal.baseDiscountPercent || "";
+
+  const title = location
+    ? `${category} em ${location} com ${discount}% desconto | Offpeak.pt`
+    : `${deal.title.pt} | Offpeak.pt`;
+
+  const description = location
+    ? `${deal.title.pt} — até ${discount}% de desconto em horários off-peak em ${location}. ${deal.description?.pt || "Reserve agora na Offpeak.pt."}`
+    : deal.description?.pt || `${discount}% de desconto em horários off-peak.`;
+
   return {
-    title: `${deal.title.pt} | Offpeak.pt`,
-    description: deal.description?.pt ?? `${deal.baseDiscountPercent}% de desconto em horários off-peak.`,
+    title,
+    description,
+    keywords: [
+      category.toLowerCase(),
+      location.toLowerCase(),
+      `${category.toLowerCase()} ${location.toLowerCase()}`,
+      `${category.toLowerCase()} barato`,
+      `desconto ${category.toLowerCase()}`,
+      "offpeak",
+      "horários off-peak",
+    ].filter(Boolean),
+    alternates: {
+      canonical: `https://offpeak.pt/deals/${params.slug}`,
+    },
+    openGraph: {
+      title,
+      description,
+      type: "website",
+      locale: "pt_PT",
+      siteName: "Offpeak.pt",
+      url: `https://offpeak.pt/deals/${params.slug}`,
+      images: deal.image ? [{ url: `https://offpeak.pt${deal.image}`, width: 800, height: 600, alt: deal.title.pt }] : [],
+    },
   };
 }
 
@@ -29,10 +63,10 @@ const styles = {
   page: {
     minHeight: "100vh",
     background: "#ffffff",
-    color: "#111827",
+    color: "#1e2235",
   },
   container: {
-    maxWidth: "720px",
+    maxWidth: "900px",
     margin: "0 auto",
     padding: "24px 20px 64px",
   },
@@ -43,121 +77,94 @@ const styles = {
     gap: "16px",
     paddingBottom: "20px",
     marginBottom: "28px",
-    borderBottom: "1px solid #e5e7eb",
+    borderBottom: "1px solid #e2e4ea",
   },
   brand: {
     display: "inline-flex",
     alignItems: "center",
     gap: "10px",
-    color: "#111827",
+    color: "#1e2235",
     textDecoration: "none",
     fontWeight: 700,
     fontSize: "1.05rem",
   },
-  logo: {
-    width: "34px",
-    height: "34px",
-    borderRadius: "10px",
-    background: "#111827",
-    color: "#ffffff",
-    display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "center",
-    fontSize: "0.95rem",
+  hero: {
+    display: "flex",
+    gap: "28px",
+    alignItems: "flex-start",
+    marginBottom: "32px",
   },
-  backLink: {
-    display: "inline-flex",
-    alignItems: "center",
-    gap: "6px",
-    color: "#6b7280",
-    textDecoration: "none",
-    fontSize: "0.95rem",
-    marginBottom: "20px",
-  },
-  heroWrapper: {
+  heroImageCol: {
     position: "relative",
-    marginBottom: "28px",
+    flex: "0 0 320px",
+    maxWidth: "320px",
+    borderRadius: "14px",
+    overflow: "hidden",
   },
   heroImage: {
     width: "100%",
-    maxHeight: "400px",
+    height: "220px",
     objectFit: "cover",
-    borderRadius: "12px",
     display: "block",
   },
   partnerBadge: {
     position: "absolute",
-    top: "14px",
-    left: "14px",
-    background: "#059669",
+    top: "10px",
+    left: "10px",
+    background: "#22c55e",
     color: "#ffffff",
-    fontSize: "0.78rem",
+    fontSize: "0.75rem",
     fontWeight: 700,
     padding: "4px 10px",
-    borderRadius: "20px",
-    letterSpacing: "0.03em",
+    borderRadius: "6px",
+    letterSpacing: "0.02em",
   },
-  titleRow: {
-    display: "flex",
-    flexWrap: "wrap",
-    alignItems: "flex-start",
-    gap: "12px",
-    marginBottom: "16px",
+  heroInfo: {
+    flex: 1,
+    minWidth: 0,
   },
   title: {
-    fontSize: "2rem",
-    fontWeight: 700,
+    fontSize: "1.6rem",
+    fontWeight: 800,
     lineHeight: 1.2,
-    margin: 0,
-    flex: 1,
-    minWidth: "200px",
+    margin: "0 0 12px",
+    letterSpacing: "-0.5px",
   },
   discountBadge: {
-    background: "#d1fae5",
-    color: "#059669",
+    display: "inline-block",
+    background: "#f0fdf4",
+    color: "#22c55e",
+    border: "1px solid #bbf7d0",
+    fontSize: "0.85rem",
     fontWeight: 700,
-    fontSize: "1rem",
-    padding: "6px 14px",
-    borderRadius: "20px",
-    whiteSpace: "nowrap",
-    flexShrink: 0,
+    padding: "4px 10px",
+    borderRadius: "6px",
+    marginBottom: "14px",
   },
   metaRow: {
     display: "flex",
-    flexWrap: "wrap",
-    gap: "10px",
-    marginBottom: "28px",
     alignItems: "center",
+    gap: "10px",
+    flexWrap: "wrap",
+    marginBottom: "16px",
   },
   categoryBadge: {
-    background: "#f3f4f6",
-    color: "#374151",
-    fontSize: "0.85rem",
+    background: "#eef0f5",
+    color: "#5e6478",
+    fontSize: "0.8rem",
     fontWeight: 600,
-    padding: "4px 12px",
-    borderRadius: "20px",
+    padding: "4px 10px",
+    borderRadius: "6px",
   },
   scheduleChip: {
-    background: "#eff6ff",
-    color: "#1d4ed8",
+    color: "#5e6478",
     fontSize: "0.85rem",
-    fontWeight: 500,
-    padding: "4px 12px",
-    borderRadius: "20px",
-  },
-  section: {
-    marginBottom: "28px",
-    paddingBottom: "24px",
-    borderBottom: "1px solid #f3f4f6",
-  },
-  sectionLast: {
-    marginBottom: "28px",
   },
   sectionHeading: {
     fontSize: "1.1rem",
     fontWeight: 700,
     margin: "0 0 10px",
-    color: "#111827",
+    color: "#1e2235",
     display: "flex",
     alignItems: "center",
     gap: "6px",
@@ -165,19 +172,19 @@ const styles = {
   sectionText: {
     margin: 0,
     lineHeight: 1.75,
-    color: "#374151",
+    color: "#5e6478",
     fontSize: "0.97rem",
   },
   termsBox: {
-    background: "#f9fafb",
-    border: "1px solid #e5e7eb",
+    background: "#f8f9fc",
+    border: "1px solid #e2e4ea",
     borderRadius: "10px",
     padding: "16px 18px",
   },
   termsText: {
     margin: 0,
     lineHeight: 1.7,
-    color: "#6b7280",
+    color: "#8b8f9e",
     fontSize: "0.9rem",
   },
   mapFrame: {
@@ -187,26 +194,11 @@ const styles = {
     border: "none",
     display: "block",
   },
-  ctaButton: {
-    display: "block",
-    width: "100%",
-    padding: "16px",
-    background: "#059669",
-    color: "#ffffff",
-    fontWeight: 700,
-    fontSize: "1.05rem",
-    textAlign: "center",
-    borderRadius: "12px",
-    textDecoration: "none",
-    marginTop: "12px",
-    letterSpacing: "0.01em",
-  },
   priceCard: {
     background: "#f0fdf4",
     border: "1px solid #bbf7d0",
     borderRadius: "12px",
-    padding: "20px 24px",
-    marginBottom: "28px",
+    padding: "16px 20px",
   },
   priceRow: {
     display: "flex",
@@ -215,20 +207,26 @@ const styles = {
     flexWrap: "wrap",
   },
   priceOriginal: {
-    fontSize: "1.15rem",
+    fontSize: "1.1rem",
     color: "#9ca3af",
     textDecoration: "line-through",
   },
   priceCurrent: {
-    fontSize: "2rem",
+    fontSize: "1.8rem",
     fontWeight: 800,
-    color: "#059669",
+    color: "#22c55e",
   },
   priceSavings: {
-    fontSize: "0.85rem",
-    color: "#059669",
+    fontSize: "0.82rem",
+    color: "#22c55e",
     fontWeight: 600,
-    marginTop: "6px",
+    marginTop: "4px",
+  },
+  section: {
+    marginBottom: "24px",
+  },
+  sectionLast: {
+    marginBottom: "24px",
   },
 };
 
@@ -249,58 +247,117 @@ export default async function DealPage(props) {
   const discountedPrice = hasPrice ? deal.price * (1 - discountPercent / 100) : null;
   const savings = hasPrice ? deal.price - discountedPrice : null;
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: deal.title.pt,
+    description: deal.description?.pt || "",
+    image: deal.image ? `https://offpeak.pt${deal.image}` : undefined,
+    url: `https://offpeak.pt/deals/${deal.slug}`,
+    ...(deal.address?.pt && {
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: deal.address.pt,
+        addressLocality: deal.location || "",
+        addressCountry: "PT",
+      },
+    }),
+    ...(deal.lat && deal.lng && {
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: deal.lat,
+        longitude: deal.lng,
+      },
+    }),
+    ...(hasPrice && {
+      makesOffer: {
+        "@type": "Offer",
+        name: deal.title.pt,
+        price: discountedPrice.toFixed(2),
+        priceCurrency: "EUR",
+        availability: "https://schema.org/InStock",
+        priceValidUntil: new Date(Date.now() + 30 * 86400000).toISOString().split("T")[0],
+        ...(deal.price && {
+          priceSpecification: {
+            "@type": "PriceSpecification",
+            price: deal.price.toFixed(2),
+            priceCurrency: "EUR",
+            valueAddedTaxIncluded: true,
+          },
+        }),
+      },
+    }),
+  };
+
   return (
     <main style={styles.page}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div style={styles.container}>
         <header style={styles.header}>
           <Link href="/" style={styles.brand} aria-label="Voltar à página inicial da Offpeak.pt">
-            <span style={styles.logo}>O</span>
-            <span>Offpeak.pt</span>
+            <span>offpeak<span style={{display:'inline-block',width:'0.5rem',height:'0.5rem',borderRadius:'50%',background:'#22c55e',marginLeft:'0.05rem'}}></span>pt</span>
           </Link>
         </header>
 
-        <Link href="/" style={styles.backLink}>
+        <Link href="/" style={{ color: "#5e6478", fontSize: "0.9rem", textDecoration: "none", display: "inline-block", marginBottom: "24px" }}>
           ← Voltar às ofertas
         </Link>
 
-        <div style={styles.heroWrapper}>
-          <img
-            src={deal.image}
-            alt={deal.title.pt}
-            style={styles.heroImage}
-          />
-          {deal.isPartner && (
-            <span style={styles.partnerBadge}>Parceiro Oficial</span>
-          )}
-        </div>
-
-        <div style={styles.titleRow}>
-          <h1 style={styles.title}>{deal.title.pt}</h1>
-          <span style={styles.discountBadge}>
-            {discountPercent ?? deal.baseDiscountPercent}% desc.
-          </span>
-        </div>
-
-        <div style={styles.metaRow}>
-          <span style={styles.categoryBadge}>{deal.category.pt}</span>
-          {deal.timeSlot?.pt && deal.days?.pt && (
-            <span style={styles.scheduleChip}>
-              {deal.timeSlot.pt} · {deal.days.pt}
-            </span>
-          )}
-        </div>
-
-        {hasPrice && (
-          <div style={styles.priceCard}>
-            <div style={styles.priceRow}>
-              <span style={styles.priceOriginal}>€{deal.price.toFixed(2)}</span>
-              <span style={styles.priceCurrent}>€{discountedPrice.toFixed(2)}</span>
-            </div>
-            <p style={styles.priceSavings}>
-              Poupa €{savings.toFixed(2)} ({discountPercent}% de desconto)
-            </p>
+        <div style={styles.hero} data-hero="">
+          <div style={styles.heroImageCol} data-hero-img="">
+            <img
+              src={deal.image}
+              alt={deal.title.pt}
+              style={styles.heroImage}
+            />
+            {deal.isPartner && (
+              <span style={styles.partnerBadge}>Parceiro Oficial</span>
+            )}
           </div>
-        )}
+
+          <div style={styles.heroInfo}>
+            <h1 style={styles.title}>{deal.title.pt}</h1>
+            <span style={styles.discountBadge}>
+              {discountPercent ?? deal.baseDiscountPercent}% desc.
+            </span>
+
+            <div style={styles.metaRow}>
+              <span style={styles.categoryBadge}>{deal.category.pt}</span>
+              {deal.timeSlot?.pt && deal.days?.pt && (
+                <span style={styles.scheduleChip}>
+                  {deal.timeSlot.pt} · {deal.days.pt}
+                </span>
+              )}
+            </div>
+
+            {hasPrice && (
+              <div style={styles.priceCard}>
+                <div style={styles.priceRow}>
+                  <span style={styles.priceOriginal}>€{deal.price.toFixed(2)}</span>
+                  <span style={styles.priceCurrent}>€{discountedPrice.toFixed(2)}</span>
+                </div>
+                <p style={styles.priceSavings}>
+                  Poupa €{savings.toFixed(2)} ({discountPercent}% de desconto)
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <style>{`
+          @media (max-width: 640px) {
+            [data-hero] {
+              flex-direction: column !important;
+            }
+            [data-hero-img] {
+              flex: unset !important;
+              max-width: 100% !important;
+            }
+          }
+        `}</style>
 
         {deal.description?.pt && (
           <section style={styles.section}>

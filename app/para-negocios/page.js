@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Para Negócios — Preencha Horas Vazias | Offpeak.pt",
   description:
-    "Registe o seu espaço de lazer na Offpeak.pt e atraia clientes nos horários com menor procura. Apenas 5% por reserva. Padel, bowling, ginásios, restaurantes e mais.",
+    "Registe o seu espaço de lazer na Offpeak.pt e atraia clientes nos horários com menor procura. Comissão a partir de 5% por reserva. Padel, bowling, ginásios, restaurantes e mais.",
   keywords: [
     "parceiros offpeak.pt",
     "listar negócio offpeak",
@@ -29,18 +29,20 @@ import PartnerForm from "./PartnerForm";
 import YieldCalculator from "./YieldCalculator";
 
 const C = {
-  bg: "#fafaf8",
+  bg: "#f8f9fc",
   surface: "#ffffff",
-  border: "#e5e4e0",
-  borderLight: "#f0efe9",
-  text: "#1a1a18",
-  textMuted: "#6b6b68",
-  textLight: "#9b9b96",
-  accent: "#1a1a18",
-  accentBg: "#f0efe9",
+  border: "#e2e4ea",
+  borderLight: "#eef0f5",
+  text: "#1e2235",
+  textMuted: "#5e6478",
+  textLight: "#8b8f9e",
+  accent: "#1e2235",
+  accentBg: "#eef0f5",
   green: "#166534",
   greenBg: "#f0fdf4",
   greenBorder: "#bbf7d0",
+  indigo: "#6235dc",
+  indigoBg: "#f0ecfb",
 };
 
 const F = {
@@ -96,7 +98,7 @@ export default function ParaNegociosPage() {
               letterSpacing: "-0.3px",
             }}
           >
-            offpeak.pt
+            offpeak<span style={{display:'inline-block',width:'0.5rem',height:'0.5rem',borderRadius:'50%',background:'#22c55e',marginLeft:'0.05rem'}}></span>pt
           </a>
           <a
             href="/"
@@ -137,7 +139,7 @@ export default function ParaNegociosPage() {
             letterSpacing: "0.2px",
           }}
         >
-          Apenas 5% por reserva — sem mensalidades
+          Comissão a partir de 5% — sem contratos
         </span>
 
         <h1
@@ -153,7 +155,7 @@ export default function ParaNegociosPage() {
           Rentabilize as suas{" "}
           <span
             style={{
-              background: "linear-gradient(135deg, #1a1a18 0%, #4a4a46 100%)",
+              background: "linear-gradient(135deg, #1e2235 0%, #4a4e68 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -203,7 +205,7 @@ export default function ParaNegociosPage() {
             Registar o meu negócio →
           </a>
           <a
-            href="mailto:info@offpeak.pt"
+            href="/planos"
             style={{
               display: "inline-block",
               background: "transparent",
@@ -217,7 +219,7 @@ export default function ParaNegociosPage() {
               letterSpacing: "-0.2px",
             }}
           >
-            Falar connosco
+            Ver planos e preços
           </a>
         </div>
 
@@ -378,8 +380,8 @@ export default function ParaNegociosPage() {
           {[
             {
               icon: "€",
-              title: "Apenas 5% por reserva",
-              desc: "Sem mensalidades, sem custos fixos. Cobramos apenas 5% sobre cada reserva concretizada através da Offpeak.pt. Só paga quando recebe clientes.",
+              title: "Planos flexíveis",
+              desc: "Escolha o modelo ideal: sem risco com 10% por reserva e formulário de reservas, ou subscrição a €19,99/mês com 5%, preços dinâmicos e reservas por WhatsApp. Sem contratos.",
             },
             {
               icon: "🏷",
@@ -618,7 +620,7 @@ export default function ParaNegociosPage() {
             {[
               {
                 q: "Qual é o modelo de preços para os parceiros?",
-                a: "A Offpeak.pt cobra apenas 5% por reserva concretizada. Não há mensalidades, taxas de adesão, nem custos fixos. Só paga quando efetivamente recebe clientes através da plataforma.",
+                a: "A Offpeak.pt oferece três planos: Sem Risco (10% por reserva, sem custos fixos), Subscrição (€19,99/mês + 5%, com preços dinâmicos e reservas por WhatsApp/link externo), e Grátis (em breve — sem comissão, a Offpeak.pt retém a diferença de preço dinâmico). Todos sem contrato de permanência.",
               },
               {
                 q: "Como funciona na prática para o meu negócio?",

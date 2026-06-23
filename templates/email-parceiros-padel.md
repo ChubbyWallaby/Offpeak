@@ -18,7 +18,7 @@ O vosso clube define o horário e o desconto que pretende oferecer (ex.: 30–50
 
 - Receita em horários que hoje geram zero
 - Visibilidade junto de novos clientes que nunca vos encontrariam de outra forma
-- Comissão reduzida de apenas 5% por reserva — sem mensalidade, sem custos fixos
+- Comissão a partir de 5% por reserva — sem contratos de permanência (plano sem risco disponível)
 - Controlo total — vocês definem os horários, os preços e a disponibilidade
 
 **O que NÃO fazemos:**

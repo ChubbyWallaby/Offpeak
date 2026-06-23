@@ -18,7 +18,7 @@ Vocês definem uma oferta para o período que vos interessa (ex.: 25–40% de de
 
 - Mesas ocupadas num horário que hoje rende pouco ou nada
 - Clientes novos que descobrem o vosso espaço e podem voltar em horário normal
-- Apenas 5% por reserva — sem intermediários de entrega, o cliente vai ao vosso espaço
+- Comissão a partir de 5% por reserva — sem contratos de permanência (plano sem risco disponível)
 - Sem custo nenhum durante o período de lançamento
 
 **O que NÃO mexemos:**
