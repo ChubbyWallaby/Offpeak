@@ -26,6 +26,7 @@ export const metadata = {
 };
 
 import PartnerForm from "./PartnerForm";
+import YieldCalculator from "./YieldCalculator";
 
 const C = {
   bg: "#fafaf8",
@@ -219,6 +220,8 @@ export default function ParaNegociosPage() {
             Falar connosco
           </a>
         </div>
+
+        <YieldCalculator />
       </section>
 
       <section

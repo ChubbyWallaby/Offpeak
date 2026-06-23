@@ -1,8 +1,8 @@
 "use server";
 
 import { Resend } from "resend";
-import fs from "fs/promises";
-import path from "path";
+import { adminDb } from "@/lib/firebase-admin";
+import { FieldValue } from "firebase-admin/firestore";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -76,24 +76,23 @@ export async function submitBusinessPartner(formData) {
   }
 }
 
-const dealsPath = path.join(process.cwd(), "app", "deals.json");
-
 export async function getDeals() {
   try {
-    const data = await fs.readFile(dealsPath, "utf-8");
-    return { success: true, deals: JSON.parse(data) };
+    if (!adminDb) return { success: false, error: "Firebase Admin missing" };
+    const snapshot = await adminDb.collection("deals").get();
+    const deals = snapshot.docs.map(doc => doc.data());
+    return { success: true, deals };
   } catch (error) {
-    console.error("Error reading deals.json:", error);
+    console.error("Error reading deals from Firestore:", error);
     return { success: false, error: "Could not read deals list" };
   }
 }
 
 export async function saveDeal(dealData) {
   try {
-    const fileContent = await fs.readFile(dealsPath, "utf-8");
-    const deals = JSON.parse(fileContent);
-
-    // Generate slug from PT title
+    if (!adminDb) return { success: false, error: "Firebase Admin missing" };
+    const dealsRef = adminDb.collection("deals");
+    
     const generateSlug = (title) => {
       return title
         .toLowerCase()
@@ -102,146 +101,84 @@ export async function saveDeal(dealData) {
         .replace(/^-|-$/g, "");
     };
 
+    let dealId = dealData.id ? String(dealData.id) : dealsRef.doc().id;
+    let existingDeal = {};
     if (dealData.id) {
-      const idx = deals.findIndex(d => d.id === parseInt(dealData.id));
-      if (idx !== -1) {
-        deals[idx] = {
-          ...deals[idx],
-          slug: dealData.slug || deals[idx].slug || generateSlug(dealData.titlePt),
-          category: {
-            en: dealData.categoryEn,
-            pt: dealData.categoryPt
-          },
-          title: {
-            en: dealData.titleEn,
-            pt: dealData.titlePt
-          },
-          timeSlot: {
-            en: dealData.timeSlotEn,
-            pt: dealData.timeSlotPt
-          },
-          days: {
-            en: dealData.daysEn,
-            pt: dealData.daysPt
-          },
-          discount: {
-            en: `${dealData.baseDiscountPercent}% off`,
-            pt: `${dealData.baseDiscountPercent}% desc.`
-          },
-          baseDiscountPercent: parseInt(dealData.baseDiscountPercent),
-          minDiscountPercent: parseInt(dealData.minDiscountPercent),
-          decayRate: parseFloat(dealData.decayRate || 1.0),
-          ownerEmail: dealData.ownerEmail || deals[idx].ownerEmail || "admin@offpeak.pt",
-          price: dealData.price ? parseFloat(dealData.price) : (deals[idx].price || null),
-          image: dealData.image || deals[idx].image || "/hero-padel.png",
-          isPartner: dealData.isPartner !== undefined ? dealData.isPartner : deals[idx].isPartner,
-          address: {
-            en: dealData.addressEn || (deals[idx].address && deals[idx].address.en) || "",
-            pt: dealData.addressPt || (deals[idx].address && deals[idx].address.pt) || ""
-          },
-          lat: dealData.lat ? parseFloat(dealData.lat) : (deals[idx].lat || null),
-          lng: dealData.lng ? parseFloat(dealData.lng) : (deals[idx].lng || null),
-          description: {
-            en: dealData.descriptionEn || (deals[idx].description && deals[idx].description.en) || "",
-            pt: dealData.descriptionPt || (deals[idx].description && deals[idx].description.pt) || ""
-          },
-          hours: {
-            en: dealData.hoursEn || (deals[idx].hours && deals[idx].hours.en) || "",
-            pt: dealData.hoursPt || (deals[idx].hours && deals[idx].hours.pt) || ""
-          },
-          terms: {
-            en: dealData.termsEn || (deals[idx].terms && deals[idx].terms.en) || "",
-            pt: dealData.termsPt || (deals[idx].terms && deals[idx].terms.pt) || ""
-          },
-          photos: dealData.photos || deals[idx].photos || [],
-          bookingMethod: dealData.bookingMethod || deals[idx].bookingMethod || "form",
-          bookingTarget: dealData.bookingTarget || deals[idx].bookingTarget || null
-        };
-      } else {
-        return { success: false, error: "Deal not found to edit" };
-      }
-    } else {
-      const maxId = deals.reduce((max, d) => d.id > max ? d.id : max, 0);
-      const slug = dealData.slug || generateSlug(dealData.titlePt);
-      const newDeal = {
-        id: maxId + 1,
-        slug,
-        image: dealData.image || "/hero-padel.png",
-        isPartner: dealData.isPartner !== undefined ? dealData.isPartner : true,
-        category: {
-          en: dealData.categoryEn,
-          pt: dealData.categoryPt
-        },
-        title: {
-          en: dealData.titleEn,
-          pt: dealData.titlePt
-        },
-        discount: {
-          en: `${dealData.baseDiscountPercent}% off`,
-          pt: `${dealData.baseDiscountPercent}% desc.`
-        },
-        timeSlot: {
-          en: dealData.timeSlotEn,
-          pt: dealData.timeSlotPt
-        },
-        days: {
-          en: dealData.daysEn,
-          pt: dealData.daysPt
-        },
-        baseDiscountPercent: parseInt(dealData.baseDiscountPercent),
-        minDiscountPercent: parseInt(dealData.minDiscountPercent),
-        views: 0,
-        bookings: 0,
-        decayRate: parseFloat(dealData.decayRate || 1.0),
-        ownerEmail: dealData.ownerEmail || "admin@offpeak.pt",
-        price: dealData.price ? parseFloat(dealData.price) : null,
-        address: {
-          en: dealData.addressEn || "",
-          pt: dealData.addressPt || ""
-        },
-        lat: dealData.lat ? parseFloat(dealData.lat) : null,
-        lng: dealData.lng ? parseFloat(dealData.lng) : null,
-        description: {
-          en: dealData.descriptionEn || "",
-          pt: dealData.descriptionPt || ""
-        },
-        hours: {
-          en: dealData.hoursEn || "",
-          pt: dealData.hoursPt || ""
-        },
-        terms: {
-          en: dealData.termsEn || "",
-          pt: dealData.termsPt || ""
-        },
-        photos: dealData.photos || [],
-        bookingMethod: dealData.bookingMethod || "form",
-        bookingTarget: dealData.bookingTarget || null
-      };
-      deals.push(newDeal);
+      const doc = await dealsRef.doc(dealId).get();
+      if (doc.exists) existingDeal = doc.data();
     }
 
-    await fs.writeFile(dealsPath, JSON.stringify(deals, null, 2), "utf-8");
+    const newDeal = {
+      ...existingDeal,
+      id: dealId,
+      slug: dealData.slug || existingDeal.slug || generateSlug(dealData.titlePt),
+      category: {
+        en: dealData.categoryEn,
+        pt: dealData.categoryPt
+      },
+      title: {
+        en: dealData.titleEn,
+        pt: dealData.titlePt
+      },
+      timeSlot: {
+        en: dealData.timeSlotEn,
+        pt: dealData.timeSlotPt
+      },
+      days: {
+        en: dealData.daysEn,
+        pt: dealData.daysPt
+      },
+      discount: {
+        en: `${dealData.baseDiscountPercent}% off`,
+        pt: `${dealData.baseDiscountPercent}% desc.`
+      },
+      baseDiscountPercent: parseInt(dealData.baseDiscountPercent),
+      minDiscountPercent: parseInt(dealData.minDiscountPercent),
+      decayRate: parseFloat(dealData.decayRate || 1.0),
+      ownerEmail: dealData.ownerEmail || existingDeal.ownerEmail || "admin@offpeak.pt",
+      price: dealData.price ? parseFloat(dealData.price) : (existingDeal.price || null),
+      image: dealData.image || existingDeal.image || "/hero-padel.png",
+      isPartner: dealData.isPartner !== undefined ? dealData.isPartner : (existingDeal.isPartner !== undefined ? existingDeal.isPartner : true),
+      address: {
+        en: dealData.addressEn || (existingDeal.address && existingDeal.address.en) || "",
+        pt: dealData.addressPt || (existingDeal.address && existingDeal.address.pt) || ""
+      },
+      lat: dealData.lat ? parseFloat(dealData.lat) : (existingDeal.lat || null),
+      lng: dealData.lng ? parseFloat(dealData.lng) : (existingDeal.lng || null),
+      description: {
+        en: dealData.descriptionEn || (existingDeal.description && existingDeal.description.en) || "",
+        pt: dealData.descriptionPt || (existingDeal.description && existingDeal.description.pt) || ""
+      },
+      hours: {
+        en: dealData.hoursEn || (existingDeal.hours && existingDeal.hours.en) || "",
+        pt: dealData.hoursPt || (existingDeal.hours && existingDeal.hours.pt) || ""
+      },
+      terms: {
+        en: dealData.termsEn || (existingDeal.terms && existingDeal.terms.en) || "",
+        pt: dealData.termsPt || (existingDeal.terms && existingDeal.terms.pt) || ""
+      },
+      photos: dealData.photos || existingDeal.photos || [],
+      bookingMethod: dealData.bookingMethod || existingDeal.bookingMethod || "form",
+      bookingTarget: dealData.bookingTarget || existingDeal.bookingTarget || null,
+      views: existingDeal.views || 0,
+      bookings: existingDeal.bookings || 0,
+    };
+
+    await dealsRef.doc(dealId).set(newDeal);
     return { success: true };
   } catch (error) {
-    console.error("Error writing to deals.json:", error);
+    console.error("Error writing to Firestore deals:", error);
     return { success: false, error: "Could not save deal changes" };
   }
 }
 
 export async function deleteDeal(dealId) {
   try {
-    const fileContent = await fs.readFile(dealsPath, "utf-8");
-    const deals = JSON.parse(fileContent);
-
-    const updatedDeals = deals.filter(d => d.id !== parseInt(dealId));
-    if (deals.length === updatedDeals.length) {
-      return { success: false, error: "Deal not found to delete" };
-    }
-
-    await fs.writeFile(dealsPath, JSON.stringify(updatedDeals, null, 2), "utf-8");
+    if (!adminDb) return { success: false, error: "Firebase Admin missing" };
+    await adminDb.collection("deals").doc(String(dealId)).delete();
     return { success: true };
   } catch (error) {
-    console.error("Error deleting from deals.json:", error);
+    console.error("Error deleting from Firestore:", error);
     return { success: false, error: "Could not delete deal" };
   }
 }
@@ -259,9 +196,8 @@ export async function submitBooking(formData) {
   }
 
   try {
-    const fileContent = await fs.readFile(dealsPath, "utf-8");
-    const deals = JSON.parse(fileContent);
-    const deal = deals.find(d => d.id === parseInt(dealId));
+    const dealsRes = await getDeals();
+    const deal = dealsRes.deals?.find((d) => String(d.id) === String(dealId));
 
     if (!deal) {
       return { success: false, error: "Deal not found" };
@@ -296,12 +232,14 @@ export async function submitBooking(formData) {
     });
 
     try {
-      const idx = deals.findIndex(d => d.id === parseInt(dealId));
-      if (idx !== -1) {
-        deals[idx].bookings = (deals[idx].bookings || 0) + 1;
-        await fs.writeFile(dealsPath, JSON.stringify(deals, null, 2), "utf-8");
+      if (adminDb) {
+        await adminDb.collection("deals").doc(String(dealId)).update({
+          bookings: FieldValue.increment(1)
+        });
       }
-    } catch {}
+    } catch (e) {
+      console.error("Failed to increment bookings in Firestore", e);
+    }
 
     return { success: true };
   } catch (error) {

@@ -75,8 +75,8 @@ service cloud.firestore {
 
     // ─── Sessions Collection ──────────────────────────────────
     match /sessions/{sessionId} {
-      // Anyone authenticated can read open sessions (for browsing)
-      allow read: if isAuthenticated();
+      // Anyone can read sessions (for browsing)
+      allow read: if true;
 
       // Only authenticated users can create their own sessions via server actions
       // Server actions use Firebase Admin SDK which bypasses these rules,
