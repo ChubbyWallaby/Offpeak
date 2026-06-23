@@ -2,7 +2,7 @@
 
 import { Resend } from "resend";
 import { adminDb } from "@/lib/firebase-admin";
-import { FieldValue } from "firebase-admin/firestore";
+import { FieldValue, Timestamp } from "firebase-admin/firestore";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -252,8 +252,7 @@ export async function submitBooking(formData) {
    Social Sessions — Firestore-backed actions
    ═══════════════════════════════════════════════════ */
 
-import { adminDb } from "@/lib/firebase-admin";
-import { Timestamp, FieldValue } from "firebase-admin/firestore";
+
 
 export async function createSession(formData) {
   try {
