@@ -1,24 +1,22 @@
-import fs from "fs/promises";
-import path from "path";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { calculateDiscountPercent } from "../../pricing";
 import BookingButton from "../../components/BookingButton";
+import { getDeals } from "../../actions";
 
-async function getDeals() {
-  const filePath = path.join(process.cwd(), "app", "deals.json");
-  const raw = await fs.readFile(filePath, "utf-8");
-  return JSON.parse(raw);
+async function fetchDeals() {
+  const res = await getDeals();
+  return res.success ? res.deals : [];
 }
 
 export async function generateStaticParams() {
-  const deals = await getDeals();
+  const deals = await fetchDeals();
   return deals.map((deal) => ({ slug: deal.slug }));
 }
 
 export async function generateMetadata(props) {
   const params = await props.params;
-  const deals = await getDeals();
+  const deals = await fetchDeals();
   const deal = deals.find((d) => d.slug === params.slug);
   if (!deal) return { title: "Oferta não encontrada | Offpeak.pt" };
   return {
@@ -236,7 +234,7 @@ const styles = {
 
 export default async function DealPage(props) {
   const params = await props.params;
-  const deals = await getDeals();
+  const deals = await fetchDeals();
   const deal = deals.find((d) => d.slug === params.slug);
 
   if (!deal) notFound();

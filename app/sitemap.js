@@ -1,15 +1,13 @@
-import fs from "fs";
-import path from "path";
+import { getDeals } from "./actions";
 
-export default function sitemap() {
+export default async function sitemap() {
   const baseUrl = "https://offpeak.pt";
   const today = new Date().toISOString().split("T")[0];
 
-  const dealsPath = path.join(process.cwd(), "app", "deals.json");
   let dealEntries = [];
   try {
-    const data = fs.readFileSync(dealsPath, "utf-8");
-    const deals = JSON.parse(data);
+    const res = await getDeals();
+    const deals = res.success ? res.deals : [];
     dealEntries = deals
       .filter((d) => d.slug)
       .map((deal) => ({

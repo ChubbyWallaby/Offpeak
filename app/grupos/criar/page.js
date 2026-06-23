@@ -5,8 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useAuth } from "@/app/components/AuthProvider";
 import AuthModal from "@/app/components/AuthModal";
-import { createSession } from "@/app/actions";
-import DEALS from "@/app/deals.json";
+import { createSession, getDeals } from "@/app/actions";
 import styles from "./page.module.css";
 
 const LABELS = {
@@ -88,9 +87,18 @@ function CriarGrupoContent() {
   const [timeSlot, setTimeSlot] = useState("");
   const [spotsTotal, setSpotsTotal] = useState(4);
   const [message, setMessage] = useState("");
+  const [DEALS, setDEALS] = useState([]);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [successId, setSuccessId] = useState(null);
+
+  useEffect(() => {
+    getDeals().then(res => {
+      if (res.success) {
+        setDEALS(res.deals || []);
+      }
+    }).catch(err => console.error("Failed to fetch deals", err));
+  }, []);
 
   // Auto-fill venue when deal selected
   useEffect(() => {

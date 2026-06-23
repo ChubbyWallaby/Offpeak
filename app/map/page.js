@@ -1,6 +1,5 @@
-import fs from "fs/promises";
-import path from "path";
 import MapClient from "./MapClient";
+import { getDeals } from "../actions";
 
 export const metadata = {
   title: "Mapa de Ofertas | Offpeak.pt",
@@ -8,9 +7,8 @@ export const metadata = {
 };
 
 export default async function MapPage() {
-  const dealsPath = path.join(process.cwd(), "app", "deals.json");
-  const data = await fs.readFile(dealsPath, "utf-8");
-  const deals = JSON.parse(data);
+  const res = await getDeals();
+  const deals = res.success ? res.deals : [];
   const mappableDeals = deals.filter((d) => d.lat && d.lng);
   return <MapClient deals={mappableDeals} />;
 }

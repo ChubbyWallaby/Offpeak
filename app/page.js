@@ -12,7 +12,6 @@ import AuthModal from "@/app/components/AuthModal";
    Offpeak.pt — Landing Page
    ═══════════════════════════════════════════════════════ */
 
-import DEALS from "./deals.json";
 import { getDiscountText } from "./pricing";
 
 /* ─── SVG Icons for How It Works Section ─── */
@@ -138,7 +137,7 @@ export default function Home() {
   const { user, logOut } = useAuth();
   const [authOpen, setAuthOpen] = useState(false);
   const [lang, setLang] = useState("pt");
-  const [dealsList, setDealsList] = useState(DEALS);
+  const [dealsList, setDealsList] = useState([]);
   const [timeIndex, setTimeIndex] = useState(0);
   const [previewSessions, setPreviewSessions] = useState([]);
 
@@ -311,8 +310,8 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "ItemList",
     "name": "Active Offpeak Deals in Lisbon",
-    "numberOfItems": DEALS.length,
-    "itemListElement": DEALS.map((deal, idx) => {
+    "numberOfItems": dealsList.length,
+    "itemListElement": dealsList.map((deal, idx) => {
       const titleText = deal.title.pt || deal.title.en;
       // Extract business name before any dash or em-dash
       const businessName = titleText.split("—")[0].split("-")[0].trim();
