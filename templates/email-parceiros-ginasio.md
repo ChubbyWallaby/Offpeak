@@ -1,39 +1,35 @@
-# Email Parceiros — Ginásio / Fitness
+# Email Parceiros — Ginásio
 
-**Assunto:** Os horários das 10h às 16h podem render mais — sem mexer nos picos
+**Assunto:** Parceria com a Offpeak.pt 🏋️ / Rentabilizar os horários tranquilos do ginásio
 
 ---
 
-Boa tarde,
+Olá [NOME],
 
-Sou o [NOME], da Offpeak.pt — uma plataforma de ofertas em horários de menor procura para espaços de lazer e fitness.
+O meu nome é [O TEU NOME] e faço parte da equipa da Offpeak.pt, uma nova plataforma (atualmente em construção) que ajuda espaços desportivos a rentabilizarem os seus horários de menor afluência.
 
-Os ginásios têm um padrão claro: lotados às 7h–9h e às 18h–21h, vazios no meio. Esses horários mortos representam capacidade instalada que não está a gerar receita. É exactamente isso que a Offpeak.pt resolve.
+Acompanhamos o excelente ambiente do [NOME DO GINÁSIO] e sabemos que, como na maioria dos clubes, há picos intensos de manhã e ao final do dia, mas as tardes costumam ser muito mais calmas. Achamos que podemos ajudar-vos a tirar mais partido dessas horas!
 
-**O modelo:**
+**A nossa ideia é simples:**
+Vocês disponibilizam passes diários (ou utilizações avulsas) para os vossos horários mais tranquilos com um valor apelativo. Nós promovemos essas entradas à nossa comunidade de utilizadores que procuram treinar com flexibilidade, sem a pressão de uma mensalidade fixa.
 
-Vocês criam uma oferta para horários específicos (ex.: entrada avulsa com 35% de desconto entre as 10h e as 16h). Nós mostramos essa oferta a utilizadores que têm flexibilidade horária — freelancers, estudantes, reformados, trabalhadores remotos.
+**O que ganham com a parceria?**
+- **Novas receitas:** Ganham com entradas avulsas em horas em que o espaço está subaproveitado, sem incomodar os vossos sócios habituais.
+- **Conversão de clientes:** É uma ótima forma de trazer pessoas novas a experimentar o ginásio, muitas das quais podem vir a tornar-se sócias.
+- **Risco e custo zero:** Como o nosso site está em fase de lançamento, não iremos cobrar qualquer comissão. É uma excelente oportunidade para testarem o modelo de forma 100% gratuita.
+- **Controlo total:** O ginásio define sempre os limites de entrada, horários e preços.
 
-**O que ganham:**
+Adorávamos contar convosco como um dos nossos Parceiros Fundadores, o que vos garante destaque prioritário assim que a plataforma arrancar.
 
-- Receita incremental em horários subocupados
-- Novos clientes que podem converter em mensalistas
-- Comissão a partir de 5% por reserva — sem contratos de permanência (plano sem risco disponível)
-- Controlo total sobre horários e condições
+Podemos agendar uma breve chamada de 5 minutos esta semana para explorarmos se vos faria sentido?
 
-**O que NÃO mudamos:**
+Apesar de o site ainda estar em construção, podem ver já como funciona o conceito aqui: https://offpeak.pt/para-negocios
 
-- O vosso pricing normal não é afetado
-- Não competimos com as vossas promoções internas
-- Não pedimos exclusividade nem contratos longos
+Fico a aguardar o vosso feedback!
 
-Estamos a lançar em Lisboa e a convidar espaços de referência como parceiros fundadores — com destaque na plataforma e condições que não vamos repetir.
+Um abraço,
 
-Posso ligar em 5 minutos ou, se preferirem, vejam:
-https://offpeak.pt/para-negocios
-
-Cumprimentos,
-[NOME]
+[O TEU NOME]
 Offpeak.pt
 [TELEFONE]
 info@offpeak.pt

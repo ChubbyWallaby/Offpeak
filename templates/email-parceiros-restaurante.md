@@ -1,39 +1,35 @@
 # Email Parceiros — Restaurante
 
-**Assunto:** Mesas vazias entre as 15h e as 19h? Podemos mudar isso
+**Assunto:** Parceria com a Offpeak.pt 🍽️ / Mais mesas cheias fora das horas de ponta
 
 ---
 
-Boa tarde,
+Olá [NOME],
 
-Sou o [NOME], da Offpeak.pt — uma plataforma que liga clientes a espaços de lazer e restauração com disponibilidade fora dos horários de pico.
+O meu nome é [O TEU NOME] e faço parte da equipa da Offpeak.pt, uma plataforma (atualmente em construção) desenhada para ajudar espaços de restauração a atrair clientes naqueles horários que costumam ser mais parados (como os almoços tardios ou jantares mais cedo).
 
-Sabemos que restaurantes em Lisboa enfrentam um vazio previsível entre o fim do almoço e o início do jantar. Há público disponível nesse horário — só precisa de um incentivo para entrar.
+Gostamos imenso do conceito do [NOME DO RESTAURANTE]! Sabemos que os custos fixos estão lá o dia todo e que ter mesas vazias no início ou no fim dos serviços é um desafio comum. Achamos que faria todo o sentido trabalharmos em conjunto.
 
-**A ideia:**
+**A nossa ideia é simples:**
+Vocês escolhem os horários mais tranquilos do vosso serviço e oferecem um desconto (no menu ou na conta final). Nós tratamos de divulgar o vosso espaço à nossa comunidade, que adora descobrir novos sítios e tem flexibilidade de horário.
 
-Vocês definem uma oferta para o período que vos interessa (ex.: 25–40% de desconto no menu entre as 15h e as 19h). Nós promovemos a utilizadores na zona que procuram onde comer ou beber algo a bom preço fora das horas de ponta.
+**O que ganham com a parceria?**
+- **Mesas ocupadas:** Mais faturação naquelas horas em que a equipa já lá está, sem tocar nos vossos horários de grande movimento.
+- **Novos clientes:** Uma oportunidade fantástica para que novas pessoas provem a vossa carta e se tornem clientes habituais.
+- **Risco e custo zero:** Como o nosso site está em fase de lançamento, não iremos cobrar qualquer comissão. É uma excelente oportunidade para testarem a parceria de forma 100% gratuita.
+- **Controlo total:** Vocês decidem sempre as mesas, os descontos e os horários que querem promover.
 
-**Vantagens concretas:**
+Adorávamos contar convosco como um dos nossos Parceiros Fundadores, garantindo-vos um destaque especial na plataforma quando for lançada.
 
-- Mesas ocupadas num horário que hoje rende pouco ou nada
-- Clientes novos que descobrem o vosso espaço e podem voltar em horário normal
-- Comissão a partir de 5% por reserva — sem contratos de permanência (plano sem risco disponível)
-- Sem custo nenhum durante o período de lançamento
+Podemos agendar uma breve chamada de 5 minutos esta semana para vos explicar melhor a ideia?
 
-**O que NÃO mexemos:**
+Apesar de o site ainda estar em construção, os detalhes do modelo de parceiros estão aqui: https://offpeak.pt/para-negocios
 
-- Os vossos horários de pico ficam intocados
-- Não somos uma app de entregas — o cliente vai fisicamente ao restaurante
-- Sem exclusividade, sem contratos, sem compromisso
+Fico a aguardar o vosso feedback!
 
-Estamos em fase de lançamento em Lisboa e a convidar restaurantes de qualidade para serem parceiros fundadores com destaque garantido.
+Um abraço,
 
-Têm 5 minutos para uma conversa rápida? Ou vejam a proposta completa em:
-https://offpeak.pt/para-negocios
-
-Cumprimentos,
-[NOME]
+[O TEU NOME]
 Offpeak.pt
 [TELEFONE]
 info@offpeak.pt

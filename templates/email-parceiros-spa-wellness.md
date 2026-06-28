@@ -1,39 +1,35 @@
-# Email Parceiros — Spa / Wellness / Massagens
+# Email Parceiros — Spa e Wellness
 
-**Assunto:** Salas de tratamento paradas durante a semana? Temos clientes para elas
+**Assunto:** Parceria com a Offpeak.pt 💆‍♀️ / Otimizar a agenda nos horários tranquilos
 
 ---
 
-Boa tarde,
+Olá [NOME],
 
-Sou o [NOME], da Offpeak.pt — uma plataforma que promove espaços de lazer e bem-estar junto de clientes que procuram serviços em horários de menor procura.
+O meu nome é [O TEU NOME] e faço parte da equipa da Offpeak.pt, uma plataforma (atualmente em construção) que ajuda clínicas e espaços de bem-estar a preencher as horas vagas nas suas agendas.
 
-Spas e centros de wellness costumam ter uma ocupação forte ao fim de semana e em final de dia, mas as manhãs e tardes de dias úteis ficam frequentemente com agenda aberta. São horas em que a equipa está disponível, o espaço está preparado, mas não há receita.
+Adoramos o ambiente e os serviços do [NOME DO SPA/ESPAÇO]! Sabemos que, muitas vezes, as manhãs e o início das tardes à semana têm menos marcações, deixando os terapeutas com tempo livre. Achamos que podemos ajudar-vos a transformar esse tempo em negócio.
 
-**Como funciona:**
+**A nossa ideia é simples:**
+Vocês selecionam os horários com menor afluência e promovem certos tratamentos ou massagens com um desconto especial. Nós levamos essas ofertas à nossa comunidade, que procura experiências de relaxamento e tem flexibilidade para os horários menos comuns.
 
-Vocês escolhem os horários e tratamentos que querem promover com desconto (ex.: massagem de relaxamento com 35% de desconto, terça a quinta entre as 10h e as 15h). Nós mostramos a oferta a pessoas na zona de Lisboa que procuram experiências de bem-estar acessíveis.
+**O que ganham com a parceria?**
+- **Agendas preenchidas:** Mais serviços marcados naquelas horas mortas, rentabilizando o espaço e o tempo da vossa equipa.
+- **Novos clientes:** Uma forma excelente de dar a conhecer os vossos tratamentos a pessoas que poderão voltar e marcar pelo preço normal.
+- **Risco e custo zero:** Como o nosso site está em fase de lançamento, não iremos cobrar qualquer comissão. É uma excelente oportunidade para testarem o modelo de forma 100% gratuita.
+- **Controlo total:** A vossa agenda dita as regras. Vocês decidem os serviços, horários e valores.
 
-**O que ganham:**
+Gostávamos muito de vos ter como Parceiros Fundadores, oferecendo-vos destaque prioritário na plataforma assim que a mesma estiver ativa.
 
-- Agenda preenchida em horários mortos
-- Clientes novos que experimentam os vossos serviços e podem fidelizar
-- Comissão a partir de 5% por reserva — sem contratos de permanência (plano sem risco disponível)
-- Vocês definem tudo: serviços, horários, desconto, disponibilidade
+Podemos agendar uma breve chamada de 5 minutos esta semana para percebermos se faz sentido para vocês?
 
-**O que garantimos:**
+Apesar de o site ainda estar em construção, podem consultar mais detalhes do conceito aqui: https://offpeak.pt/para-negocios
 
-- Zero interferência nos horários de pico ou preços normais
-- Sem exclusividade nem contratos vinculativos
-- Cancelamento a qualquer momento
+Fico a aguardar o vosso feedback!
 
-Estamos em fase de lançamento em Lisboa e a selecionar parceiros fundadores. Estes terão posição de destaque permanente na plataforma.
+Um abraço,
 
-Posso ligar em 5 minutos para explicar? Ou consultem:
-https://offpeak.pt/para-negocios
-
-Cumprimentos,
-[NOME]
+[O TEU NOME]
 Offpeak.pt
 [TELEFONE]
 info@offpeak.pt

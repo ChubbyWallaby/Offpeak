@@ -1,33 +1,35 @@
 # Email Parceiros — Bowling
 
-**Assunto:** Pistas vazias durante a semana? Temos quem as queira usar
+**Assunto:** Parceria com a Offpeak.pt 🎳 / Mais movimento nas pistas durante a semana
 
 ---
 
-Boa tarde,
+Olá [NOME],
 
-Sou o [NOME], da Offpeak.pt — uma plataforma que ajuda espaços de lazer a preencher horários de baixa ocupação com clientes reais.
+O meu nome é [O TEU NOME] e faço parte da equipa da Offpeak.pt, uma nova plataforma (atualmente em construção) que ajuda espaços de entretenimento a atrair mais clientes durante aqueles horários que costumam ser mais tranquilos.
 
-Sabemos que pistas de bowling tendem a ter ocupação muito baixa entre as 10h e as 17h em dias úteis. Grupos, famílias e trabalhadores remotos procuram alternativas de lazer acessíveis nestes horários — só não sabem que vocês têm disponibilidade.
+Acompanhamos o vosso excelente trabalho no [NOME DO ESPAÇO] e sabemos que gerir a ocupação das pistas a meio do dia (especialmente à semana) pode ser um desafio. Achamos que faria todo o sentido trabalharmos em conjunto!
 
-**A proposta é simples:**
+**A nossa ideia é simples:**
+Vocês escolhem os horários de menor movimento e disponibilizam-nos com um desconto atrativo. Nós tratamos de divulgar essa oportunidade à nossa comunidade (estudantes, famílias ou trabalhadores flexíveis) que procura atividades de grupo a bons preços.
 
-Vocês definem um desconto para os horários que vos interessam (ex.: 40% entre as 14h e as 17h, Seg–Sex). Nós promovemos a oferta a utilizadores na zona que procuram atividades de grupo a bom preço.
+**O que ganham com a parceria?**
+- **Mais movimento:** Pistas ocupadas e bar a faturar em horas que costumam estar paradas, sem afetar o vosso pico ao fim de semana.
+- **Novos clientes:** Muitas pessoas vão conhecer o vosso espaço pelo desconto e acabar por voltar noutras ocasiões.
+- **Risco e custo zero:** Como o nosso site está em fase de lançamento, não iremos cobrar qualquer comissão. É uma excelente oportunidade para testarem a plataforma de forma 100% gratuita.
+- **Controlo total:** Os preços e a disponibilidade estão sempre nas vossas mãos.
 
-**Vantagens:**
+Adorávamos contar convosco como um dos nossos Parceiros Fundadores, garantindo um destaque especial para o vosso espaço aquando do lançamento.
 
-- Pistas ocupadas em horários que hoje estão paradas
-- Clientes novos que descobrem o vosso espaço pela primeira vez
-- Comissão a partir de 5% por reserva — sem contratos de permanência (plano sem risco disponível)
-- Vocês controlam tudo: horários, preço, disponibilidade
+Podemos agendar uma breve chamada de 5 minutos esta semana para vos explicar melhor a ideia?
 
-Estamos em fase de lançamento em Lisboa e a selecionar parceiros fundadores. Estes parceiros terão destaque permanente na plataforma e condições especiais.
+Apesar de o site ainda estar em construção, podem espreitar a nossa página dedicada a negócios aqui: https://offpeak.pt/para-negocios
 
-Se tiverem 5 minutos, posso explicar por telefone. Ou podem ver a página dedicada a negócios:
-https://offpeak.pt/para-negocios
+Fico a aguardar o vosso feedback!
 
-Cumprimentos,
-[NOME]
+Um abraço,
+
+[O TEU NOME]
 Offpeak.pt
 [TELEFONE]
 info@offpeak.pt

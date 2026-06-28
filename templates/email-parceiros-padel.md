@@ -1,41 +1,35 @@
 # Email Parceiros — Padel
 
-**Assunto:** Preencha os courts vazios das 14h às 17h — sem custo para si
+**Assunto:** Parceria com a Offpeak.pt 🎾 / Rentabilizar os courts nas horas mais calmas
 
 ---
 
-Boa tarde,
+Olá [NOME],
 
-Sou o [NOME], da Offpeak.pt — uma plataforma que liga utilizadores a espaços de lazer com disponibilidade em horários de menor procura.
+O meu nome é [O TEU NOME] e faço parte da equipa da Offpeak.pt, uma nova plataforma (atualmente em construção) que ajuda espaços fantásticos a atrair praticantes durante aqueles horários do dia que costumam ter menos movimento.
 
-Reparámos que o [NOME DO CLUBE] tem courts de padel com ocupação reduzida durante as tardes de dias úteis. É exatamente este tipo de situação que a Offpeak.pt resolve.
+Acompanhamos o vosso excelente trabalho no [NOME DO CLUBE] e sabemos o desafio que pode ser manter os courts cheios a meio da tarde durante a semana. Achamos que faria todo o sentido trabalharmos em conjunto para mudar isso!
 
-**Como funciona:**
+**A nossa ideia é simples:**
+Vocês definem os horários com menor ocupação e oferecem um desconto atrativo para essas horas. Nós tratamos de promover esses horários à nossa comunidade de jogadores que têm flexibilidade (como trabalhadores remotos ou estudantes) e procuram bons jogos a preços acessíveis.
 
-O vosso clube define o horário e o desconto que pretende oferecer (ex.: 30–50% entre as 14h e as 17h, Seg–Sex). Nós promovemos a oferta a utilizadores na zona de Lisboa que procuram ativamente onde jogar padel a preços acessíveis.
+**O que ganham com a parceria?**
+- **Novas receitas:** Ocupem os courts em horas "mortas", sem mexer nos vossos preciosos horários de pico.
+- **Novos jogadores:** Atraiam clientes que talvez não conhecessem o vosso clube.
+- **Risco e custo zero:** Como o nosso site está em fase de lançamento, não iremos cobrar qualquer comissão. É uma excelente oportunidade para testarem a plataforma de forma 100% gratuita.
+- **Controlo total:** Vocês decidem sempre quais os horários e descontos que querem disponibilizar.
 
-**O que ganham:**
+Adorávamos contar convosco como um dos nossos Parceiros Fundadores, o que vos garante um destaque especial assim que a plataforma for lançada.
 
-- Receita em horários que hoje geram zero
-- Visibilidade junto de novos clientes que nunca vos encontrariam de outra forma
-- Comissão a partir de 5% por reserva — sem contratos de permanência (plano sem risco disponível)
-- Controlo total — vocês definem os horários, os preços e a disponibilidade
+Podemos agendar uma breve chamada de 5 minutos esta semana para explorarmos se faz sentido para vocês?
 
-**O que NÃO fazemos:**
+Apesar de o site ainda estar em construção, podem ver mais detalhes do nosso conceito aqui: https://offpeak.pt/para-negocios
 
-- Não tocamos nos vossos horários de pico
-- Não pedimos exclusividade
-- Sem setup, sem mensalidade — só pagam quando recebem clientes
+Fico a aguardar o vosso feedback!
 
-Estamos em fase de lançamento em Lisboa e a convidar espaços de qualidade para serem parceiros fundadores. Significa visibilidade prioritária na plataforma e condições que não repetiremos mais tarde.
+Um abraço,
 
-Posso ligar-vos em 5 minutos para explicar melhor, ou se preferirem, podem registar-se diretamente em:
-https://offpeak.pt/para-negocios
-
-Fico ao dispor para qualquer questão.
-
-Cumprimentos,
-[NOME]
+[O TEU NOME]
 Offpeak.pt
 [TELEFONE]
 info@offpeak.pt
